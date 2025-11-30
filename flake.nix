@@ -7,11 +7,13 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations.bens-laptop = nixpkgs.lib.nixosSystem {
-      modules = [
-        /etc/nixos/hardware-configuration.nix
-        ./configuration.nix
-      ];
+    nixosConfigurations = {
+      bens-laptop = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hardware-configuration.nix
+          ./configuration.nix
+        ];
+      };
     };
   };
 }

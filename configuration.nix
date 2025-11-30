@@ -112,6 +112,7 @@
       spotify
       obsidian
       discord
+      prismlauncher
 
       # Creative
       gimp
@@ -140,10 +141,11 @@
   nixpkgs.config.allowUnfree = true;
 
   # Symlink bash into /bin/bash so external programs don't cry about it
-  systemd.tmpfiles.rules = [
-    "L+ /bin/bash - - - - /run/current-system/sw/bin/bash"
-    "L+ /bin/sh   - - - - /run/current-system/sw/bin/bash"
-  ];
+  programs.bash.enable = true;
+  #systemd.tmpfiles.rules = [
+  #  "L+ /bin/bash - - - - /run/current-system/sw/bin/bash"
+  #  "L+ /bin/sh   - - - - /run/current-system/sw/bin/bash"
+  #];
 
   # Setup Syncthing
   services.syncthing = {
@@ -180,9 +182,10 @@
     deno
   ];
 
-  environment.variables = {
-    _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
-  };
+  # TODO: move this into dev shells for java applications
+  #environment.variables = {
+  #  _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
+  #};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -210,5 +213,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }
