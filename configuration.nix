@@ -105,7 +105,7 @@
       helix
       jetbrains.rider
       jetbrains.idea-ultimate
-      godot
+      godot-mono
       avalonia-ilspy
 
       # Utility
@@ -141,7 +141,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # Symlink bash into /bin/bash so external programs don't cry about it
-  programs.bash.enable = true;
+  #programs.bash.enable = true;
   #systemd.tmpfiles.rules = [
   #  "L+ /bin/bash - - - - /run/current-system/sw/bin/bash"
   #  "L+ /bin/sh   - - - - /run/current-system/sw/bin/bash"
