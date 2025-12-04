@@ -28,6 +28,11 @@
         allowUnfree = true;
       };
     };
+
+    devShellArgs = {
+      pkgs = pkgs-stable;
+      unstable = pkgs-unstable;
+    };
   in
   {
     nixosConfigurations = {
@@ -57,20 +62,12 @@
       };
     };
 
-    let
-      pkgs = pkgs-stable;
-      unstable = pkgs-unstable;
-      args = {
-        inherit pkgs;
-        inherit unstable;
-      };
-    in
-      devShells.${system} = {
-        dotnet = import ./devShells/dotnet.nix args;
-        java = import ./devShells/java.nix args;
-        js = import ./devShells/js.nix args;
-        rust = import ./devShells/rust.nix args;
-        zig = import ./devShells/zig.nix args;
-      };
+    devShells.${system} = {
+      dotnet = import ./devShells/dotnet.nix devShellArgs;
+      java = import ./devShells/java.nix devShellArgs;
+      js = import ./devShells/js.nix devShellArgs;
+      rust = import ./devShells/rust.nix devShellArgs;
+      zig = import ./devShells/zig.nix devShellArgs;
+    };
   };
 }
