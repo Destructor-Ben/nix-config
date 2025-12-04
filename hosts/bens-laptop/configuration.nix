@@ -1,19 +1,13 @@
 { config, pkgs, ... }:
 {
+  imports = [
+    ./hardware-configuration.nix
+    ../../modules/base
+    ../../modules/desktop
+  ];
+
   system.stateVersion = "25.05";
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "bens-laptop"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
+  networking.hostName = "bens-laptop";
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
@@ -119,9 +113,6 @@
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # Symlink bash into /bin/bash so external programs don't cry about it
   #programs.bash.enable = true;
   #systemd.tmpfiles.rules = [
@@ -138,53 +129,4 @@
     configDir = "/home/ben/.config/syncthing";
     openDefaultPorts = true; # Open ports in the firewall for Syncthing. (NOTE: this will not open syncthing gui port)
   };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    # Essentials
-    wget git gh
-    zip unzip p7zip
-    htop btop iotop
-    tree file jq
-    wineWowPackages.stable
-
-    # Fonts
-    jetbrains-mono
-
-    # Programming languages
-    (dotnetCorePackages.combinePackages [
-      dotnetCorePackages.sdk_10_0-bin
-      dotnetCorePackages.sdk_8_0-bin
-    ])
-
-    jdk gradle
-    zig zls
-    rustc cargo
-    deno
-  ];
-
-  # TODO: move this into dev shells for java applications
-  #environment.variables = {
-  #  _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
-  #};
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 }

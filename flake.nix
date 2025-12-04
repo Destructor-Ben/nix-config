@@ -11,14 +11,40 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
+  let
+    system = "x86_64-linux";
+
+    pkgs-stable = import nixpkgs {
+      inherit system;
+      config = {
+        allowUnfree = true;
+      };
+    };
+
+    pkgs-unstable = import nixpkgs-unstable {
+      inherit system;
+      config = {
+        allowUnfree = true;
+      };
+    };
+  in
+  {
     nixosConfigurations = {
       bens-laptop = nixpkgs.lib.nixosSystem {
+        inherit system;
         modules = [
+          {
+            nixpkgs.pkgs = pkgs-stable;
+
+            nixpkgs.overlays = [
+              (final: prev: {
+                unstable = pkgs-unstable;
+              })
+            ];
+          }
+
           ./hosts/bens-laptop/configuration.nix
-          ./hosts/bens-laptop/hardware-configuration.nix
-          ./modules/base
-          ./modules/desktop
 
           home-manager.nixosModules.home-manager
           {
@@ -30,5 +56,21 @@
         ];
       };
     };
+
+    let
+      pkgs = pkgs-stable;
+      unstable = pkgs-unstable;
+      args = {
+        inherit pkgs;
+        inherit unstable;
+      };
+    in
+      devShells.${system} = {
+        dotnet = import ./devShells/dotnet.nix args;
+        java = import ./devShells/java.nix args;
+        js = import ./devShells/js.nix args;
+        rust = import ./devShells/rust.nix args;
+        zig = import ./devShells/zig.nix args;
+      };
   };
 }
