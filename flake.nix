@@ -17,6 +17,8 @@
         modules = [
           ./hosts/bens-laptop/configuration.nix
           ./hosts/bens-laptop/hardware-configuration.nix
+          ./modules/base
+          ./modules/desktop
 
           home-manager.nixosModules.home-manager
           {
