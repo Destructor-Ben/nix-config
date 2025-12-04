@@ -23,7 +23,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.ben = ./home.nix;
+            home-manager.users.ben = ./users/ben/home.nix;
           }
         ];
       };
