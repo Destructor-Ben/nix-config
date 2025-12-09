@@ -9,6 +9,9 @@
   system.stateVersion = "25.05";
   networking.hostName = "bens-laptop";
 
+  # Dual boot windows compat, which stores local time instead of UTC
+  time.hardwareClockInLocalTime = true;
+
   # TODO: old, everything below must be cleaned up
 
   # Enable the X11 windowing system.

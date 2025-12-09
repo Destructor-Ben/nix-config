@@ -1,6 +1,5 @@
 {
   time.timeZone = "Pacific/Auckland";
-  time.hardwareClockInLocalTime = true; # Windows compat, which stores local time instead of UTC
 
   i18n.defaultLocale = "en_GB.UTF-8";
 
