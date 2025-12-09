@@ -62,6 +62,7 @@
       };
     };
 
+    # Devshells are intended to be used for personal projects, they use the bare minimum to setup
     devShells.${system} = {
       dotnet = import ./devShells/dotnet.nix devShellArgs;
       java = import ./devShells/java.nix devShellArgs;
