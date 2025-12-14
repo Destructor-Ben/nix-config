@@ -56,14 +56,14 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.ben = ./users/ben/home.nix;
+            home-manager.users.ben = ./hosts/bens-laptop/home.nix;
           }
         ];
       };
     };
 
     # Devshells are intended to be used for personal projects or for messing around with programming languages
-    # Idc how bad of an idea this is supposed to be
+    # I don't care how bad of an idea this is supposed to be
     devShells.${system} = {
       dotnet = import ./dev-shells/dotnet.nix devShellArgs;
       java = import ./dev-shells/java.nix devShellArgs;

@@ -7,5 +7,6 @@
     btop iotop
     tree file which jq
     wineWowPackages.stable
+    gnumake
   ];
 }

@@ -1,0 +1,8 @@
+{
+  imports = [
+    ./packages.nix
+    ./programs/firefox.nix
+    ./programs/git.nix
+    ./programs/syncthing.nix
+  ];
+}
