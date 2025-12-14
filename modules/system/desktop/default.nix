@@ -9,5 +9,6 @@
     ./users.nix
     ./programs/bash.nix
     ./programs/steam.nix
+    ./programs/syncthing.nix
   ];
 }
