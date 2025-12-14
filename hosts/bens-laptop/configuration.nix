@@ -10,6 +10,7 @@
   networking.hostName = "bens-laptop";
 
   # Dual boot windows compat, which stores local time instead of UTC
+  # TODO: move this to a dual boot module
   time.hardwareClockInLocalTime = true;
 
   # TODO: old, everything below must be cleaned up
@@ -47,9 +48,6 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
   # Enable bluetooth
   services.blueman.enable = true;
 
@@ -74,39 +72,6 @@
       };
     };
   };
-  
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.ben = {
-    isNormalUser = true;
-    description = "Ben";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      # Programming
-      vscode
-      helix
-      jetbrains.rider
-      jetbrains.idea-ultimate
-      godot-mono
-      avalonia-ilspy
-
-      # Utility
-      spotify
-      obsidian
-      discord
-      prismlauncher
-
-      # Creative
-      gimp
-      inkscape
-      blender
-
-      # Fun stuff
-      fastfetch
-      figlet
-      cowsay
-      mesa-demos
-    ];
-  };
 
   # Install firefox
   programs.firefox.enable = true;
@@ -118,14 +83,15 @@
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
+# TODO: reintroduce the symlink for bash, see if `programs.bash.enable = true` can be removed
   # Symlink bash into /bin/bash so external programs don't cry about it
   #programs.bash.enable = true;
   #systemd.tmpfiles.rules = [
   #  "L+ /bin/bash - - - - /run/current-system/sw/bin/bash"
-  #  "L+ /bin/sh   - - - - /run/current-system/sw/bin/bash"
   #];
 
   # Setup Syncthing
+  # TODO: move to syncthing module
   services.syncthing = {
     enable = true;
     user = "ben";

@@ -29,6 +29,16 @@
       };
     };
 
+    pkgs-overlay = {
+      nixpkgs.pkgs = pkgs-stable;
+
+      nixpkgs.overlays = [
+        (final: prev: {
+          unstable = pkgs-unstable;
+        })
+      ];
+    };
+
     devShellArgs = {
       pkgs = pkgs-stable;
       unstable = pkgs-unstable;
@@ -39,18 +49,8 @@
       bens-laptop = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          {
-            nixpkgs.pkgs = pkgs-stable;
-
-            nixpkgs.overlays = [
-              (final: prev: {
-                unstable = pkgs-unstable;
-              })
-            ];
-          }
-
           ./hosts/bens-laptop/configuration.nix
-
+          pkgs-overlay
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -62,13 +62,14 @@
       };
     };
 
-    # Devshells are intended to be used for personal projects, they use the bare minimum to setup
+    # Devshells are intended to be used for personal projects or for messing around with programming languages
+    # Idc how bad of an idea this is supposed to be
     devShells.${system} = {
-      dotnet = import ./devShells/dotnet.nix devShellArgs;
-      java = import ./devShells/java.nix devShellArgs;
-      js = import ./devShells/js.nix devShellArgs;
-      rust = import ./devShells/rust.nix devShellArgs;
-      zig = import ./devShells/zig.nix devShellArgs;
+      dotnet = import ./dev-shells/dotnet.nix devShellArgs;
+      java = import ./dev-shells/java.nix devShellArgs;
+      js = import ./dev-shells/js.nix devShellArgs;
+      rust = import ./dev-shells/rust.nix devShellArgs;
+      zig = import ./dev-shells/zig.nix devShellArgs;
     };
   };
 }

@@ -1,6 +1,7 @@
 {
   imports = [
     ./fonts.nix
+    ./users.nix
   ];
 
   # TODO: desktop apps should go here
