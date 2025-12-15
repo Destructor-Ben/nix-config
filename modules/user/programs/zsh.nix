@@ -7,8 +7,8 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
-      ns = "sudo nixos-rebuild switch";
-      ngc = "sudo nixos-rebuild switch && sudo nix-collect-garbage -d && sudo nixos-rebuild switch";
+      ns = "sudo nixos-rebuild switch --flake ~/nix-config";
+      ngc = "ns && sudo nix-collect-garbage -d && ns";
     };
   };
 }
