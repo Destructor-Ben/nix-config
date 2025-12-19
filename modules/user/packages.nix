@@ -13,7 +13,7 @@
     spotify
     obsidian
     discord
-    prismlauncher
+    unstable.prismlauncher
 
     # Creative
     gimp
