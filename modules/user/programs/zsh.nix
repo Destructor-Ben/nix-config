@@ -9,6 +9,8 @@
     shellAliases = {
       ns = "sudo nixos-rebuild switch --flake ~/nix-config";
       ngc = "ns && sudo nix-collect-garbage -d && ns";
+      nd = "nix develop --command zsh";
+      # TODO: nix develop ~/nix-config#$1
     };
 
     initContent = ''
