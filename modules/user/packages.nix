@@ -13,7 +13,8 @@
     spotify
     obsidian
     discord
-    unstable.prismlauncher
+    prismlauncher
+    mesa-demos
 
     # Creative
     gimp
@@ -24,6 +25,5 @@
     fastfetch
     figlet
     cowsay
-    mesa-demos
   ];
 }
