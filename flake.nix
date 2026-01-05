@@ -11,7 +11,7 @@
     };
 
     plasma-manager = {
-      url = "github:nix-community/plasma-manager/release-25.11";
+      url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
@@ -22,7 +22,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, plasma-manager, ... }@inputs:
   let
     system = "x86_64-linux";
 
