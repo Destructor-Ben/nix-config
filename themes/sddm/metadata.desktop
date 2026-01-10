@@ -1,12 +1,10 @@
 [SddmGreeterTheme]
-Name=pixel
-Description= Clean SDDM theme (dim wallpaper + big clock)
-Author=snes
-License=MIT
+Name=Destructor_Ben
+Description=Destructor_Ben
+Author=Destructor_Ben & snes
 Type=sddm-theme
 Version=1.0
 MainScript=Main.qml
-ConfigFile=theme.conf
-Theme-Id=pixel
+Theme-Id=Destructor_Ben
 Theme-API=2.0
 QtVersion=6

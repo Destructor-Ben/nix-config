@@ -5,6 +5,8 @@ import QtQuick.Window 2.15
 import Qt5Compat.GraphicalEffects 6.0 
 import SddmComponents 2.0
 
+import org.kde.breeze.components
+
 Item {
     id: root
     width: Screen.width
@@ -31,13 +33,15 @@ Item {
     readonly property real sleepDim: 0
     readonly property real authDim:  0
 
-    readonly property color cSurface:     "#232A2E"
-    readonly property color cSurfaceVar:  "#2D353B"
-    readonly property color cPrimary:     "#A7C080"
-    readonly property color cOnPrimary:   "#232A2E"
-    readonly property color cText:        "#D3C6AA"
-    readonly property color cMuted:       "#859289"
-    readonly property color cError:       "#E67E80" 
+    readonly property color cClock:            "#ffffff"
+    readonly property color cDate:             "#e0e0e0"
+    readonly property color cMuted:            "#909090"
+    readonly property color cShadow:           "#40000000"
+    readonly property color cBG:               "#131522"
+    readonly property color cFG:               "#1b1e2e"
+    readonly property color cAccent:           "#cf365a"
+    readonly property color cText:             "#ffffff"
+    readonly property color cError:            "#E67E80" // TODO: set
 
     // 2. CONNECTIONS 
 
@@ -167,7 +171,7 @@ Item {
         anchors.fill: parent
         z: 0
         fillMode: Image.PreserveAspectCrop
-        source: config.background
+        source: "../../img/Wallpaper.svg"
     }
 
     FastBlur {
@@ -200,92 +204,132 @@ Item {
 
     Text {
         z: 4
-        anchors.left: parent.left; anchors.top: parent.top
-        anchors.leftMargin: 60; anchors.topMargin: 60
+        anchors.centerIn: parent
+        anchors.verticalCenterOffset: -350
         text: Qt.formatDate(root.now, "dddd, MMMM d")
-        color: Qt.rgba(211/255, 198/255, 170/255, 0.62)
-        font.pixelSize: 28
-        font.weight: Font.Normal
+        color: root.cDate
+        font.pixelSize: 48
+        font.weight: Font.Medium
+        font.family: "JetBrains Mono"
         opacity: root.authOpen ? 0.0 : 1.0
-        Behavior on opacity { NumberAnimation { duration: 200 } }
+        Behavior on opacity { NumberAnimation { duration: 300 } }
     }
 
     Column {
         z: 4
         anchors.centerIn: parent
-        anchors.verticalCenterOffset: root.authOpen ? -300 : -50
-        scale: root.authOpen ? 0.8 : 1.0
-        opacity: root.authOpen ? 0.0 : 1.0
+        anchors.verticalCenterOffset: -50
         spacing: -87
-
-        Behavior on anchors.verticalCenterOffset { NumberAnimation { duration: 500; easing.type: Easing.OutExpo } }
-        Behavior on scale { NumberAnimation { duration: 500; easing.type: Easing.OutExpo } }
+        opacity: root.authOpen ? 0.0 : 1.0
         Behavior on opacity { NumberAnimation { duration: 300 } }
 
+        layer.enabled: true
+        layer.effect: DropShadow {
+            transparentBorder: true; color: root.cShadow; radius: 45; samples: 20; verticalOffset: 10
+        }
+
         Text {
-            text: Qt.formatTime(root.now, "hh")
-            color: root.cPrimary
-            font.family: "Inter" 
+            text: {
+                var hourStr = Qt.formatTime(root.now, "hh AP");
+                return hourStr.slice(0, -3).trim();
+            }
+            color: root.cClock
+            font.family: "JetBrains Mono" 
             font.pixelSize: 220; font.weight: Font.Medium
             anchors.horizontalCenter: parent.horizontalCenter
         }
         Text {
             text: Qt.formatTime(root.now, "mm")
-            color: root.cText
-            font.family: "Inter"
+            color: root.cClock
+            font.family: "JetBrains Mono"
             font.pixelSize: 220; font.weight:Font.Medium
             anchors.horizontalCenter: parent.horizontalCenter
         }
     }
 
 
-    // 7. POWER MENU UI 
+    // 7. POWER MENU UI
 
     Rectangle {
         id: powerPill
         z: 20
-        anchors.right: parent.right; anchors.top: parent.top
-        anchors.rightMargin: 40; anchors.topMargin: 40
-        width: 160; height: 44; radius: 22
-        color: Qt.rgba(45/255, 53/255, 59/255, 0.8)
-        visible: root.authOpen
+        width: 72 * 3 + 10 * 4; height: 72 + 10 * 2; radius: height / 2
+        color: root.cBG
+
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: root.authOpen ? (root.height / 2) - (authCard.height / 2) - height - 20 : -500
         opacity: root.authOpen ? 1.0 : 0.0
+
+        Behavior on anchors.bottomMargin { NumberAnimation { duration: 500; easing.type: Easing.OutExpo } }
         Behavior on opacity { NumberAnimation { duration: 300 } }
+
+        layer.enabled: true
+        layer.effect: DropShadow {
+            transparentBorder: true; color: root.cShadow; radius: 30; samples: 20; verticalOffset: 10
+        }
 
         RowLayout {
             anchors.centerIn: parent
-            spacing: 20
-            MouseArea {
-                width: 24; height: 24; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
-                onClicked: sddm.suspend()
-                Text { anchors.centerIn: parent; text: "󰤄"; font.pixelSize: 28; color: root.cText }
-                Rectangle {
-                    visible: parent.containsMouse; color: root.cSurface; border.color: root.cPrimary
-                    border.width: 1; radius: 6; width: 60; height: 28; y: 35
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    Text { anchors.centerIn: parent; text: "Sleep"; color: root.cText; font.pixelSize: 12 }
+            spacing: 10
+
+            Rectangle {
+                width: 72
+                height: 72
+                radius: 36
+                color: sleepButton.containsMouse ? root.cFG : root.cBG
+                Behavior on color { ColorAnimation { duration: 200 } }
+
+                MouseArea {
+                    id: sleepButton
+                    hoverEnabled: true; cursorShape: Qt.PointingHandCursor
+                    onClicked: sddm.suspend()
+                    anchors.fill: parent
+
+                    Image {
+                        anchors.centerIn: parent
+                        source: "img/Sleep.svg"
+                    }
                 }
             }
-            MouseArea {
-                width: 24; height: 24; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
-                onClicked: sddm.reboot()
-                Text { anchors.centerIn: parent; text: "⟲"; font.pixelSize: 28; color: root.cText }
-                Rectangle {
-                    visible: parent.containsMouse; color: root.cSurface; border.color: root.cPrimary
-                    border.width: 1; radius: 6; width: 70; height: 28; y: 35
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    Text { anchors.centerIn: parent; text: "Restart"; color: root.cText; font.pixelSize: 12 }
+
+            Rectangle {
+                width: 72
+                height: 72
+                radius: 36
+                color: rebootButton.containsMouse ? root.cFG : root.cBG
+                Behavior on color { ColorAnimation { duration: 200 } }
+
+                MouseArea {
+                    id: rebootButton
+                    hoverEnabled: true; cursorShape: Qt.PointingHandCursor
+                    onClicked: sddm.reboot()
+                    anchors.fill: parent
+
+                    Image {
+                        anchors.centerIn: parent
+                        source: "img/Reboot.svg"
+                    }
                 }
             }
-            MouseArea {
-                width: 24; height: 24; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
-                onClicked: sddm.powerOff()
-                Text { anchors.centerIn: parent; text: "⏻"; font.pixelSize: 32; color: root.cText }
-                Rectangle {
-                    visible: parent.containsMouse; color: root.cSurface; border.color: root.cPrimary
-                    border.width: 1; radius: 6; width: 90; height: 28; y: 35
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    Text { anchors.centerIn: parent; text: "Shut Down"; color: root.cText; font.pixelSize: 12 }
+
+            Rectangle {
+                width: 72
+                height: 72
+                radius: 36
+                color: shutdownButton.containsMouse ? root.cFG : root.cBG
+                Behavior on color { ColorAnimation { duration: 200 } }
+
+                MouseArea {
+                    id: shutdownButton
+                    hoverEnabled: true; cursorShape: Qt.PointingHandCursor
+                    onClicked: sddm.powerOff()
+                    anchors.fill: parent
+
+                    Image {
+                        anchors.centerIn: parent
+                        source: "img/Shutdown.svg"
+                    }
                 }
             }
         }
@@ -297,8 +341,8 @@ Item {
         id: authCard
         z: 15
         width: 400; height: 500
-        radius: 28
-        color: root.cSurface
+        radius: powerPill.radius
+        color: root.cBG
 
         // --- 8.1 ERROR BORDER ---
         property bool loginFailed: false
@@ -312,8 +356,8 @@ Item {
         anchors.bottomMargin: root.authOpen ? (root.height / 2) - (height / 2) : -500
         opacity: root.authOpen ? 1.0 : 0.0
 
-        Behavior on anchors.bottomMargin { NumberAnimation { duration: 400; easing.type: Easing.OutBack } }
-        Behavior on opacity { NumberAnimation { duration: 200 } }
+        Behavior on anchors.bottomMargin { NumberAnimation { duration: 500; easing.type: Easing.OutExpo } }
+        Behavior on opacity { NumberAnimation { duration: 300 } }
 
         // --- 8.2 RATTLE ANIMATION ---
         SequentialAnimation {
@@ -327,12 +371,13 @@ Item {
 
         layer.enabled: true
         layer.effect: DropShadow {
-            transparentBorder: true; color: "#80000000"; radius: 30; samples: 20; verticalOffset: 10
+            transparentBorder: true; color: root.cShadow; radius: 30; samples: 20; verticalOffset: 10
         }
 
         ColumnLayout {
             anchors.fill: parent
             anchors.margins: 40
+            anchors.topMargin: 100
             spacing: 24
 
             Item {
@@ -356,23 +401,26 @@ Item {
                         }
                     }
                     Rectangle {
-                        anchors.fill: parent; radius: 80; color: root.cSurfaceVar; visible: !avatarCircle.ok
+                        anchors.fill: parent; radius: 80; color: root.cFG; visible: !avatarCircle.ok
                         Text { anchors.centerIn: parent; text: (username().length ? username()[0].toUpperCase() : "?"); color: root.cText; font.pixelSize: 64 }
                     }
                 }
             }
 
+            Text { text: "Ben"; color: root.cText; font.pixelSize: 22; font.bold: true; Layout.alignment: Qt.AlignHCenter }
+
             ColumnLayout {
                 Layout.alignment: Qt.AlignHCenter; spacing: 8
-                Text { text: userSelector.currentText; color: root.cText; font.pixelSize: 22; font.bold: true; Layout.alignment: Qt.AlignHCenter }
-                Rectangle {
-                    Layout.alignment: Qt.AlignHCenter; implicitWidth: sessionLabel.contentWidth + 24; implicitHeight: 26; radius: 8; color: root.cSurfaceVar
+                // The "Ben" text was originally here
+                
+                /*Rectangle {
+                    Layout.alignment: Qt.AlignHCenter; implicitWidth: sessionLabel.contentWidth + 24; implicitHeight: 26; radius: 8; color: root.cFG
                     Text { id: sessionLabel; anchors.centerIn: parent; text: sessionSelector.currentText; color: root.cMuted; font.pixelSize: 12 }
                     MouseArea {
                         anchors.fill: parent; cursorShape: Qt.PointingHandCursor
                         onClicked: { root.sessionOpen = !root.sessionOpen; if (root.sessionOpen) sessionList.forceActiveFocus() }
                     }
-                }
+                }*/
             }
 
             // 8.3 PASSWORD INPUT AND STATUS MESSAGE
@@ -385,20 +433,38 @@ Item {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 56
                     radius: 28
-                    color: root.cSurfaceVar
+                    color: root.cFG
                     clip: true
 
                     Item {
                         anchors.fill: parent; anchors.leftMargin: 20; anchors.rightMargin: 60
-                        /* TODO: PixelDots {
-                            anchors.centerIn: parent; dotCount: passwordInput.text.length
-                            dotColor: root.cText; animColor: root.cPrimary
-                        }*/
                         TextInput {
                             id: passwordInput
-                            anchors.fill: parent; verticalAlignment: TextInput.AlignVCenter
-                            color: "transparent"; cursorVisible: false; cursorDelegate: Item {}
-                            echoMode: TextInput.Password; font.pixelSize: 16; focus: true
+                            anchors.fill: parent
+                            verticalAlignment: TextInput.AlignVCenter
+                            color: root.cText
+                            selectionColor: root.cAccent
+                            selectedTextColor: root.cText
+                            echoMode: TextInput.Password
+                            font.pixelSize: 16
+                            focus: true
+
+                            cursorVisible: false
+                            cursorDelegate: Rectangle {
+                                visible: passwordInput.text.length !== 0
+                                color: root.cText
+                                width: 2
+                                radius: 1
+                                height: parent.height
+                                anchors.verticalCenter: parent.verticalCenter
+
+                                SequentialAnimation on opacity {
+                                    loops: Animation.Infinite
+                                    running: visible
+                                    NumberAnimation { to: 1;   duration: 500 }
+                                    NumberAnimation { to: 0.5; duration: 500 }
+                                }
+                            }
                             
                             onAccepted: attemptLogin()
                             Keys.onEscapePressed: root.sleep()
@@ -412,14 +478,13 @@ Item {
 
                     Rectangle {
                         width: 48; height: 48; radius: 24
-                        color: root.cPrimary
+                        color: root.cAccent
                         
                         anchors.right: parent.right; anchors.rightMargin: 4
                         anchors.verticalCenter: parent.verticalCenter
-                        Text {
-                            anchors.centerIn: parent; text: "→"; 
-                            color: root.cOnPrimary
-                            font.pixelSize: 24
+                        Image {
+                            anchors.centerIn: parent
+                            source: "img/Arrow.svg"
                         }
                         MouseArea {
                             anchors.fill: parent; cursorShape: Qt.PointingHandCursor
@@ -447,8 +512,8 @@ Item {
         Rectangle {
             anchors.bottom: parent.bottom; anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width - 40; height: root.sessionOpen ? 220 : 0
-            radius: 16; color: root.cSurfaceVar; clip: true; visible: height > 0
-            Behavior on height { NumberAnimation { duration: 200 } }
+            radius: 16; color: root.cFG; clip: true; visible: height > 0
+            Behavior on height { NumberAnimation { duration: 300; easing.type: Easing.InOutExpo } }
             
             ListView {
                 id: sessionList; anchors.fill: parent; anchors.margins: 10
@@ -481,9 +546,9 @@ Item {
 
     Text {
         z: 4; anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: parent.bottom; anchors.bottomMargin: 40
+        anchors.bottom: parent.bottom; anchors.bottomMargin: 50
         text: "Press any key to unlock"; color: root.cMuted
         opacity: root.authOpen ? 0.0 : 1.0
-        Behavior on opacity { NumberAnimation { duration: 200 } }
+        Behavior on opacity { NumberAnimation { duration: 300 } }
     }
 }
