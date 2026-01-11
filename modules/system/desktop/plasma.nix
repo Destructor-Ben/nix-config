@@ -1,12 +1,21 @@
 { pkgs, ... }:
+let
+  sddmTheme = pkgs.callPackage ../../../pkgs/sddm-theme.nix {};
+in
 {
-  environment.systemPackages = with pkgs; [ sddm-astronaut ];
+  environment.systemPackages = [ sddmTheme ];
 
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
-    theme = "sddm-astronaut-theme";
-    extraPackages = [ pkgs.sddm-astronaut ];
+    theme = "destructor-ben";
+    extraPackages = with pkgs.kdePackages; [
+      sddmTheme
+      qtsvg
+      qt5compat      # Helps with mixed assets
+      ksvg           # Often needed for image handling in themes
+      kirigami       # Sometimes required
+    ];
   };
 
   services.desktopManager.plasma6.enable = true;

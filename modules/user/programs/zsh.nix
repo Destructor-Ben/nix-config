@@ -7,7 +7,7 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
-      ns = "sudo nixos-rebuild switch --flake ~/nix-config";
+      ns = "sudo nixos-rebuild switch --flake ~/nix-config"; # TODO: add a git add . to it too
       ngc = "ns && sudo nix-collect-garbage -d && ns";
       nd = "nix develop --command zsh";
       # TODO: nix develop ~/nix-config#$1

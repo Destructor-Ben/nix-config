@@ -41,7 +41,7 @@ Item {
     readonly property color cFG:               "#1b1e2e"
     readonly property color cAccent:           "#cf365a"
     readonly property color cText:             "#ffffff"
-    readonly property color cError:            "#E67E80" // TODO: set
+    readonly property color cError:            "#E67E80" // TODO: set, also do all of the error stuff
 
     // 2. CONNECTIONS 
 
@@ -106,6 +106,7 @@ Item {
 
     function username() { return userSelector.currentText || ""; }
 
+    // TODO: add nix specific path for this
     function avatarCandidate(i) {
         var u = username();
         if (i === 0) return toFileUrl("/usr/share/sddm/faces/" + u + ".face.icon");
@@ -141,6 +142,20 @@ Item {
         sddm.login(uname, passwordInput.text, sessionIdx);
     }
 
+    function getOrdinalSuffix(day) {
+        var suffix = "th";
+
+        if (day % 10 === 1 && day % 100 !== 11) {
+            suffix = "st";
+        } else if (day % 10 === 2 && day % 100 !== 12) {
+            suffix = "nd";
+        } else if (day % 10 === 3 && day % 100 !== 13) {
+            suffix = "rd";
+        }
+        
+        return suffix;
+    }
+
     Component.onCompleted: {
         if (sessionModel.lastIndex !== undefined && sessionModel.lastIndex >= 0) {
             root.currentSessionIndex = sessionModel.lastIndex;
@@ -171,7 +186,7 @@ Item {
         anchors.fill: parent
         z: 0
         fillMode: Image.PreserveAspectCrop
-        source: "../../img/Wallpaper.svg"
+        source: "img/Wallpaper.svg"
     }
 
     FastBlur {
@@ -183,14 +198,6 @@ Item {
         visible: opacity > 0
         Behavior on opacity { NumberAnimation { duration: 300 } }
         Behavior on radius  { NumberAnimation { duration: 300 } }
-    }
-
-    Rectangle {
-        anchors.fill: parent
-        z: 2
-        color: "black"
-        opacity: root.authOpen ? root.authDim : root.sleepDim
-        Behavior on opacity { NumberAnimation { duration: 300 } }
     }
 
     MouseArea {
@@ -206,13 +213,18 @@ Item {
         z: 4
         anchors.centerIn: parent
         anchors.verticalCenterOffset: -350
-        text: Qt.formatDate(root.now, "dddd, MMMM d")
+        text: Qt.formatDate(root.now, "dddd, MMMM d" + getOrdinalSuffix(root.now.getDate()))
         color: root.cDate
         font.pixelSize: 48
         font.weight: Font.Medium
         font.family: "JetBrains Mono"
         opacity: root.authOpen ? 0.0 : 1.0
         Behavior on opacity { NumberAnimation { duration: 300 } }
+
+        layer.enabled: true
+        layer.effect: DropShadow {
+            transparentBorder: true; color: root.cShadow; radius: 45; samples: 20; verticalOffset: 10
+        }
     }
 
     Column {
@@ -427,6 +439,18 @@ Item {
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 10
+                
+                // 8.4 ERROR STATUS TEXT
+                Text {
+                    Layout.alignment: Qt.AlignHCenter
+                    text: root.statusMessage
+                    color: root.cError
+                    font.pixelSize: 14
+                    font.weight: Font.DemiBold
+                    visible: root.statusMessage.length > 0
+                    opacity: visible ? 1.0 : 0.0
+                    Behavior on opacity { NumberAnimation { duration: 200 } }
+                }
 
                 // 8.3.1 INPUT BOX
                 Rectangle {
@@ -491,18 +515,6 @@ Item {
                             onClicked: attemptLogin()
                         }
                     }
-                }
-                
-                // 8.4 ERROR STATUS TEXT
-                Text {
-                    Layout.alignment: Qt.AlignHCenter
-                    text: root.statusMessage
-                    color: root.cError
-                    font.pixelSize: 14
-                    font.weight: Font.DemiBold
-                    visible: root.statusMessage.length > 0
-                    opacity: visible ? 1.0 : 0.0
-                    Behavior on opacity { NumberAnimation { duration: 200 } }
                 }
             }
         }
