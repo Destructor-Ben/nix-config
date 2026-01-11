@@ -106,11 +106,11 @@ Item {
 
     function username() { return userSelector.currentText || ""; }
 
-    // TODO: add nix specific path for this
     function avatarCandidate(i) {
         var u = username();
-        if (i === 0) return toFileUrl("/usr/share/sddm/faces/" + u + ".face.icon");
-        if (i === 1) return toFileUrl("/var/lib/AccountsService/icons/" + u);
+        if (i === 0) return toFileUrl("/home/ben/.face.icon");
+        if (i === 1) return toFileUrl("/usr/share/sddm/faces/" + u + ".face.icon");
+        if (i === 2) return toFileUrl("/var/lib/AccountsService/icons/" + u);
         return "";
     }
 
@@ -407,7 +407,7 @@ Item {
                         layer.effect: OpacityMask { maskSource: Rectangle { width: 160; height: 160; radius: 80 } }
                         onStatusChanged: {
                             if (status === Image.Ready) avatarCircle.ok = true;
-                            else if (status === Image.Error && avatarCircle.tryIndex < 2) {
+                            else if (status === Image.Error && avatarCircle.tryIndex < 3) {
                                 avatarCircle.tryIndex += 1; source = avatarCandidate(avatarCircle.tryIndex);
                             }
                         }
