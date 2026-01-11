@@ -9,13 +9,7 @@ in
     enable = true;
     wayland.enable = true;
     theme = "destructor-ben";
-    extraPackages = with pkgs.kdePackages; [
-      sddmTheme
-      qtsvg
-      qt5compat      # Helps with mixed assets
-      ksvg           # Often needed for image handling in themes
-      kirigami       # Sometimes required
-    ];
+    extraPackages = [ sddmTheme ];
   };
 
   services.desktopManager.plasma6.enable = true;
