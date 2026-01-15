@@ -4,6 +4,7 @@
     ./bluetooth.nix
     ./fonts.nix
     ./networking.nix
+    ./pfp.nix
     ./plasma.nix
     ./printing.nix
     ./programs/steam.nix
