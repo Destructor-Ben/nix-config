@@ -22,7 +22,7 @@
     '';
   };
 
-  home.file.".p10k.zsh".source = ../dotfiles/.p10k.zsh;
+  home.file.".p10k.zsh".source = ../../../dotfiles/.p10k.zsh;
 
   home.packages = with pkgs; [
     zsh-powerlevel10k
