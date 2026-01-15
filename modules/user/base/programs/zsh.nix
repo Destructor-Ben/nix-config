@@ -7,6 +7,7 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
+      # TODO: maybe a bunch of these should be binaries
       ns = "sudo nixos-rebuild switch --flake ~/nix-config"; # TODO: add a git add . to it too
       ngc = "ns && sudo nix-collect-garbage -d && ns";
       nd = "nix develop --command zsh";
@@ -22,10 +23,9 @@
     '';
   };
 
-  home.file.".p10k.zsh".source = ../../../dotfiles/.p10k.zsh;
+  home.file.".p10k.zsh".source = ../../../../dotfiles/.p10k.zsh;
 
   home.packages = with pkgs; [
     zsh-powerlevel10k
-    meslo-lgs-nf
   ];
 }
