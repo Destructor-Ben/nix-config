@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 {
   imports = [
-    ../../modules/user
+    ../../modules/user/base
+    ../../modules/user/desktop
   ];
 
   home.stateVersion = "25.05";

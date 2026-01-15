@@ -3,7 +3,6 @@
   home.packages = with pkgs; [
     # Programming
     vscode
-    helix
     jetbrains.rider
     jetbrains.idea-ultimate
     godot-mono
@@ -20,10 +19,5 @@
     gimp
     inkscape
     blender
-
-    # Fun stuff
-    fastfetch
-    figlet
-    cowsay
   ];
 }
