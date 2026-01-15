@@ -20,6 +20,7 @@ Item {
     
     // 1.1 Status message from the system ("Authentication failure")
     property string statusMessage: ""
+    property bool showStatusMessage: false
 
     property int currentSessionIndex: 0
     property var now: new Date()
@@ -37,11 +38,11 @@ Item {
     readonly property color cDate:             "#e0e0e0"
     readonly property color cMuted:            "#909090"
     readonly property color cShadow:           "#40000000"
-    readonly property color cBG:               "#131522"
-    readonly property color cFG:               "#1b1e2e"
-    readonly property color cAccent:           "#cf365a"
+    readonly property color cBG:               "#1b1e2e"
+    readonly property color cFG:               "#25293d"
     readonly property color cText:             "#ffffff"
-    readonly property color cError:            "#E67E80" // TODO: set, also do all of the error stuff
+    readonly property color cAccent:           "#cf365a"
+    readonly property color cError:            cAccent
 
     // 2. CONNECTIONS 
 
@@ -58,17 +59,20 @@ Item {
             failResetTimer.restart()
             
             // 2.2 If PAM didn't send a specific text error, default to this:
-            if (root.statusMessage === "") root.statusMessage = "Login Failed";
+            if (root.statusMessage === "" || !root.showStatusMessage) {
+                root.showStatusMessage = true;
+                root.statusMessage = "Login Failed";
+            }
         }
         
         function onLoginSucceeded() {
             authCard.loginFailed = false
-            root.statusMessage = "" 
+            root.showStatusMessage = false
         }
 
         // 2.3 Listeners.
-        function onInformationMessage(message) { root.statusMessage = message }
-        function onErrorMessage(message) { root.statusMessage = message }
+        function onInformationMessage(message) { root.statusMessage = message; root.showStatusMessage = true; }
+        function onErrorMessage(message) { root.statusMessage = message; root.showStatusMessage = true; }
     }
 
     Timer {
@@ -107,10 +111,10 @@ Item {
     function username() { return userSelector.currentText || ""; }
 
     function avatarCandidate(i) {
-        var u = username();
-        if (i === 0) return toFileUrl("/home/ben/.face.icon");
-        if (i === 1) return toFileUrl("/usr/share/sddm/faces/" + u + ".face.icon");
-        if (i === 2) return toFileUrl("/var/lib/AccountsService/icons/" + u);
+        var u = "ben";
+        if (i === 0) return toFileUrl("img/Avatar.png");
+        if (i === 1) return toFileUrl("/var/lib/AccountsService/icons/" + u);
+        if (i === 2) return toFileUrl("/usr/share/sddm/faces/" + u + ".face.icon");
         return "";
     }
 
@@ -126,14 +130,14 @@ Item {
         root.authOpen = false;
         root.sessionOpen = false;
         passwordInput.text = "";
-        root.statusMessage = ""; 
+        root.showStatusMessage = false;
         wakeKeyCatcher.forceActiveFocus();
     }
 
     function attemptLogin() {
         if (passwordInput.text.length === 0) return;
         
-        root.statusMessage = "" // Clear previous messages
+        root.showStatusMessage = true; // Clear previous messages
         
         var sessionIdx = sessionSelector.currentIndex;
         if (sessionIdx < 0) sessionIdx = (root.currentSessionIndex >= 0) ? root.currentSessionIndex : 0;
@@ -421,19 +425,19 @@ Item {
 
             Text { text: "Ben"; color: root.cText; font.pixelSize: 22; font.bold: true; Layout.alignment: Qt.AlignHCenter }
 
-            ColumnLayout {
+            /*ColumnLayout {
                 Layout.alignment: Qt.AlignHCenter; spacing: 8
                 // The "Ben" text was originally here
                 
-                /*Rectangle {
+                Rectangle {
                     Layout.alignment: Qt.AlignHCenter; implicitWidth: sessionLabel.contentWidth + 24; implicitHeight: 26; radius: 8; color: root.cFG
                     Text { id: sessionLabel; anchors.centerIn: parent; text: sessionSelector.currentText; color: root.cMuted; font.pixelSize: 12 }
                     MouseArea {
                         anchors.fill: parent; cursorShape: Qt.PointingHandCursor
                         onClicked: { root.sessionOpen = !root.sessionOpen; if (root.sessionOpen) sessionList.forceActiveFocus() }
                     }
-                }*/
-            }
+                }
+            }*/
 
             // 8.3 PASSWORD INPUT AND STATUS MESSAGE
             ColumnLayout {
@@ -447,8 +451,7 @@ Item {
                     color: root.cError
                     font.pixelSize: 14
                     font.weight: Font.DemiBold
-                    visible: root.statusMessage.length > 0
-                    opacity: visible ? 1.0 : 0.0
+                    opacity: root.showStatusMessage ? 1.0 : 0.0
                     Behavior on opacity { NumberAnimation { duration: 200 } }
                 }
 
