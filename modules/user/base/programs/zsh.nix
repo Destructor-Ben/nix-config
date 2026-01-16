@@ -7,6 +7,7 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
+      fhs = "steam-run";
       ngc = "ns && sudo nix-collect-garbage -d && ns";
     };
 

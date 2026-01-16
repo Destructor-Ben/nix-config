@@ -14,13 +14,11 @@
 
     # Rider and IntelliJ need their respective SDKs installed
     (writeShellScriptBin "rider-wrapped" ''
-      nds dotnet
-      exec rider "$@"
+      nix develop ~/nix-config#dotnet --command "rider" $@
     '')
 
     (writeShellScriptBin "idea-ultimate-wrapped" ''
-      nds java
-      exec idea-ultimate "$@"
+      nix develop ~/nix-config#java --command "idea-ultimate" $@
     '')
   ];
 }

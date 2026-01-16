@@ -100,6 +100,14 @@ Item {
         currentIndex: (userModel.lastIndex !== undefined && userModel.lastIndex >= 0) ? userModel.lastIndex : 0
     }
 
+    // TODO: actually use this function
+    function setStatusMessage(message)
+    {
+        showStatusMessage = message !== "";
+        if (showStatusMessage)
+            statusMessage = message;
+    }
+
     function toFileUrl(p) {
         if (!p) return "";
         var s = String(p).trim();
