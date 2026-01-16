@@ -7,11 +7,7 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
-      # TODO: maybe a bunch of these should be binaries
-      ns = "sudo nixos-rebuild switch --flake ~/nix-config"; # TODO: add a git add . to it too
       ngc = "ns && sudo nix-collect-garbage -d && ns";
-      nd = "nix develop --command zsh";
-      # TODO: nix develop ~/nix-config#$1
     };
 
     initContent = ''
@@ -20,10 +16,14 @@
 
       # Load your p10k config (if it exists)
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+      # Load custom zsh utils
+      source ~/.utils.zsh
     '';
   };
 
   home.file.".p10k.zsh".source = ../../../../dotfiles/.p10k.zsh;
+  home.file.".utils.zsh".source = ../../../../dotfiles/.utils.zsh;
 
   home.packages = with pkgs; [
     zsh-powerlevel10k
