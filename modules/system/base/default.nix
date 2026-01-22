@@ -4,6 +4,7 @@
     ./i18n.nix
     ./nix.nix
     ./packages.nix
+    ./swap.nix
     ./users.nix
     ./programs/bash.nix
     ./programs/zsh.nix
