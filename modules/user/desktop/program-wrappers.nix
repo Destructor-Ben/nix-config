@@ -7,19 +7,8 @@
       exec prismlauncher "$@"
     '')
 
-    # tModLoader needs a custom dev environment to run in, this helps with it
-    (writeShellScriptBin "tml" ''
-      export TML_PATH=/home/ben/.local/share/Steam/steamapps/common/tModLoader
-      cd $TML_PATH
-
-      library_dir="$TML_PATH/Libraries/Native/Linux"
-      #export LD_LIBRARY_PATH="$library_dir"
-      ln -sf "$library_dir/libSDL2-2.0.so.0" "$library_dir/libSDL2.so"
-
-      nix develop ~/nix-config#dotnet --command dotnet tModLoader.dll "$@"
-    '')
-
-    # Runs the tModLoader setup script
+    # Runs the tML dev setup script
+    # TODO: make this just call the launch script eventually once its fixed on tmls end
     (writeShellScriptBin "tml-dev" ''
       cd ~/Programming/Terraria/tModLoader
 
@@ -47,19 +36,19 @@
         exit 1
       fi
 
-      # NixOS can't run dynamically linked executables, hence it needs to be run via steam-run
-      # However, dotnet build fails in a steam-run environment because the temp folder is messed up
+      # dotnet run fails because it tries to launch a dynamic executable on NixOS
+      # Running dotnet directly with the path to the dll avoids this
       dotnet build setup/CLI/Setup.CLI.csproj -c Release -p:WarningLevel=0 -v q
-      steam-run dotnet setup/CLI/bin/Release/net8.0/setup-cli.dll "$@"
+      dotnet setup/CLI/bin/Release/net8.0/setup-cli.dll
     '')
 
     # Rider and IntelliJ need their respective SDKs installed
     (writeShellScriptBin "rider-wrapped" ''
-      nix develop ~/nix-config#dotnet --command rider $@
+      steam-run nix develop ~/nix-config#dotnet --command rider $@
     '')
 
     (writeShellScriptBin "idea-ultimate-wrapped" ''
-      nix develop ~/nix-config#java --command idea-ultimate $@
+      steam-run nix develop ~/nix-config#java --command idea-ultimate $@
     '')
   ];
 }
