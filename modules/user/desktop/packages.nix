@@ -11,7 +11,6 @@
     # Utility
     spotify
     obsidian
-    discord
     prismlauncher
     mesa-demos
 
