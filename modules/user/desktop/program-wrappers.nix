@@ -42,12 +42,13 @@
       dotnet setup/CLI/bin/Release/net8.0/setup-cli.dll
     '')
 
-    # Rider and IntelliJ need their respective SDKs installed
+    # Rider and IntelliJ need their respective SDKs installed, and IntelliJ needs help to load OpenGL when running Minecraft
     (writeShellScriptBin "rider-wrapped" ''
       steam-run nix develop ~/nix-config#dotnet --command rider $@
     '')
 
     (writeShellScriptBin "idea-ultimate-wrapped" ''
+      export LD_LIBRARY_PATH="${lib.makeLibraryPath [ libGL ]}:$LD_LIBRARY_PATH"
       steam-run nix develop ~/nix-config#java --command idea-ultimate $@
     '')
   ];
