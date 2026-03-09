@@ -13,6 +13,7 @@
     obsidian
     prismlauncher
     mesa-demos
+    libreoffice-qt
 
     # Creative
     gimp
