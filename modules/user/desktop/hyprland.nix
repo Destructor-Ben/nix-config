@@ -31,8 +31,9 @@
       ];
 
       # TODO: finish configuring
+      # TODO: improve the mouse acceleration curves
       input = {
-        sensitivity = 0.25;
+        sensitivity = 0.1;
 
         touchpad = {
           disable_while_typing = false;
