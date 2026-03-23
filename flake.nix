@@ -24,45 +24,40 @@
 
     pkgs-stable = import nixpkgs {
       inherit system;
-      config = {
-        allowUnfree = true;
-      };
+      config.allowUnfree = true;
     };
 
     pkgs-unstable = import nixpkgs-unstable {
       inherit system;
-      config = {
-        allowUnfree = true;
-      };
-    };
-
-    pkgs-overlay = {
-      nixpkgs.pkgs = pkgs-stable;
-
-      nixpkgs.overlays = [
-        (final: prev: {
-          unstable = pkgs-unstable;
-        })
-      ];
+      config.allowUnfree = true;
     };
 
     devShellArgs = {
       pkgs = pkgs-stable;
       unstable = pkgs-unstable;
     };
+
+    moduleArgs = {
+      inherit(inputs) hytale-launcher zen-browser;
+      unstable = pkgs-unstable;
+
+      theme = import ./themes/theme.nix;
+      sddm-theme = pkgs-stable.callPackage ./pkgs/sddm-theme.nix {};
+    };
   in
   {
     nixosConfigurations = {
       bens-laptop = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = moduleArgs;
         modules = [
           ./hosts/bens-laptop/configuration.nix
-          pkgs-overlay
           home-manager.nixosModules.home-manager
           {
+            nixpkgs.config.allowUnfree = true; # Unfortunately, this is duplicated
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.extraSpecialArgs = moduleArgs;
             home-manager.users.ben = ./hosts/bens-laptop/home.nix;
           }
         ];

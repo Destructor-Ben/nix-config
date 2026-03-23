@@ -1,6 +1,6 @@
-{ inputs, pkgs, ... }:
+{ pkgs, zen-browser, ... }:
 {
   home.packages = [
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

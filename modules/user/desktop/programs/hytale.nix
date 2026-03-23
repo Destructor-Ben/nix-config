@@ -1,6 +1,6 @@
-{ inputs, pkgs, ... }:
+{ pkgs, hytale-launcher, ... }:
 {
   home.packages = [
-    inputs.hytale-launcher.packages.${pkgs.stdenv.hostPlatform.system}.default
+    hytale-launcher.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
