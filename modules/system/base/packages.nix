@@ -9,5 +9,6 @@
     wineWowPackages.stable
     helix
     gnumake
+    wev
   ];
 }

@@ -1,32 +1,46 @@
 { pkgs, theme, ... }:
 {
-  programs.waybar = {
+  home.packages = with pkgs; [
+    waybar-mpris
+  ];
+
+  programs.waybar = rec {
     enable = true;
 
     settings = {
-      top = {
+      main = {
         layer = "bottom";
         position = "top";
         height = 32;
 
         modules-left = [
-          "hyprland/workspaces"
-          # TODO: add app launchers here, as well as a nixos icon
+          "image#nixos"
+          # TODO: add
         ];
         modules-center = [
-          # TODO: have workspace indicators here in the middle
+          "hyprland/workspaces"
         ];
         modules-right = [
+          # TODO: system stats
           "keyboard-state"
           # TODO: figure out what these are
-          "mpris"
-          "wireplumber"
-          "tray"
           "idle_inhibitor"
-          "backlight"
+          "tray"
+          "mpris"
+          # TODO: bluetooth
+          "wireplumber"
           "battery"
           "clock"
+          # TOOD: notifications
         ];
+
+        "image#nixos" = {
+          path = "/home/ben/nix-config/img/Nix.svg";
+          size = 24;
+          # TODO: onclick
+        };
+        
+        # TODO: add a bunch of apps
 
         keyboard-state = {
           "numlock" = true;
@@ -39,5 +53,13 @@
         };
       };
     };
+
+    style = ''
+    window#waybar {
+      background-color: transparent;
+      border: none;
+      padding: ${toString ((settings.main.height - settings.main."image#nixos".size) / 2)}px;
+    }
+    '';
   };
 }

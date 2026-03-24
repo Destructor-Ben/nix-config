@@ -27,6 +27,7 @@
     # TODO:   QT_QPA_PLATFORM = "wayland;xcb";
     # QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     # TODO: fix window decorations
+    # TODO: get cava
 
     settings = {
       monitor = [
@@ -53,51 +54,6 @@
         # TODO: decide on squircle or circle: rounding_power = 4;
         # TODO: implement my own cool effects: screen_shader = "path/to/shader.frag";
       };
-
-      # TODO: make this a module
-      # TODO: finish configuring
-      # TODO: improve the mouse acceleration curves
-      input = {
-        sensitivity = 0.1;
-        numlock_by_default = true;
-
-        touchpad = {
-          disable_while_typing = false;
-          natural_scroll = true;
-          scroll_factor = 0.8;
-          clickfinger_behavior = true;
-        };
-      };
-
-      "$mod" = "SUPER";
-      bind =
-      [
-        # TODO: lock
-        "$mod, C, killactive,"
-        "$mod, Q, forcekillactive,"
-        "$mod, SPACE, exec, rofi -show drun"
-        "$mod, Return, exec, kitty"
-
-        "$mod, J, workspace, -1"
-        "$mod, K, workspace, +1"
-
-        "$mod, S, exec, grimblast save area" # TODO: make it copy area in the future
-        # TODO: allow muting audio + mic to work, also the mic button should get support added
-        # TODO: also make popup for audio indicators
-        # TODO: stop the volume going above 100
-        ", xf86audioraisevolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-        ", xf86audiolowervolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-      ] ++ (
-        # Workspaces - binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-        builtins.concatLists (builtins.genList (i:
-            let ws = i + 1;
-            in [
-              "$mod, code:1${toString i}, workspace, ${toString ws}"
-              "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-            ]
-          )
-          9)
-      );
     };
   };
 
