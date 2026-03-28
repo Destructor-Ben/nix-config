@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    fastfetch
+    fastfetch # TODO: configure fastfetch
     figlet
     cowsay
   ];

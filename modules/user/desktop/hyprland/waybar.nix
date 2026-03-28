@@ -13,30 +13,24 @@
         position = "top";
         spacing = theme.padding;
 
-        #  1 padding for against screen, another to give each pill some padding
-        height = theme.status-bar-height + theme.padding * 2 + theme.border-width * 2;
-
         modules-left = [
-          "image#nixos" # TODO: make clicking on this open a terminal running fastfetch
-          # TODO: configure fastfetch
-          # TODO: add system stats here
+          "image#nixos"
           "cpu"
           "load"
+          "memory"
           "temperature#z0"
           "temperature#z1"
-          "memory"
-          "network"
-          "disk"
         ];
         modules-center = [
           "hyprland/workspaces"
         ];
         modules-right = [
-          "idle_inhibitor" # TODO: figure out what this is
-          "keyboard-state"
-          "tray"
           "mpris"
+          "tray"
+          "keyboard-state"
           # TODO: bluetooth
+          # TODO: wifi
+          # TODO: battery
           "wireplumber"
           "battery"
           "clock"
@@ -45,20 +39,47 @@
 
         "image#nixos" = {
           path = "/home/ben/nix-config/img/Nix.svg";
-          size = theme.status-bar-height;
+          size = 24;
           on-click = "kitty --hold fastfetch";
         };
-        
-        # TODO: add a bunch of apps
+
+        cpu = {
+          format = " {usage}%";
+          tooltip = false;
+        };
+        load = {
+          format = " {load1}/{load5}/{load15}";
+          tooltip = false;
+        };
+        memory = {
+          format = "  {percentage}% ({used}/{total} GiB)";
+          tooltip = false;
+        };
+        "temperature#z0" = {
+          thermal-zone = 0;
+          format-icons = ["" "" "" "" ""];
+          format = "{icon} {temperatureC}°C (Z0)";
+          tooltip = false;
+        };
+        "temperature#z1" = {
+          thermal-zone = 1;
+          format-icons = ["" "" "" "" ""];
+          format = "{icon} {temperatureC}°C (Z1)";
+          tooltip = false;
+        };
 
         keyboard-state = {
           "numlock" = true;
           "capslock" = true;
           "format" = "{name} {icon}";
           "format-icons" = {
-            "locked" = "";
-            "unlocked" = "";
+            "locked" = "";
+            "unlocked" = "";
           };
+        };
+        clock = {
+          format = "{:%a %d %b %I:%M %p}";
+          tooltip = false;
         };
       };
     };
@@ -69,8 +90,8 @@
     ''
     * {
       font-family: ${theme.font};
-      font-size: ${toString theme.status-bar-font-size}px;
-      color: ${theme.colors.text};
+      font-size: 12px;
+      color: ${theme.colors.crust};
 
       box-shadow: none;
       text-shadow: none;
@@ -99,17 +120,18 @@
     }
 
     #image.nixos {
-      padding: 2px;
+      padding: ${toString (theme.padding / 2)}px;
       border-radius: 1000rem;
       background-color: ${theme.colors.crust};
       border: ${toString theme.border-width}px solid ${theme.colors.contrast-primary};
     }
 
     #cpu, #load, #temperature, #memory, #network, #disk, #clock, #battery, #wireplumber, #mpris, #tray, #keyboard-state, #idle_inhibitor {
-      padding: ${toString (theme.padding / 2)}px ${toString theme.padding}px;
+      padding: 0 ${toString theme.padding}px;
+      margin-top: ${toString (theme.padding / 2)}px;
+      margin-bottom: ${toString (theme.padding / 2)}px;
       border-radius: 1000rem;
       background-image: linear-gradient(${theme.gradient-angle}, ${theme.colors.contrast-primary}, ${theme.colors.contrast-secondary});
-      color: ${theme.colors.crust};
     }
     '';
   };

@@ -7,6 +7,7 @@
     ./fonts.nix
     ./hyprland.nix
     ./networking.nix
+    ./packages.nix
     ./pfp.nix
     ./printing.nix
     ./sddm.nix

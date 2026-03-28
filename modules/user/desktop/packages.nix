@@ -19,9 +19,5 @@
     gimp
     inkscape
     blender
-
-    # Utils
-    wev
-    alsa-tools
   ];
 }

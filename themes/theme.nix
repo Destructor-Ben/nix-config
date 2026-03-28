@@ -6,8 +6,6 @@
   padding = 10;
   border-width = 4;
   border-radius = 10;
-  status-bar-height = 16;
-  status-bar-font-size = 12;
 
   # Catpuccin Mocha
   # https://catppuccin.com/palette/

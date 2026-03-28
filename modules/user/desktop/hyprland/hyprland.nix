@@ -78,6 +78,7 @@
   services.swaync = {
     enable = true;
   };
+  # END TODO
 
   services.hyprpaper = {
     enable = true;
