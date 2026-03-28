@@ -74,9 +74,8 @@
           "capslock" = true;
           "format" = "{name} {icon}";
           "format-icons" = {
-            # TODO: get different icons and tint them + add spacing between them
-            "locked" = "";
-            "unlocked" = "";
+            "locked" = " ";
+            "unlocked" = " ";
           };
         };
         # TODO: send notifications on critical + warning
@@ -85,7 +84,7 @@
             warning = 25;
             critical = 10;
           };
-          format = "{icon} {capacity}% {power} W";
+          format = "{icon} {capacity}%";
           format-charging = "󱐋{icon} {capacity}%";
           format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
           tooltip = false;
@@ -98,7 +97,8 @@
     };
 
     # TODO: style layout indicators
-    # TODO: style tooltips
+    # TODO: remove all tooltips
+    # TODO: add shadows?
     style =
     ''
     * {
@@ -160,6 +160,10 @@
     #battery.charged {
       background-color: ${theme.colors.okay};
       background-image: none;
+    }
+
+    #keyboard-state .capslock {
+      margin-right: ${toString (theme.padding / 2)}px;
     }
     '';
   };
