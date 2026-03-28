@@ -30,7 +30,8 @@
           "keyboard-state"
           # TODO: bluetooth
           # TODO: wifi
-          # TODO: battery
+          # TODO: brightness
+          # TODO: upower? - use for bluetooth headphones
           "wireplumber"
           "battery"
           "clock"
@@ -73,9 +74,21 @@
           "capslock" = true;
           "format" = "{name} {icon}";
           "format-icons" = {
+            # TODO: get different icons and tint them + add spacing between them
             "locked" = "";
             "unlocked" = "";
           };
+        };
+        # TODO: send notifications on critical + warning
+        battery = {
+          states = {
+            warning = 25;
+            critical = 10;
+          };
+          format = "{icon} {capacity}% {power} W";
+          format-charging = "󱐋{icon} {capacity}%";
+          format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+          tooltip = false;
         };
         clock = {
           format = "{:%a %d %b %I:%M %p}";
@@ -132,6 +145,21 @@
       margin-bottom: ${toString (theme.padding / 2)}px;
       border-radius: 1000rem;
       background-image: linear-gradient(${theme.gradient-angle}, ${theme.colors.contrast-primary}, ${theme.colors.contrast-secondary});
+    }
+
+    #battery.warning {
+      background-color: ${theme.colors.warn};
+      background-image: none;
+    }
+
+    #battery.critical {
+      background-color: ${theme.colors.error};
+      background-image: none;
+    }
+
+    #battery.charged {
+      background-color: ${theme.colors.okay};
+      background-image: none;
     }
     '';
   };

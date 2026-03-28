@@ -6,7 +6,7 @@
     enable = true;
     wayland.enable = true;
     autoNumlock = true;
-    #theme = "destructor-ben"; TODO: renable
+    #theme = "destructor-ben"; TODO: renable and remake
     extraPackages = [ sddm-theme ];
   };
 }

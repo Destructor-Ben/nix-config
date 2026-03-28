@@ -13,6 +13,7 @@
 
   # TODO: set a system font
   # TODO: set a system light/dark mode
+  # TODO: setup cava
 
   wayland.windowManager.hyprland = {
     enable = true;

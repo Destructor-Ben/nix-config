@@ -32,7 +32,7 @@
 
       "$mod, SPACE, exec, rofi -show drun"
       "$mod, Return, exec, kitty"
-      "$mod, D, exec, dolphin"
+      "$mod, F, exec, dolphin"
       "$mod, B, exec, zen"
       ", code:248, exec, code" # F12 key on laptop
       # TODO: give the above a real use case
