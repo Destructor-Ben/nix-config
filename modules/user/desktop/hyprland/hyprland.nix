@@ -11,6 +11,9 @@
 
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 
+  # TODO: set a system font
+  # TODO: set a system light/dark mode
+
   wayland.windowManager.hyprland = {
     enable = true;
 
@@ -46,7 +49,7 @@
         gaps_in = theme.padding / 2;
         gaps_out = theme.padding;
         "col.inactive_border" = theme.colors.crust;
-        "col.active_border" = "${theme.colors.contrast-1} ${theme.colors.contrast-2} ${theme.gradient-angle}";
+        "col.active_border" = "${theme.colors.contrast-primary} ${theme.colors.contrast-secondary} ${theme.gradient-angle}";
       };
 
       decoration = {

@@ -8,7 +8,7 @@ let
   bitmap-editor = "gimp.desktop";
   svg-editor = "inkscape.desktop";
 in {
-  # TODO: this doesn't work - is probably because of dolphin
+  # TODO: this doesn't work for dolphin
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
