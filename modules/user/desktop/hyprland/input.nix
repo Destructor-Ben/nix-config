@@ -4,7 +4,7 @@
     # TODO: tweak, perhaps change mouse acceleration curves
     input = {
       sensitivity = 0.1;
-      numlock_by_default = true;
+      numlock_by_default = false;
 
       touchpad = {
         disable_while_typing = false;

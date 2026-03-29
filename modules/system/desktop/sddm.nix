@@ -5,7 +5,7 @@
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
-    autoNumlock = true;
+    autoNumlock = false;
     #theme = "destructor-ben"; TODO: renable and remake
     extraPackages = [ sddm-theme ];
   };

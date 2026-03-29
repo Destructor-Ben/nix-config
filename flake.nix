@@ -43,6 +43,7 @@
 
       theme = import ./themes/theme.nix;
       sddm-theme = pkgs-stable.callPackage ./pkgs/sddm-theme.nix {};
+      custom-fonts = pkgs-stable.callPackage ./pkgs/fonts.nix {};
     };
   in
   {

@@ -1,11 +1,15 @@
 {
   wallpaper = "/home/ben/nix-config/img/Wallpaper.png";
 
-  font = "'JetBrainsMono Nerd Font'";
   gradient-angle = "45deg";
   padding = 10;
   border-width = 4;
   border-radius = 10;
+
+  fonts = {
+    code = "'JetBrainsMono Nerd Font'";
+    ui = "'JetBrainsMono Nerd Font Propo'";
+  };
 
   # Catpuccin Mocha
   # https://catppuccin.com/palette/
@@ -40,6 +44,9 @@
     base = "rgb(30,30,46)";
     mantle = "rgb(24,24,37)";
     crust = "rgb(17,17,27)";
+
+    terminal-pink = "38;2;245;194;231";
+    terminal-mauve = "38;2;203;166;247";
 
     contrast-primary = mauve;
     contrast-secondary = pink;

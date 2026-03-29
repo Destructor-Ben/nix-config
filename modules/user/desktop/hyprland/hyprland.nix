@@ -11,7 +11,7 @@
 
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  # TODO: set a system font
+  # TODO: set a system + monospace font
   # TODO: set a system light/dark mode
   # TODO: setup cava
 
@@ -65,10 +65,6 @@
 
   # WOFI instead of ROFI, since ROFI uses xorg?
   programs.rofi = {
-    enable = true;
-  };
-
-  programs.kitty = {
     enable = true;
   };
 

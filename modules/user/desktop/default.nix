@@ -4,6 +4,7 @@
     ./hyprland/input.nix
     ./hyprland/waybar.nix
     ./programs/hytale.nix
+    ./programs/kitty.nix
     ./programs/zen.nix
     ./default-apps.nix
     ./packages.nix

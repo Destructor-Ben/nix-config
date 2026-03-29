@@ -18,8 +18,7 @@
           "cpu"
           "load"
           "memory"
-          "temperature#z0"
-          "temperature#z1"
+          "temperature"
         ];
         modules-center = [
           "hyprland/workspaces"
@@ -41,7 +40,7 @@
         "image#nixos" = {
           path = "/home/ben/nix-config/img/Nix.svg";
           size = 24;
-          on-click = "kitty --hold fastfetch";
+          on-click = "kitty --hold 'zsh -c fastfetch'";
         };
 
         cpu = {
@@ -53,19 +52,13 @@
           tooltip = false;
         };
         memory = {
-          format = "  {percentage}% ({used}/{total} GiB)";
+          format = " {percentage}% ({used}/{total} GiB)";
           tooltip = false;
         };
-        "temperature#z0" = {
+        temperature = {
           thermal-zone = 0;
           format-icons = ["" "" "" "" ""];
-          format = "{icon} {temperatureC}°C (Z0)";
-          tooltip = false;
-        };
-        "temperature#z1" = {
-          thermal-zone = 1;
-          format-icons = ["" "" "" "" ""];
-          format = "{icon} {temperatureC}°C (Z1)";
+          format = "{icon} {temperatureC}°C";
           tooltip = false;
         };
 
@@ -74,8 +67,8 @@
           "capslock" = true;
           "format" = "{name} {icon}";
           "format-icons" = {
-            "locked" = " ";
-            "unlocked" = " ";
+            "locked" = "";
+            "unlocked" = "";
           };
         };
         # TODO: send notifications on critical + warning
@@ -97,12 +90,12 @@
     };
 
     # TODO: style layout indicators
-    # TODO: remove all tooltips
+    # TODO: remove all tooltips except for the the systen tray?
     # TODO: add shadows?
     style =
     ''
     * {
-      font-family: ${theme.font};
+      font-family: ${theme.fonts.ui};
       font-size: 12px;
       color: ${theme.colors.crust};
 
@@ -163,7 +156,7 @@
     }
 
     #keyboard-state .capslock {
-      margin-right: ${toString (theme.padding / 2)}px;
+      margin-right: ${toString theme.padding}px;
     }
     '';
   };

@@ -1,8 +1,10 @@
 {
   imports = [
+    ./programs/fastfetch.nix
     ./programs/git.nix
     ./programs/helix.nix
     ./programs/zsh.nix
+    ./env.nix
     ./packages.nix
   ];
 }
