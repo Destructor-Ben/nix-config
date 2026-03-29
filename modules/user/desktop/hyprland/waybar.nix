@@ -95,7 +95,7 @@
     style =
     ''
     * {
-      font-family: ${theme.fonts.ui};
+      font-family: "${theme.fonts.ui}";
       font-size: 12px;
       color: ${theme.colors.crust};
 

@@ -130,9 +130,9 @@
           format = "\"{exe-name} {version}\";";
         }
         {
-          type = "font";
-          key = "    font";
-          format = "\"{font2}\";";
+          type = "terminalfont";
+          key = "    terminal-font";
+          format = "\"{name} {size}pt\";";
         }
         {
           type = "custom";

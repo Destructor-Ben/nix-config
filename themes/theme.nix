@@ -7,8 +7,8 @@
   border-radius = 10;
 
   fonts = {
-    code = "'JetBrainsMono Nerd Font'";
-    ui = "'JetBrainsMono Nerd Font Propo'";
+    code = "JetBrainsMono Nerd Font";
+    ui = "JetBrainsMono Nerd Font Propo";
   };
 
   # Catpuccin Mocha
