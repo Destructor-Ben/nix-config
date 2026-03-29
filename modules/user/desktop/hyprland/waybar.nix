@@ -40,7 +40,7 @@
         "image#nixos" = {
           path = "/home/ben/nix-config/img/Nix.svg";
           size = 24;
-          on-click = "kitty --hold 'zsh -c fastfetch'";
+          on-click = "kitty --hold fastfetch";
         };
 
         cpu = {
