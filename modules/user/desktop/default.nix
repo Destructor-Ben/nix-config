@@ -3,6 +3,7 @@
     ./hyprland/hyprland.nix
     ./hyprland/input.nix
     ./hyprland/waybar.nix
+    ./hyprland/wofi.nix
     ./programs/hytale.nix
     ./programs/kitty.nix
     ./programs/zen.nix

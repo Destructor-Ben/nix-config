@@ -30,12 +30,12 @@
       # "SUPER SHIFT CTRL ALT, Escape, exec, hyprshutdown -t 'Restarting...' --post-cmd 'reboot'"
       # ", switch:Lid Switch, exec, my-sleep"
 
-      "$mod, SPACE, exec, rofi -show drun"
+      "$mod, SPACE, exec, wofi --show drun"
       "$mod, Return, exec, kitty"
       "$mod, F, exec, dolphin"
       "$mod, B, exec, zen"
       ", code:248, exec, code" # F12 key on laptop
-      # TODO: give the above a real use case
+      # TODO: remap the above to screenshot the whole screen (copy), and $mod, F12 to save the screenshot
 
       "$mod, S, exec, grimblast save area" # TODO: make it copy area in the future
       # TODO: color picker: "$mod, P, exec, TODO" # TODO: make it copy area in the future
@@ -46,6 +46,7 @@
         # The mute LEDs were a pain in the ass to figure out how to get working but thank this person
         # https://bugzilla.kernel.org/show_bug.cgi?id=216197
       # TODO: round volume to nearest 5%
+      # TODO: see if pausing/playing audio suddenly stops audio, and if it does, see if I can make it fade in/out
       ", xf86audioraisevolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
       ", xf86audiolowervolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-"
       ", xf86audiomute,        exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"

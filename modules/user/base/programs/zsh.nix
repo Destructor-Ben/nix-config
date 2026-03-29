@@ -6,6 +6,11 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
+    oh-my-zsh = {                                                          
+      enable = true;                                                       
+      plugins = [ "git" "gh" ];                                           
+    };
+
     shellAliases = {
       ngc = "ns && sudo nix-collect-garbage -d && nix-collect-garbage -d && ns";
     };

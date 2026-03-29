@@ -15,6 +15,14 @@
   # TODO: set a system light/dark mode
   # TODO: setup cava
 
+  /*
+  TODO: see if i want these packages:
+  Possible packages:
+    hyprsysteminfo                                        # Displays information about the running system
+    wofi-emoji                                            # Wofi emoji picker
+    hyprpicker                                            # Colour picker
+  */
+
   wayland.windowManager.hyprland = {
     enable = true;
 
@@ -62,11 +70,6 @@
   };
 
   # TODO: configure below
-
-  # WOFI instead of ROFI, since ROFI uses xorg?
-  programs.rofi = {
-    enable = true;
-  };
 
   programs.hyprlock = {
     enable = true;
