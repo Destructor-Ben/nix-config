@@ -8,7 +8,7 @@
 
     oh-my-zsh = {                                                          
       enable = true;                                                       
-      plugins = [ "git" "gh" ];                                           
+      plugins = [ "git" "gh" "fzf" ];                                           
     };
 
     shellAliases = {
