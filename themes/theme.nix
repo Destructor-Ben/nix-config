@@ -6,6 +6,9 @@
   border-width = 4;
   border-radius = 10;
 
+  css-transition-duration = "0.3s";
+  css-transition-curve = "cubic-bezier(0.5, -0.7, 0.5, 1.7)";
+
   fonts = {
     code = "JetBrainsMono Nerd Font";
     ui = "JetBrainsMono Nerd Font Propo";

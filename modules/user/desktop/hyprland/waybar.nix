@@ -1,9 +1,5 @@
 { pkgs, theme, ... }:
 {
-  home.packages = with pkgs; [
-    waybar-mpris
-  ];
-
   programs.waybar = {
     enable = true;
 
@@ -24,11 +20,9 @@
           "hyprland/workspaces"
         ];
         modules-right = [
-          "mpris"
           "tray"
           # TODO: bluetooth
           # TODO: wifi
-          # TODO: upower? - use for bluetooth headphones
           "keyboard-state"
           "backlight"
           "wireplumber"
@@ -130,7 +124,7 @@
       border: none;
     }
 
-    .modules-left, .modules-right {
+    .modules-left, .modules-center, .modules-right {
       margin-top: ${toString theme.padding}px;
       background-color: transparent;
       border: none;
@@ -177,6 +171,50 @@
 
     #keyboard-state .capslock {
       margin-right: ${toString theme.padding}px;
+    }
+
+    #custom-notifications {
+      padding: 0 ${toString (builtins.floor (theme.padding * 1.25))}px;
+
+    }
+
+    #workspaces {
+      padding: 0;
+      margin-top: ${toString (theme.padding / 2)}px;
+      margin-bottom: ${toString (theme.padding / 2)}px;
+      border-radius: 1000rem;
+      background-image: linear-gradient(${theme.gradient-angle}, ${theme.colors.contrast-primary}, ${theme.colors.contrast-secondary});
+    }
+
+    #workspaces button {
+      box-shadow: none;
+      text-shadow: none;
+      padding: 0;
+      border-radius: 1000rem;
+      background: transparent;
+
+      margin: ${toString (theme.padding / 2)}px;
+      padding-left: 0;
+      padding-right: 0;
+
+      transition: all ${theme.css-transition-duration} ${theme.css-transition-curve};
+    }
+
+    #workspaces button.active {
+      background: ${theme.colors.base};
+      padding-left: ${toString (builtins.floor (theme.padding * 3 / 4))}px;
+      padding-right: ${toString (builtins.floor (theme.padding * 3 / 4))}px;
+    }
+
+    #workspaces button.active,
+    #workspaces button.active * {
+      color: ${theme.colors.text};
+    }
+
+    #workspaces button.urgent {
+      background: ${theme.colors.red};
+      padding-left: ${toString (builtins.floor (theme.padding * 3 / 4))}px;
+      padding-right: ${toString (builtins.floor (theme.padding * 3 / 4))}px;
     }
     '';
   };

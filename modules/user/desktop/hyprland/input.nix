@@ -15,7 +15,7 @@
     };
 
     # TODO: make sure bindl (lock screen) and binde (can be held) work properly
-    "$mod" = "SUPER";
+    "$mod" = "Alt_L"; #"SUPER"; # TODO: temporary until i fix my windows key
     bind =
     [
       "$mod, C, killactive,"
