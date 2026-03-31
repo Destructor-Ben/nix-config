@@ -102,7 +102,6 @@
       };
     };
 
-    # TODO: style layout indicators
     # TODO: remove all tooltips except for the the systen tray?
     # TODO: add shadows?
     style =
