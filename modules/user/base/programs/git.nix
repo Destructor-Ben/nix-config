@@ -11,7 +11,6 @@
 
       core = {
         editor = "code";
-        pager = "less"; # TODO: use a better pager in the future/configure less so it doesn't fucking suck
       };
     };
   };
