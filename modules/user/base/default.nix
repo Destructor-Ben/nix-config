@@ -6,6 +6,5 @@
     ./programs/zoxide.nix
     ./programs/zsh.nix
     ./env.nix
-    ./packages.nix
   ];
 }

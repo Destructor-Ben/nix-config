@@ -77,10 +77,11 @@
           tooltip = false;
         };
         wireplumber = {
-          # TODO: mic muted: 󰍭
-          format = "{icon} {volume}%";
-          format-muted = " {volume}%";
+          format = "{format_source}{icon} {volume}%";
+          format-muted = "{format_source} {volume}%";
           format-icons = [ "" "" "" ];
+          format-source = "";
+          format-source-muted = "󰍭 ";
           tooltip = false;
         };
         battery = {

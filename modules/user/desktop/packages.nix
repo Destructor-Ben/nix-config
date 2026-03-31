@@ -21,5 +21,10 @@
     aseprite
     blender
     lmms
+
+    # Fun
+    figlet
+    cowsay
+    cmatrix
   ];
 }

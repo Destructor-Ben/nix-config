@@ -131,7 +131,7 @@
         }
         {
           type = "terminalfont";
-          key = "    terminal-font";
+          key = "    font";
           format = "\"{name} {size}pt\";";
         }
         {

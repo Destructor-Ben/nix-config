@@ -51,6 +51,7 @@
         "systemctl --user start hyprpolkitagent"
         "systemctl --user start hyprpaper"
         "waybar"
+        # TODO: enable on startup: "~/nix-config/scripts/listen-audio.sh"
       ];
 
       general = {
