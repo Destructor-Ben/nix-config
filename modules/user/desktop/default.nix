@@ -8,7 +8,6 @@
     ./programs/kitty.nix
     ./programs/zen.nix
     ./default-apps.nix
-    ./laptop-status-leds.nix
     ./packages.nix
     ./pfp.nix
     ./program-wrappers.nix

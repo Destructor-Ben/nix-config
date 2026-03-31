@@ -6,6 +6,7 @@
     ./bluetooth.nix
     ./fonts.nix
     ./hyprland.nix
+    ./laptop-leds.nix
     ./networking.nix
     ./packages.nix
     ./pfp.nix

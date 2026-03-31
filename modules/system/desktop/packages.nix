@@ -2,9 +2,11 @@
 {
   environment.systemPackages = with pkgs; [
     wev
-    alsa-tools
-    pulseaudio # Required for laptop LEDs
     brightnessctl
     playerctl
+
+    # Both of these are for the laptop LEDs
+    alsa-tools
+    pulseaudio
   ];
 }

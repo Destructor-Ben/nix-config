@@ -90,7 +90,7 @@
             critical = 10;
           };
           format = "{icon} {capacity}%";
-          format-charging = "󱐋{icon} {capacity}%";
+          format-charging = "{icon}󱐋 {capacity}%";
           format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
           tooltip = false;
         };
