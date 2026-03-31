@@ -13,7 +13,7 @@
     };
 
     settings = {
-      # TODO: fix the padding
+      window_padding_width = theme.padding;
       scrollback_lines = 10000;
       enable_audio_bell = false;
     };
