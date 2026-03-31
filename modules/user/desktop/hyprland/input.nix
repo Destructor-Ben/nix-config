@@ -40,25 +40,26 @@
       "$mod, S, exec, grimblast save area" # TODO: make it copy area in the future
       # TODO: color picker: "$mod, P, exec, TODO" # TODO: make it copy area in the future
 
-      # TODO: also make popup for audio indicators + test sound
+      ",XF86MonBrightnessUp,   exec, brightnessctl set 5%+"
+      ",XF86MonBrightnessDown, exec, brightnessctl set 5%-"
+
+      # TODO: also make popup for audio indicators
+      # TODO: also play a sound when audio changes
       # TODO: fix LEDs on mute audio + mute mic buttons
       #  - TODO: write a wireplumber lua plugin to trigger the correct scripts to enable/disable the LEDs
         # The mute LEDs were a pain in the ass to figure out how to get working but thank this person
         # https://bugzilla.kernel.org/show_bug.cgi?id=216197
       # TODO: round volume to nearest 5%
-      # TODO: see if pausing/playing audio suddenly stops audio, and if it does, see if I can make it fade in/out
-      ", xf86audioraisevolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
-      ", xf86audiolowervolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-"
-      ", xf86audiomute,        exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-      ", xf86audiomicmute,     exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+      ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
+      ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-"
+      ", XF86AudioMute,        exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+      ", XF86AudioMicMute,     exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
 
-      # TODO: get brightnessctl and playerctl
-      #",XF86MonBrightnessUp, exec, brightnessctl set 5%+"
-      #",XF86MonBrightnessDown, exec, brightnessctl set 5%-"
-      # ",XF86AudioPlay,exec, playerctl play-pause"
-      # ",XF86AudioNext,exec, playerctl next"
-      # ",XF86AudioPrev,exec, playerctl previous"
-      # ",XF86AudioStop, exec, playerctl stop"
+      # TODO: see if pausing/playing audio suddenly stops audio, and if it does, see if I can make it fade in/out
+      ",XF86AudioPlay, exec, playerctl play-pause"
+      ",XF86AudioNext, exec, playerctl next"
+      ",XF86AudioPrev, exec, playerctl previous"
+      ",XF86AudioStop, exec, playerctl stop"
 
       # TODO: make sure closing the lid sleeps the laptop and locks it
       # bindl = , switch:on:Lid Switch, exec, hyprctl dispatch dpms off

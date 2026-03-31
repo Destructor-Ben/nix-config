@@ -26,15 +26,15 @@
         modules-right = [
           "mpris"
           "tray"
-          "keyboard-state"
           # TODO: bluetooth
           # TODO: wifi
-          # TODO: brightness
           # TODO: upower? - use for bluetooth headphones
+          "keyboard-state"
+          "backlight"
           "wireplumber"
           "battery"
           "clock"
-          # TODO: notifications
+          "custom/notifications"
         ];
 
         "image#nixos" = {
@@ -71,7 +71,18 @@
             "unlocked" = "";
           };
         };
-        # TODO: send notifications on critical + warning
+        backlight = {
+          format = "{icon} {percent}%";
+          format-icons = [ "󰃠" "󰃝" "󰃞" ];
+          tooltip = false;
+        };
+        wireplumber = {
+          # TODO: mic muted: 󰍭
+          format = "{icon} {volume}%";
+          format-muted = " {volume}%";
+          format-icons = [ "" "" "" ];
+          tooltip = false;
+        };
         battery = {
           states = {
             warning = 25;
@@ -84,6 +95,13 @@
         };
         clock = {
           format = "{:%a %d %b %I:%M %p}";
+          tooltip = false;
+        };
+        "custom/notifications" = {
+          exec = "count=$(swaync-client -c); [ \"$count\" -eq 0 ] && echo \"󰂜\" || echo \"󰂚\"";
+          interval = 1;
+          format = "{}";
+          on-click = "swaync-client -t";
           tooltip = false;
         };
       };
@@ -132,7 +150,8 @@
       border: ${toString theme.border-width}px solid ${theme.colors.contrast-primary};
     }
 
-    #cpu, #load, #temperature, #memory, #network, #disk, #clock, #battery, #wireplumber, #mpris, #tray, #keyboard-state, #idle_inhibitor {
+    #cpu, #load, #memory, #temperature,
+    #custom-notifications, #clock, #battery, #wireplumber, #backlight, #keyboard-state, #mpris, #tray {
       padding: 0 ${toString theme.padding}px;
       margin-top: ${toString (theme.padding / 2)}px;
       margin-bottom: ${toString (theme.padding / 2)}px;

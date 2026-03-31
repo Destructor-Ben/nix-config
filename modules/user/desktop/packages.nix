@@ -18,6 +18,8 @@
     # Creative
     gimp
     inkscape
+    aseprite
     blender
+    lmms
   ];
 }

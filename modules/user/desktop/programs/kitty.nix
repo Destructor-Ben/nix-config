@@ -6,7 +6,7 @@
     enableGitIntegration = true;
     shellIntegration.enableZshIntegration = true;
 
-    theme = "Catppuccin-Mocha";
+    themeFile = "Catppuccin-Mocha";
     font = {
       name = theme.fonts.code;
       size = 11;
