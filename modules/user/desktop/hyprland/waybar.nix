@@ -56,6 +56,14 @@
           tooltip = false;
         };
 
+        # TODO: fix icons
+        # TODO: fix tooltips
+        tray = {
+          reverse-direction = true;
+          spacing = theme.padding;
+          icon-size = 12;
+          show-passive-items = true;
+        };
         keyboard-state = {
           "numlock" = true;
           "capslock" = true;
@@ -102,14 +110,13 @@
       };
     };
 
-    # TODO: remove all tooltips except for the the systen tray?
     # TODO: add shadows?
     style =
     ''
     * {
       font-family: "${theme.fonts.ui}";
       font-size: 12px;
-      color: ${theme.colors.crust};
+      color: ${theme.colors.base};
 
       box-shadow: none;
       text-shadow: none;
@@ -138,9 +145,10 @@
     }
 
     #image.nixos {
-      padding: ${toString (theme.padding / 2)}px;
+      /* Fuckass image is 2 pixels too tall if we don't add extra padding to either side */
+      padding: ${toString (theme.padding / 2 + 1)}px;
       border-radius: 1000rem;
-      background-color: ${theme.colors.crust};
+      background-color: ${theme.colors.base};
       border: ${toString theme.border-width}px solid ${theme.colors.contrast-primary};
     }
 

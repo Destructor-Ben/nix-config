@@ -26,5 +26,6 @@
     figlet
     cowsay
     cmatrix
+    lolcat
   ];
 }

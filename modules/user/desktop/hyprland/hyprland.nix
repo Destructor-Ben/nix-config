@@ -34,6 +34,7 @@
 
     # TODO: use lxappearance to theme apps
     # TODO: setup cursor theme
+    # TODO: set icon theme
     # TODO: setup file picker
     # TODO: setup clipboard
     # TODO:   QT_QPA_PLATFORM = "wayland;xcb";
@@ -58,8 +59,11 @@
         border_size = theme.border-width;
         gaps_in = theme.padding / 2;
         gaps_out = theme.padding;
-        "col.inactive_border" = theme.colors.crust;
+        "col.inactive_border" = theme.colors.surface-0;
         "col.active_border" = "${theme.colors.contrast-primary} ${theme.colors.contrast-secondary} ${theme.gradient-angle}";
+
+        # TODO: temp
+        resize_on_border = true;
       };
 
       decoration = {
@@ -97,6 +101,7 @@
     };
   };
 
+  services.blueman-applet.enable = true;
   services.network-manager-applet.enable = true;
   services.hyprpolkitagent.enable = true;
 }
