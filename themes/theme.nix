@@ -14,6 +14,11 @@
     ui = "JetBrainsMono Nerd Font Propo";
   };
 
+  cursor = {
+    name = "catppuccin-mocha-dark-cursors";
+    size = 24;
+  };
+
   # Catpuccin Mocha
   # https://catppuccin.com/palette/
   colors = rec {

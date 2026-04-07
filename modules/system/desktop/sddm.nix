@@ -1,4 +1,4 @@
-{ pkgs, sddm-theme, ... }:
+{ pkgs, sddm-theme, theme, ... }:
 {
   environment.systemPackages = [ sddm-theme ];
 
@@ -8,5 +8,12 @@
     autoNumlock = false;
     #theme = "destructor-ben"; TODO: renable and remake
     extraPackages = [ sddm-theme ];
+
+    settings = {
+      Theme = {
+        CursorTheme = theme.cursor.name;
+        CursorSize = theme.cursor.size;
+      };
+    };
   };
 }

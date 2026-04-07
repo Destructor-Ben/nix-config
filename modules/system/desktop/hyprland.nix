@@ -9,14 +9,6 @@
   programs.hyprland.enable = true;
   services.gnome.gnome-keyring.enable = true;
 
-   # TODO: disable all of the below eventually
+   # TODO: nuke plasma very soon
   services.desktopManager.plasma6.enable = true;
-
-  # X11 required for SDDM
-  # TODO: is it?
-  services.xserver.enable = true;
-  services.xserver.xkb = {
-    layout = "nz";
-    variant = "";
-  };
 }

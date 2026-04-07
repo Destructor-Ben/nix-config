@@ -1,5 +1,6 @@
 {
   imports = [
+    ./hyprland/cursor.nix
     ./hyprland/hyprland.nix
     ./hyprland/input.nix
     ./hyprland/waybar.nix
