@@ -8,6 +8,7 @@
 
   css-transition-duration = "0.3s";
   css-transition-curve = "cubic-bezier(0.5, -0.7, 0.5, 1.7)";
+  css-shadow = "0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.3)";
 
   fonts = {
     code = "JetBrainsMono Nerd Font";

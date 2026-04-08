@@ -21,8 +21,6 @@
         ];
         modules-right = [
           "tray"
-          # TODO: bluetooth
-          # TODO: wifi
           "keyboard-state"
           "backlight"
           "wireplumber"
@@ -110,7 +108,7 @@
       };
     };
 
-    # TODO: add shadows?
+    # TODO: shadows are being clipped
     style =
     ''
     * {
@@ -150,6 +148,7 @@
       border-radius: 1000rem;
       background-color: ${theme.colors.base};
       border: ${toString theme.border-width}px solid ${theme.colors.contrast-primary};
+      box-shadow: ${theme.css-shadow};
     }
 
     #cpu, #load, #memory, #temperature,
@@ -159,6 +158,7 @@
       margin-bottom: ${toString (theme.padding / 2)}px;
       border-radius: 1000rem;
       background-image: linear-gradient(${theme.gradient-angle}, ${theme.colors.contrast-primary}, ${theme.colors.contrast-secondary});
+      box-shadow: ${theme.css-shadow};
     }
 
     #battery.warning {
@@ -191,6 +191,7 @@
       margin-bottom: ${toString (theme.padding / 2)}px;
       border-radius: 1000rem;
       background-image: linear-gradient(${theme.gradient-angle}, ${theme.colors.contrast-primary}, ${theme.colors.contrast-secondary});
+      box-shadow: ${theme.css-shadow};
     }
 
     #workspaces button {
