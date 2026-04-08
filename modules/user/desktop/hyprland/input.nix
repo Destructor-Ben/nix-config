@@ -1,10 +1,17 @@
 {
   # TODO: allow remapping scancodes -> keycodes for custom keyboard layout so I can swap ctrl and left alt
   wayland.windowManager.hyprland.settings = {
-    # TODO: tweak, perhaps change mouse acceleration curves
+    gesture = "3, horizontal, workspace"; # TODO: make this have a smaller threshold to start
+
     input = {
       sensitivity = 0.1;
       numlock_by_default = false;
+      # Piecewise mouse accel
+      accel_profile = let
+        cutoff-point = 2; # The point where linear acceleration is disabled
+        multiplier = 2; # Mouse accel multiplier after the above cutoff
+      in
+        "custom ${toString cutoff-point} 0.0 ${toString cutoff-point} ${toString (cutoff-point * 2 * multiplier)} "; 
 
       touchpad = {
         disable_while_typing = false;
