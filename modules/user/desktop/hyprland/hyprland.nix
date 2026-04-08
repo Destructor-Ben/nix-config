@@ -1,12 +1,8 @@
-{ pkgs, unstable, theme, ... }:
+{ pkgs, theme, ... }:
 {
-  # TODO: split this into more files
   home.packages = with pkgs; [
     qt5.qtwayland
     qt6.qtwayland
-
-    grimblast
-    unstable.hyprshutdown # TODO: link this to the power button, also show a power menu
   ];
 
   home.sessionVariables.NIXOS_OZONE_WL = "1";

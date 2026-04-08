@@ -5,5 +5,5 @@
     # TODO: make settings set via nix?
   };
 
-  home.file.".config/btop/btop.conf".source = ../../../../img/btop.conf;
+  home.file.".config/btop/btop.conf".source = ../../../../dotfiles/btop.conf;
 }

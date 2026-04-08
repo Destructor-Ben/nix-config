@@ -1,4 +1,11 @@
+{ pkgs, ...}:
 {
+  home.packages = with pkgs; [
+    hyprpicker
+    grimblast
+    kooha
+  ];
+
   # TODO: allow remapping scancodes -> keycodes for custom keyboard layout so I can swap ctrl and left alt
   wayland.windowManager.hyprland.settings = {
     gesture = "3, horizontal, workspace"; # TODO: make this have a smaller threshold to start
@@ -27,36 +34,32 @@
     [
       "$mod, C, killactive,"
       "$mod, Q, forcekillactive,"
-
-      # TODO: also setup hypridle to automatically sleep computer
-      # TODO: locking "$mod, L, forcekillactive,"
-      # TODO: make the power button open a menu instead: ", xf86poweroff, exec, TODO"
-      # "SUPER, Escape, exec, pidof swaylock || swaylock"
-      # "SUPER SHIFT, Escape, exec, my-sleep"
-      # "SUPER SHIFT CTRL, Escape, exec, hyprshutdown -t 'Shutting down...' --post-cmd 'my-shutdown'"
-      # "SUPER SHIFT CTRL ALT, Escape, exec, hyprshutdown -t 'Restarting...' --post-cmd 'reboot'"
-      # ", switch:Lid Switch, exec, my-sleep"
+      "$mod, J, workspace, -1"
+      "$mod, K, workspace, +1"
+      # TODO: fullscreen kb
+      # TODO: toggle floating
+      # TODO: pin floating windows
+      # TODO: resizing + moving floating windows:
+      #bindm = $mainMod, mouse:272, movewindow
+      #bindm = $mainMod, mouse:273, resizewindow
 
       "$mod, SPACE, exec, wofi --show drun"
       "$mod, Return, exec, kitty"
       "$mod, F, exec, dolphin"
       "$mod, B, exec, zen"
-      ", code:248, exec, code" # F12 key on laptop
-      # TODO: remap the above to screenshot the whole screen (copy), and $mod, F12 to save the screenshot
 
-      "$mod, S, exec, grimblast save area" # TODO: make it copy area in the future
-      # TODO: color picker: "$mod, P, exec, TODO" # TODO: make it copy area in the future
+      "$mod, V, exec, hyprpicker" # TODO: configure + make it copy
+      "$mod, S, exec, grimblast --notify --freeze copysave area"
+      "$mod SHIFT, S, exec, kooha"
+      ", code:248, exec, grimblast --notify --cursor copysave screen" # F12 key on laptop
 
       ",XF86MonBrightnessUp,   exec, brightnessctl set 5%+"
       ",XF86MonBrightnessDown, exec, brightnessctl set 5%-"
 
       # TODO: also make popup for audio indicators
       # TODO: also play a sound when audio changes
-      # TODO: fix LEDs on mute audio + mute mic buttons
-      #  - TODO: write a wireplumber lua plugin to trigger the correct scripts to enable/disable the LEDs
-        # The mute LEDs were a pain in the ass to figure out how to get working but thank this person
-        # https://bugzilla.kernel.org/show_bug.cgi?id=216197
       # TODO: round volume to nearest 5%
+      # TODO: auto mute when volume goes to 0 and unmute when volume is changed?
       ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
       ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-"
       ", XF86AudioMute,        exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
@@ -67,13 +70,6 @@
       ",XF86AudioNext, exec, playerctl next"
       ",XF86AudioPrev, exec, playerctl previous"
       ",XF86AudioStop, exec, playerctl stop"
-
-      # TODO: make sure closing the lid sleeps the laptop and locks it
-      # bindl = , switch:on:Lid Switch, exec, hyprctl dispatch dpms off
-      # bindl = , switch:off:Lid Switch, exec, hyprctl dispatch dpms on
-
-      "$mod, J, workspace, -1"
-      "$mod, K, workspace, +1"
     ] ++ (
       # Workspaces - binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
       builtins.concatLists (builtins.genList (i:
