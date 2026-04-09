@@ -12,6 +12,10 @@ last_source=$(get_source)
 last_vol=$(get_vol)
 last_src_vol=$(get_src_vol)
 
+# Reset leds
+update-speaker-led
+update-mic-led
+
 # Unfortunately, pactl is needed since no other subscription behaviour properly exists for pipewire
 # This is a pulseaudio compat layer provided from pipewire
 pactl subscribe | grep --line-buffered -E "Event 'change' on (sink|source)" | while read -r _; do
