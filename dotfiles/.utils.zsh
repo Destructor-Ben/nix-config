@@ -11,3 +11,7 @@ nd() {
 nds() {
     nix develop ~/nix-config#$1 --command zsh
 }
+
+nshp() {
+    nix-shell -p $@ --command zsh
+}

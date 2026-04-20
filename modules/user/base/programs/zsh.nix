@@ -13,6 +13,7 @@
 
     shellAliases = {
       ngc = "ns && sudo nix-collect-garbage -d && nix-collect-garbage -d && ns";
+      nsh = "nix-shell --command zsh";
     };
 
     initContent = ''

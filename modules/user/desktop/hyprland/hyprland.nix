@@ -89,10 +89,12 @@
     settings = {
       splash = false;
 
-      preload = [theme.wallpaper];
+      preload = [
+        (toString theme.wallpaper)
+      ];
 
       wallpaper = [
-        "eDP-1,${theme.wallpaper}"
+        "eDP-1,${toString theme.wallpaper}"
       ];
     };
   };

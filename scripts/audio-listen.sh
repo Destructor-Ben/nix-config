@@ -13,6 +13,8 @@ last_vol=$(get_vol)
 last_src_vol=$(get_src_vol)
 
 # Reset leds
+# TODO: shorten the sleep delay
+sleep 1
 update-speaker-led
 update-mic-led
 

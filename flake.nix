@@ -41,7 +41,7 @@
       inherit(inputs) hytale-launcher zen-browser;
       unstable = pkgs-unstable;
 
-      theme = import ./themes/theme.nix;
+      theme = import ./theme.nix;
       sddm-theme = pkgs-stable.callPackage ./pkgs/sddm-theme.nix {};
       custom-fonts = pkgs-stable.callPackage ./pkgs/fonts.nix {};
     };

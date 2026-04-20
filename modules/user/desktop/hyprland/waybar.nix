@@ -59,7 +59,7 @@
         tray = {
           reverse-direction = true;
           spacing = theme.padding;
-          icon-size = 12;
+          icon-size = theme.font-size;
           show-passive-items = true;
         };
         keyboard-state = {
@@ -113,7 +113,7 @@
     ''
     * {
       font-family: "${theme.fonts.ui}";
-      font-size: 12px;
+      font-size: ${toString theme.font-size}px;
       color: ${theme.colors.base};
 
       box-shadow: none;

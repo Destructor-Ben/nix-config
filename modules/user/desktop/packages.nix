@@ -21,6 +21,7 @@
     aseprite
     blender
     lmms
+    audacity
 
     # Fun
     figlet

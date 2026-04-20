@@ -48,7 +48,8 @@
       "$mod, F, exec, dolphin"
       "$mod, B, exec, zen"
 
-      "$mod, V, exec, hyprpicker" # TODO: configure + make it copy
+      # TODO: do this for all hotkeys to stop duplicate processes being run for stuff where only 1 thing should run
+      "$mod, V, exec, pgrep hyprpicker || hyprpicker" # TODO: configure + make it copy
       "$mod, S, exec, grimblast --notify --freeze copysave area"
       "$mod SHIFT, S, exec, kooha"
       ", code:248, exec, grimblast --notify --cursor copysave screen" # F12 key on laptop

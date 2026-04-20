@@ -1,2 +1,4 @@
 INSTALL CODIUM + NEMO + PLASMA ALTERNATIVES
 customize sudo
+add shadow to the cursor by patching it
+add wl-clipboard to pkgs list

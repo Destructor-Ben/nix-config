@@ -6,8 +6,8 @@
     enable = true;
     wayland.enable = true;
     autoNumlock = false;
-    #theme = "destructor-ben"; TODO: renable and remake
-    extraPackages = [ sddm-theme ];
+    theme = "catppuccin-mocha-mauve"; # TODO: better pkg name
+    # TODO: see if this is needed: extraPackages = [ sddm-theme ];
 
     settings = {
       Theme = {

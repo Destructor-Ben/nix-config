@@ -1,6 +1,7 @@
+{ theme, ... }:
 {
   home.file.".face.icon" = {
-    source = ../../../img/Avatar.png;
+    source = theme.pfp;
     recursive = false;
   };
 }
