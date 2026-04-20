@@ -4,6 +4,15 @@
     unstable.hyprshutdown # TODO: link this to the power button, also show a power menu
   ];
 
+  programs.wlogout = {
+    enable = true;
+
+    #layout = [ ];
+
+    #style = ''
+    #'';
+  };
+
   # HYPRLAND BINDS:
       # TODO: also setup hypridle to automatically sleep computer
       # TODO: locking "$mod, L, forcekillactive,"

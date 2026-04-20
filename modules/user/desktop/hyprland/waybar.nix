@@ -32,7 +32,7 @@
         "image#nixos" = {
           path = "/home/ben/nix-config/img/Nix.svg";
           size = 24;
-          on-click = "kitty --hold fastfetch";
+          on-click = "wlogout";
         };
 
         cpu = {
@@ -54,11 +54,9 @@
           tooltip = false;
         };
 
-        # TODO: fix icons
-        # TODO: fix tooltips
         tray = {
           reverse-direction = true;
-          spacing = theme.padding;
+          spacing = theme.padding / 2;
           icon-size = theme.font-size;
           show-passive-items = true;
         };
@@ -108,7 +106,7 @@
       };
     };
 
-    # TODO: shadows are being clipped
+    # Shadows are being clipped, oh well :/
     style =
     ''
     * {
@@ -152,7 +150,7 @@
     }
 
     #cpu, #load, #memory, #temperature,
-    #custom-notifications, #clock, #battery, #wireplumber, #backlight, #keyboard-state, #mpris, #tray {
+    #custom-notifications, #clock, #battery, #wireplumber, #backlight, #keyboard-state, #tray {
       padding: 0 ${toString theme.padding}px;
       margin-top: ${toString (theme.padding / 2)}px;
       margin-bottom: ${toString (theme.padding / 2)}px;
@@ -204,7 +202,10 @@
       margin: ${toString (theme.padding / 2)}px;
       padding-left: 0;
       padding-right: 0;
+    }
 
+    #workspaces button,
+    #workspaces button * {
       transition: all ${theme.css-transition-duration} ${theme.css-transition-curve};
     }
 
@@ -223,6 +224,60 @@
       background: ${theme.colors.red};
       padding-left: ${toString (builtins.floor (theme.padding * 3 / 4))}px;
       padding-right: ${toString (builtins.floor (theme.padding * 3 / 4))}px;
+    }
+
+    #tray {
+      padding: ${toString (theme.padding / 2)}px;
+    }
+
+    #tray menu {
+      background: ${theme.colors.surface-0};
+      border: ${toString theme.border-width}px solid ${theme.colors.contrast-primary};
+      border-radius: ${toString theme.border-radius}px;
+      padding: ${toString (theme.padding / 2)}px;
+    }
+
+    #tray menu separator {
+      background: ${theme.colors.surface-2};
+      min-height: ${toString (theme.border-width / 2)}px;
+      margin: ${toString (theme.padding / 2)}px ${toString theme.padding}px;
+      border-radius: 1000rem;
+    }
+
+    #tray menu menuitem:hover {
+      background: ${theme.colors.surface-1};
+    }
+
+    #tray menu menuitem:disabled,
+    #tray menu menuitem:disabled * {
+      color: ${theme.colors.overlay-1};
+    }
+    
+    #tray > .needs-attention {
+      background: ${theme.colors.red};
+    }
+
+    #tray menu,
+    #tray menu * {
+      color: ${theme.colors.text};
+    }
+
+    #tray widget>image {
+      background: ${theme.colors.base};
+      border-radius: 1000rem;
+      padding-left: ${toString (builtins.floor (theme.padding * 3 / 4))}px;
+      padding-right: ${toString (builtins.floor (theme.padding * 3 / 4))}px;
+    }
+
+    tooltip {
+      background: ${theme.colors.surface-0};
+      border: ${toString theme.border-width}px solid ${theme.colors.contrast-primary};
+      border-radius: ${toString theme.border-radius}px;
+      padding: ${toString (theme.padding / 2)}px;
+    }
+
+    tooltip label {
+      color: ${theme.colors.text};
     }
     '';
   };
