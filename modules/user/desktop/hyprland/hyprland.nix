@@ -10,13 +10,13 @@
   # TODO: set a system + monospace font
   # TODO: set a system light/dark mode
   # TODO: setup cava
+  # TODO: run browser when hyprland starts on workspace 1
 
   /*
   TODO: see if i want these packages:
   Possible packages:
     hyprsysteminfo                                        # Displays information about the running system
     wofi-emoji                                            # Wofi emoji picker
-    hyprpicker                                            # Colour picker
   */
 
   wayland.windowManager.hyprland = {
@@ -45,8 +45,6 @@
 
       exec-once =
       [
-        "systemctl --user start hyprpolkitagent"
-        "systemctl --user start hyprpaper"
         "waybar"
         "~/nix-config/scripts/audio-listen.sh"
       ];
@@ -67,21 +65,19 @@
         # TODO: decide on squircle or circle: rounding_power = 4;
         # TODO: implement my own cool effects: screen_shader = "path/to/shader.frag";
       };
+
+      misc = {
+        disable_hyprland_logo = true;
+      };
     };
   };
 
-  # TODO: configure below
-
-  programs.hyprlock = {
-    enable = true;
-  };
-
+  # TODO: configure
   # TODO: send notifications on critical + warning battery + charging notif
   # TODO: unblock all notifications
   services.swaync = {
     enable = true;
   };
-  # END TODO
 
   services.hyprpaper = {
     enable = true;

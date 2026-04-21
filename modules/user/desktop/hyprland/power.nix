@@ -1,28 +1,101 @@
 { pkgs, unstable, ...}:
 {
   home.packages = with pkgs; [
-    unstable.hyprshutdown # TODO: link this to the power button, also show a power menu
+    unstable.hyprshutdown
   ];
+
+  wayland.windowManager.hyprland.settings = {
+    bind = [
+      ", xf86poweroff, exec, wlogout"
+    ];
+  };
+
+  services.hypridle = {
+    enable = true;
+
+    settings = {
+      general = {
+        lock_cmd = "pidof hyprlock || hyprlock";
+        before_sleep_cmd = "playerctl pause && loginctl lock-session";
+        after_sleep_cmd = "hyprctl dispatch dpms on";
+      };
+
+      # TODO: setup listeners, use the ones on the hypridle example
+    };
+  };
+
+  programs.hyprlock = {
+    enable = true;
+
+    # TODO settings = {};
+  };
 
   programs.wlogout = {
     enable = true;
 
-    #layout = [ ];
+    # TODO: test all of these
+    layout = [
+      {
+        "label" = "lock";
+        "action" = "loginctl lock-session";
+        "text" = "Lock";
+      }
+      {
+        "label" = "hibernate";
+        "action" = "loginctl lock-session && systemctl hibernate";
+        "text" = "Hibernate";
+      }
+      {
+        "label" = "logout";
+        "action" = "hyprshutdown";
+        "text" = "Logout";
+      }
+      {
+        "label" = "shutdown";
+        "action" = "hyprshutdown --post-cmd 'systemctl poweroff'";
+        "text" = "Shutdown";
+      }
+      {
+        "label" = "suspend";
+        "action" = "loginctl lock-session && systemctl suspend";
+        "text" = "Suspend";
+      }
+      {
+        "label" = "reboot";
+        "action" = "hyprshutdown --post-cmd 'systemctl reboot'";
+        "text" = "Reboot";
+      }
+    ];
 
-    #style = ''
-    #'';
+    # TODO: style properly
+    style = ''
+      * {
+        background-image: none;
+        box-shadow: none;
+      }
+
+      window {
+        background-color: rgba(30, 30, 46, 0.90);
+      }
+
+      button {
+        border-radius: 0;
+        border-color: #cba6f7;
+        text-decoration-color: #cdd6f4;
+        color: #cdd6f4;
+        background-color: #181825;
+        border-style: solid;
+        border-width: 1px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 25%;
+      }
+
+      button:focus, button:active, button:hover {
+        /* 20% Overlay 2, 80% mantle */
+        background-color: rgb(48, 50, 66);
+        outline-style: none;
+      }
+    '';
   };
-
-  # HYPRLAND BINDS:
-      # TODO: also setup hypridle to automatically sleep computer
-      # TODO: locking "$mod, L, forcekillactive,"
-      # TODO: make the power button open a menu instead: ", xf86poweroff, exec, TODO"
-      # "SUPER, Escape, exec, pidof swaylock || swaylock"
-      # "SUPER SHIFT, Escape, exec, my-sleep"
-      # "SUPER SHIFT CTRL, Escape, exec, hyprshutdown -t 'Shutting down...' --post-cmd 'my-shutdown'"
-      # "SUPER SHIFT CTRL ALT, Escape, exec, hyprshutdown -t 'Restarting...' --post-cmd 'reboot'"
-      # ", switch:Lid Switch, exec, my-sleep"
-      # TODO: make sure closing the lid sleeps the laptop and locks it
-      # bindl = , switch:on:Lid Switch, exec, hyprctl dispatch dpms off
-      # bindl = , switch:off:Lid Switch, exec, hyprctl dispatch dpms on
 }

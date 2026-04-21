@@ -1,5 +1,6 @@
 { pkgs, theme, ... }:
 {
+  # TODO: remove custom tooltup menu theme and just use the default gtk theme for the tooltips?
   programs.waybar = {
     enable = true;
 
@@ -240,8 +241,6 @@
     #tray menu separator {
       background: ${theme.colors.surface-2};
       min-height: ${toString (theme.border-width / 2)}px;
-      margin: ${toString (theme.padding / 2)}px ${toString theme.padding}px;
-      border-radius: 1000rem;
     }
 
     #tray menu menuitem:hover {

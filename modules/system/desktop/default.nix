@@ -12,5 +12,6 @@
     ./pfp.nix
     ./printing.nix
     ./sddm.nix
+    ./power.nix
   ];
 }
