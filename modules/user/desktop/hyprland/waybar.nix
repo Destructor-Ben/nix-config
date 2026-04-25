@@ -33,7 +33,7 @@
         "image#nixos" = {
           path = "/home/ben/nix-config/img/Nix.svg";
           size = 24;
-          on-click = "~/nix-config/scripts/wlogout-custom.sh";
+          on-click = "wlogout-custom";
         };
 
         cpu = {

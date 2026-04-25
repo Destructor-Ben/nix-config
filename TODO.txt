@@ -3,8 +3,11 @@ finish customizing:
 - plymouth
 - sddm
 
+make the default.nix files autoscan dirs
+make overlays have their files that they change + the originals, then diff + patch at runtime to makes sure everything works
+
 customize sudo
-add wl-clipboard to pkgs list
+add wl-clipboard to pkgs list + fix clipboard
 
 patch waybar to fix issues i have with it:
 - no animations

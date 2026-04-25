@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-hyprshutdown  $@
+# TODO: doesn't pass down args properly
+hyprshutdown "$@"

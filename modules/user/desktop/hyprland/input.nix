@@ -44,7 +44,7 @@
       #bindm = $mainMod, mouse:273, resizewindow
 
       "$mod, L, exec, loginctl lock-session"
-      ", XF86PowerOff, exec, ~/nix-config/scripts/wlogout-custom.sh"
+      ", XF86PowerOff, exec, wlogout-custom"
 
       "$mod, SPACE, exec, pidof wofi || wofi --show drun"
       "$mod, Return, exec, kitty"

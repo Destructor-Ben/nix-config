@@ -37,7 +37,7 @@
       }
       {
         label = "logout";
-        action = "~/nix-config/scripts/hyprshutdown-custom.sh";
+        action = "hyprshutdown-custom";
       }
       {
         label = "suspend";
@@ -45,11 +45,11 @@
       }
       {
         label = "shutdown";
-        action = "~/nix-config/scripts/hyprshutdown-custom.sh --post-cmd 'systemctl poweroff'";
+        action = "hyprshutdown-custom --post-cmd 'systemctl poweroff'";
       }
       {
         label = "reboot";
-        action = "~/nix-config/scripts/hyprshutdown-custom.sh --post-cmd 'systemctl reboot'";
+        action = "hyprshutdown-custom --post-cmd 'systemctl reboot'";
       }
     ];
 

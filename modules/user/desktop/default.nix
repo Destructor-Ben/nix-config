@@ -14,5 +14,6 @@
     ./packages.nix
     ./pfp.nix
     ./program-wrappers.nix
+    ./scripts.nix
   ];
 }

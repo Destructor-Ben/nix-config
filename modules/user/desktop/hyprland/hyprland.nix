@@ -46,7 +46,7 @@
       exec-once =
       [
         "waybar"
-        "~/nix-config/scripts/audio-listen.sh"
+        "audio-listen"
       ];
 
       general = {
