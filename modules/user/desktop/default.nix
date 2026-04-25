@@ -15,5 +15,6 @@
     ./pfp.nix
     ./program-wrappers.nix
     ./scripts.nix
+    ./theming.nix
   ];
 }

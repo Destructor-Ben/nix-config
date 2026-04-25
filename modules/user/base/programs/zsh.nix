@@ -14,6 +14,7 @@
     shellAliases = {
       ngc = "ns && sudo nix-collect-garbage -d && nix-collect-garbage -d && ns";
       nsh = "nix-shell --command zsh";
+      icon-browser = "nix run github:aylur/icon-browser";
     };
 
     initContent = ''

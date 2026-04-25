@@ -1,5 +1,6 @@
 finish customizing:
 - wlogout
+  - TODO: the icons are slightly blurrier than I would like
 - plymouth
 - sddm
 

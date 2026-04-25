@@ -53,7 +53,6 @@
       }
     ];
 
-    # TODO: proper icons
     style = ''
       * {
         background-image: none;
@@ -75,7 +74,7 @@
         border-radius: 100%;
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 50%;
+        background-size: 75%;
         box-shadow: ${theme.css-shadow};
       }
 
@@ -85,23 +84,23 @@
       }
 
       #lock {
-        background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/lock.png"));
+        background-image: image(url("${../../../../img/wlogout/system-lock-screen.svg}"));
       }
 
       #logout {
-        background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/logout.png"));
+        background-image: image(url("${../../../../img/wlogout/system-log-out.svg}"));
       }
 
       #suspend {
-        background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/suspend.png"));
+        background-image: image(url("${../../../../img/wlogout/system-suspend.svg}"));
       }
 
       #shutdown {
-        background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/shutdown.png"));
+        background-image: image(url("${../../../../img/wlogout/system-shutdown.svg}"));
       }
 
       #reboot {
-        background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/reboot.png"));
+        background-image: image(url("${../../../../img/wlogout/system-reboot.svg}"));
       }
     '';
   };
