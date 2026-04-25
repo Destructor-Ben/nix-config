@@ -4,7 +4,7 @@
     settings = {
       user = {
         name  = "Destructor-Ben";
-        email = "destructor.ben@gmail.com";
+        email = "destructorben208@gmail.com";
       };
 
       init.defaultBranch = "main";

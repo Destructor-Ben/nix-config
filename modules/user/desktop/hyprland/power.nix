@@ -1,20 +1,17 @@
-{ pkgs, unstable, ...}:
+{ pkgs, unstable, theme, ...}:
 {
   home.packages = with pkgs; [
     unstable.hyprshutdown
   ];
 
-  wayland.windowManager.hyprland.settings = {
-    bind = [
-      ", xf86poweroff, exec, wlogout"
-    ];
-  };
+  # TODO: configure hyprshutdown
 
   services.hypridle = {
     enable = true;
 
     settings = {
       general = {
+        # Kill wlogout to avoid the fading out anim that gets stuck
         lock_cmd = "pidof hyprlock || hyprlock";
         before_sleep_cmd = "playerctl pause && loginctl lock-session";
         after_sleep_cmd = "hyprctl dispatch dpms on";
@@ -33,41 +30,30 @@
   programs.wlogout = {
     enable = true;
 
-    # TODO: test all of these
     layout = [
       {
-        "label" = "lock";
-        "action" = "loginctl lock-session";
-        "text" = "Lock";
+        label = "lock";
+        action = "loginctl lock-session";
       }
       {
-        "label" = "hibernate";
-        "action" = "loginctl lock-session && systemctl hibernate";
-        "text" = "Hibernate";
+        label = "logout";
+        action = "~/nix-config/scripts/hyprshutdown-custom.sh";
       }
       {
-        "label" = "logout";
-        "action" = "hyprshutdown";
-        "text" = "Logout";
+        label = "suspend";
+        action = "loginctl lock-session && systemctl suspend";
       }
       {
-        "label" = "shutdown";
-        "action" = "hyprshutdown --post-cmd 'systemctl poweroff'";
-        "text" = "Shutdown";
+        label = "shutdown";
+        action = "~/nix-config/scripts/hyprshutdown-custom.sh --post-cmd 'systemctl poweroff'";
       }
       {
-        "label" = "suspend";
-        "action" = "loginctl lock-session && systemctl suspend";
-        "text" = "Suspend";
-      }
-      {
-        "label" = "reboot";
-        "action" = "hyprshutdown --post-cmd 'systemctl reboot'";
-        "text" = "Reboot";
+        label = "reboot";
+        action = "~/nix-config/scripts/hyprshutdown-custom.sh --post-cmd 'systemctl reboot'";
       }
     ];
 
-    # TODO: style properly
+    # TODO: proper icons
     style = ''
       * {
         background-image: none;
@@ -75,26 +61,47 @@
       }
 
       window {
-        background-color: rgba(30, 30, 46, 0.90);
+        background-color: ${theme.colors.base-transparent};
       }
 
       button {
         border-radius: 0;
-        border-color: #cba6f7;
-        text-decoration-color: #cdd6f4;
-        color: #cdd6f4;
-        background-color: #181825;
+        border-color: ${theme.colors.contrast-primary};
+        text-decoration-color: ${theme.colors.text};
+        color: ${theme.colors.text};
+        background-color: ${theme.colors.surface-0};
         border-style: solid;
-        border-width: 1px;
+        border-width: ${toString theme.border-width}px;
+        border-radius: 100%;
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 25%;
+        background-size: 50%;
+        box-shadow: ${theme.css-shadow};
       }
 
       button:focus, button:active, button:hover {
-        /* 20% Overlay 2, 80% mantle */
-        background-color: rgb(48, 50, 66);
+        background-color: ${theme.colors.surface-1};
         outline-style: none;
+      }
+
+      #lock {
+        background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/lock.png"));
+      }
+
+      #logout {
+        background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/logout.png"));
+      }
+
+      #suspend {
+        background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/suspend.png"));
+      }
+
+      #shutdown {
+        background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/shutdown.png"));
+      }
+
+      #reboot {
+        background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/reboot.png"));
       }
     '';
   };

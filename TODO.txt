@@ -1,4 +1,69 @@
-INSTALL CODIUM + NEMO + PLASMA ALTERNATIVES
+finish customizing:
+- wlogout
+- plymouth
+- sddm
+
 customize sudo
-add shadow to the cursor by patching it
 add wl-clipboard to pkgs list
+
+patch waybar to fix issues i have with it:
+- no animations
+- dodgy animations
+- curosr not being a pointer with the hyprland indicator
+- shadows being clipped
+- notifications being handled in such a dodgy way (checking every second)
+- ensure that the nixos icon and notification icon are perfect circles
+- fix the hitboxed of rounded elements
+- custom order for tray elements
+- custom icons for tray elements
+- better ways to handle settings icons
+- waybar itself should have better tooltip support and in general, better control for the contents of elements
+
+patch wlogout
+- [X] make hovering over an option select it
+- [ ] make it immediately die after suspending so it doesn't show up after hyprlock turns back on
+  - [ ] might just be an issue with hyprlock
+- [ ] fix the hitboxed of rounded elements
+- [X] fix the mouse pointer not being set
+- [ ] ensure shadow clipping isn't occuring
+
+themeing:
+    ensure noto sans is installed (in case I need it)
+    install icon theme: material design
+      - switch all icons used in waybar to material design (for consistency)
+      - get apple emojis
+    install catppuccin gtk and qt themes
+    install catppuccin themes for all apps
+    disable all window buttons in apps
+    add animations to weston in sddm
+
+cursor:
+- add shadow to the cursor by patching it
+- change the catppuccin loading + waiting cursor to an infinity symbol
+- change the border color of the cursor to mauve
+
+ALTERNATIVE APPS:
+- codium
+- nemo
+- calculator -> integrate into app launcher
+- Ark replacement (archive manager)
+- Okular -> Zen
+- Gwenview -> TODO
+- TODO: music player
+- TODO: video player
+
+List of sounds to make:
+- notification
+- authentication required
+- login
+- logout
+- shutdown
+- wifi connected
+- wifi disconnected
+- volume up
+- volume down
+- drive connected
+- drive disconnected
+- drive failed
+- low battery
+- critical battery

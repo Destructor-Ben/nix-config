@@ -36,23 +36,25 @@
       "$mod, Q, forcekillactive,"
       "$mod, J, workspace, -1"
       "$mod, K, workspace, +1"
-      # TODO: fullscreen kb
+      # TODO: fullscreen keybind
       # TODO: toggle floating
       # TODO: pin floating windows
       # TODO: resizing + moving floating windows:
       #bindm = $mainMod, mouse:272, movewindow
       #bindm = $mainMod, mouse:273, resizewindow
 
-      "$mod, SPACE, exec, wofi --show drun"
+      "$mod, L, exec, loginctl lock-session"
+      ", XF86PowerOff, exec, ~/nix-config/scripts/wlogout-custom.sh"
+
+      "$mod, SPACE, exec, pidof wofi || wofi --show drun"
       "$mod, Return, exec, kitty"
       "$mod, F, exec, dolphin"
       "$mod, B, exec, zen"
 
-      # TODO: do this for all hotkeys to stop duplicate processes being run for stuff where only 1 thing should run
-      "$mod, V, exec, pgrep hyprpicker || hyprpicker" # TODO: configure + make it copy
-      "$mod, S, exec, grimblast --notify --freeze copysave area"
-      "$mod SHIFT, S, exec, kooha"
-      ", code:248, exec, grimblast --notify --cursor copysave screen" # F12 key on laptop
+      "$mod, V, exec, pidof hyprpicker || hyprpicker" # TODO: configure + make it copy
+      "$mod, S, exec, pidof grimblast || grimblast --notify --freeze copysave area"
+      "$mod SHIFT, S, exec, pidof kooha || kooha"
+      ", code:248, exec, pidof grimblast || grimblast --notify --cursor copysave screen" # F12 key on laptop
 
       ",XF86MonBrightnessUp,   exec, brightnessctl set 5%+"
       ",XF86MonBrightnessDown, exec, brightnessctl set 5%-"

@@ -53,6 +53,7 @@
     surface-0 = "rgb(49,50,68)";
 
     base = "rgb(30,30,46)";
+    base-transparent = "rgba(30,30,46,0.9)";
     mantle = "rgb(24,24,37)";
     crust = "rgb(17,17,27)";
 

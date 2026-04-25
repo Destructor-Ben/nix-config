@@ -43,7 +43,7 @@
 
       theme = import ./theme.nix;
       sddm-theme = pkgs-stable.callPackage ./pkgs/sddm-theme.nix {};
-      custom-fonts = pkgs-stable.callPackage ./pkgs/fonts.nix {};
+      custom-fonts = pkgs-stable.callPackage ./pkgs/custom-fonts.nix {};
     };
   in
   {
@@ -52,10 +52,10 @@
         inherit system;
         specialArgs = moduleArgs;
         modules = [
+          ./modules/common.nix
           ./hosts/bens-laptop/configuration.nix
           home-manager.nixosModules.home-manager
           {
-            nixpkgs.config.allowUnfree = true; # Unfortunately, this is duplicated
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = moduleArgs;

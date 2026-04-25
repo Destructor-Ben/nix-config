@@ -5,9 +5,9 @@
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
+    wayland.compositor = "weston"; # TODO: check if this is needed once I remove plasma, fuck you kwin for making my cursor get larger
     autoNumlock = false;
     theme = "catppuccin-mocha-mauve"; # TODO: better pkg name
-    # TODO: see if this is needed: extraPackages = [ sddm-theme ];
 
     settings = {
       Theme = {

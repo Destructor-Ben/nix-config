@@ -2,7 +2,8 @@
 {
   home.packages = with pkgs; [
     # Programming
-    vscode
+    vscode # TODO: remove
+    vscodium-fhs
     jetbrains.rider
     jetbrains.idea-ultimate
     godot-mono

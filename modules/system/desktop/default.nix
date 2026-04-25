@@ -4,6 +4,7 @@
     ./programs/syncthing.nix
     ./audio.nix
     ./bluetooth.nix
+    ./boot.nix
     ./fonts.nix
     ./hyprland.nix
     ./laptop-leds.nix
