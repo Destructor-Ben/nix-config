@@ -5,7 +5,7 @@
 
     settings = {
       logo = {
-        source = "~/nix-config/img/Nix.txt";
+        source = ../../../../img/Nix.txt;
         type = "file";
         color = {
           "1" = theme.colors.terminal-mauve;

@@ -31,7 +31,7 @@
         ];
 
         "image#nixos" = {
-          path = "/home/ben/nix-config/img/Nix.svg";
+          path = ../../../../img/Nix.svg;
           size = 24;
           on-click = "wlogout-custom";
         };
