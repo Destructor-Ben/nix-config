@@ -1,6 +1,6 @@
 {
   home.sessionVariables = {
     EDITOR = "hx";
-    VISUAL = "code";
+    VISUAL = "codium";
   };
 }

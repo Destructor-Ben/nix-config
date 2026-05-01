@@ -10,6 +10,7 @@
     avalonia-ilspy
 
     # Utility
+    nemo # TODO: add other non-plamsa alternatives, also im pretty sure i need to configure nemo
     spotify
     obsidian
     prismlauncher

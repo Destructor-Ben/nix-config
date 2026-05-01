@@ -1,4 +1,4 @@
-{ theme, ... }:
+{ pkgs, theme, ... }:
 {
   programs.fastfetch = {
     enable = true;
@@ -127,7 +127,7 @@
         {
           type = "editor";
           key = "    editor";
-          format = "\"{exe-name} {version}\";";
+          format = "\"vscodium ${pkgs.vscodium-fhs.version}\";";
         }
         {
           type = "terminalfont";
