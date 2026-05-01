@@ -5,7 +5,6 @@
   ];
 
   # TODO: configure hyprshutdown
-  # TODO: make closing the sleep sleep properly
 
   services.hypridle = {
     enable = true;

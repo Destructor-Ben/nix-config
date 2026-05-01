@@ -45,6 +45,8 @@
 
       "$mod, L, exec, loginctl lock-session"
       ", XF86PowerOff, exec, wlogout-custom"
+      ", switch:on:Lid Switch, exec, loginctl lock-session && systemctl suspend"
+      ", switch:off:Lid Switch, exec, hyprctl dispatch dpms on"
 
       "$mod, SPACE, exec, pidof wofi || wofi --show drun"
       "$mod, Return, exec, kitty"
