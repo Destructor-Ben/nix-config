@@ -5,6 +5,8 @@
   ];
 
   # TODO: configure hyprshutdown
+  # TODO: logging in and out doesn't properly close processes started via exec-once in hyprland
+  # - using systemd user services might be a good idea to fix this instead of exec-once
 
   services.hypridle = {
     enable = true;

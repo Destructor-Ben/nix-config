@@ -62,7 +62,6 @@
 
       decoration = {
         rounding = theme.border-radius;
-        # TODO: decide on squircle or circle: rounding_power = 4;
         # TODO: implement my own cool effects: screen_shader = "path/to/shader.frag";
       };
 
