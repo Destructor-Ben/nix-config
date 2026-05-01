@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # Based on: https://github.com/ilyamiro/nixos-configuration/blob/master/config/sessions/hyprland/scripts/volume_listener.sh
 
 get_sink() { pactl get-default-sink; }

@@ -8,7 +8,7 @@ let
     in
     {
       inherit name;
-      value = pkgs.writeShellScriptBin name path;
+      value = pkgs.writeShellScriptBin name (builtins.readFile path);
     }
   ) scriptPaths);
 in
