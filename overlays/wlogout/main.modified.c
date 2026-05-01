@@ -510,6 +510,26 @@ static void execute(GtkWidget *widget, char *action)
     gtk_main_quit();
 }
 
+// Block arrow keys work working while something is hovered
+static gboolean block_arrows_on_hover(GtkWidget *widget, GdkEventKey *event, gpointer data)
+{
+    gboolean is_hovered = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(widget), "is_hovered"));
+
+    if (is_hovered)
+    {
+        switch (event->keyval)
+        {
+            case GDK_KEY_Up:
+            case GDK_KEY_Down:
+            case GDK_KEY_Left:
+            case GDK_KEY_Right:
+                return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 static gboolean check_key(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
     if (event->keyval == GDK_KEY_Escape)
@@ -625,19 +645,28 @@ static void get_monitor(GtkWidget *widget, GdkEventKey *event, gpointer data)
 
 static gboolean on_button_enter(GtkWidget *widget, GdkEventCrossing *event, gpointer data)
 {
+    // Select when hovered
     gtk_widget_grab_focus(widget);
 
+    // Set mouse cursor
     GdkDisplay *display = gtk_widget_get_display(widget);
     GdkCursor *cursor = gdk_cursor_new_from_name(display, "pointer");
     gdk_window_set_cursor(gtk_widget_get_window(widget), cursor);
     g_object_unref(cursor);
+
+    // Tag this widget as being hovered so arrow keys don't work
+    g_object_set_data(G_OBJECT(widget), "is_hovered", GINT_TO_POINTER(1));
 
     return FALSE;
 }
 
 static gboolean on_button_leave(GtkWidget *widget, GdkEventCrossing *event, gpointer data)
 {
+    // Set mouse cursor
     gdk_window_set_cursor(gtk_widget_get_window(widget), NULL);
+    // Remove tag when the mouse leaves
+    g_object_set_data(G_OBJECT(widget), "is_hovered", GINT_TO_POINTER(0));
+
     return FALSE;
 }
 
@@ -680,6 +709,7 @@ static void load_buttons(GtkContainer *container)
             but[i][j] = gtk_button_new_with_label(buttons[count].text);
             g_signal_connect(but[i][j], "enter-notify-event", G_CALLBACK(on_button_enter), NULL);
             g_signal_connect(but[i][j], "leave-notify-event", G_CALLBACK(on_button_leave), NULL);
+            g_signal_connect(but[i][j], "key-press-event", G_CALLBACK(block_arrows_on_hover), NULL);
             gtk_widget_set_name(but[i][j], buttons[count].label);
             gtk_label_set_yalign(
                 GTK_LABEL(gtk_bin_get_child(GTK_BIN(but[i][j]))),

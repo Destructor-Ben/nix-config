@@ -40,12 +40,12 @@ patch waybar to fix issues i have with it:
 
 patch wlogout
 - [X] make hovering over an option select it
+- [X] fix the mouse pointer not being set
+- [X] fix the issue with the arrow keys working while something is hovered
+- [ ] ensure shadow clipping isn't occuring
+- [ ] fix the hitboxed of rounded elements
 - [ ] make it immediately die after suspending so it doesn't show up after hyprlock turns back on
   - [ ] might just be an issue with hyprlock
-- [ ] fix the hitboxed of rounded elements
-- [X] fix the mouse pointer not being set
-- [ ] ensure shadow clipping isn't occuring
-- [ ] fix the issue with the arrow keys working while something is hovered
 
 themeing:
     ensure noto sans is installed (in case I need it)
