@@ -17,7 +17,27 @@
         after_sleep_cmd = "hyprctl dispatch dpms on";
       };
 
-      # TODO: setup listeners, use the ones on the hypridle example
+      listener = [
+        # Monitor backlight
+        {
+          timeout = 150;
+          on-timeout = "brightnessctl -s set 10";
+          on-resume = "brightnessctl -r";
+        }
+
+        # Keyboard backlight
+        { 
+          timeout = 150;
+          on-timeout = "brightnessctl -sd rgb:kbd_backlight set 0";
+          on-resume = "brightnessctl -rd rgb:kbd_backlight";
+        }
+
+        # Suspend
+        {
+          timeout = 180;
+          on-timeout = "loginctl lock-session && systemctl suspend";
+        }
+      ];
     };
   };
 

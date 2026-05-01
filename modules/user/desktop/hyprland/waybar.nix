@@ -22,7 +22,7 @@
         ];
         modules-right = [
           "tray"
-          "keyboard-state"
+          # Disabled because it doesn't seem to be accurate: "keyboard-state"
           "backlight"
           "wireplumber"
           "battery"
