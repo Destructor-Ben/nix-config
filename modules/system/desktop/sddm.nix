@@ -1,13 +1,13 @@
 { pkgs, sddm-theme, theme, ... }:
 {
-  environment.systemPackages = [ sddm-theme ];
+  environment.systemPackages = [ sddm-theme.packages.${pkgs.system}.default ];
 
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
-    wayland.compositor = "weston"; # TODO: check if this is needed once I remove plasma, fuck you kwin for making my cursor get larger
+    wayland.compositor = "weston";
     autoNumlock = false;
-    theme = "catppuccin-mocha-mauve"; # TODO: better pkg name
+    theme = "catppuccin-mocha-mauve"; # TODO: update theme name when i finally do
 
     settings = {
       Theme = {

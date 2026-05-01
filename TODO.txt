@@ -7,6 +7,13 @@ finish customizing:
 make the default.nix files autoscan dirs
 make overlays have their files that they change + the originals, then diff + patch at runtime to makes sure everything works
 
+make grimblast:
+- include window borders
+- incude corners of windows
+- not include the outside of the windows
+- not have an annoying flicker when first starting up
+- redo the visuals
+
 customize sudo
 add wl-clipboard to pkgs list + fix clipboard
 

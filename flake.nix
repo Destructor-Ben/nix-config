@@ -5,15 +5,23 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake";
-
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hytale-launcher = {
+      url = "github:TNAZEP/HytaleLauncherFlake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sddm-theme = {
+      url = "github:Destructor-Ben/sddm-theme";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -38,11 +46,10 @@
     };
 
     moduleArgs = {
-      inherit(inputs) hytale-launcher zen-browser;
+      inherit(inputs) hytale-launcher zen-browser sddm-theme;
       unstable = pkgs-unstable;
 
       theme = import ./theme.nix;
-      sddm-theme = pkgs-stable.callPackage ./pkgs/sddm-theme.nix {};
       custom-fonts = pkgs-stable.callPackage ./pkgs/custom-fonts.nix {};
     };
   in
