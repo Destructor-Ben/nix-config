@@ -8,6 +8,7 @@
   # TODO: logging in and out doesn't properly close processes started via exec-once in hyprland
   # - using systemd user services might be a good idea to fix this instead of exec-once
 
+  # TODO: make the screen brightness fade in and out when darkening, and also make it fade in and out when suspending + unsuspending
   services.hypridle = {
     enable = true;
 
