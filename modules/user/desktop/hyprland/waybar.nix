@@ -23,6 +23,7 @@
         modules-right = [
           "tray"
           # Disabled because it doesn't seem to be accurate: "keyboard-state"
+          "idle_inhibitor"
           "backlight"
           "wireplumber"
           "battery"
@@ -60,6 +61,14 @@
           spacing = theme.padding / 2;
           icon-size = theme.font-size;
           show-passive-items = true;
+        };
+        idle_inhibitor = {
+          tooltip = false;
+          format = "{icon}";
+          format-icons = {
+            activated = "󰤁 Blocked";
+            deactivated = "󰤂 Idle";
+          };
         };
         keyboard-state = {
           "numlock" = true;
@@ -151,7 +160,7 @@
     }
 
     #cpu, #load, #memory, #temperature,
-    #custom-notifications, #clock, #battery, #wireplumber, #backlight, #keyboard-state, #tray {
+    #custom-notifications, #clock, #battery, #wireplumber, #backlight, #keyboard-state, #idle_inhibitor, #tray {
       padding: 0 ${toString theme.padding}px;
       margin-top: ${toString (theme.padding / 2)}px;
       margin-bottom: ${toString (theme.padding / 2)}px;
