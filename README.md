@@ -7,7 +7,7 @@ My personal NixOS config.
 
 ## Theme
 - Colors: Catppuccin Mocha, with mauve as the primary color and pink as a secondary color
-- Icons: Nerd font icons for status bar and Papirus for everything else
+- Icons: Nerd Font icons for status bar and Papirus for everything else
 - Fonts: JetBrains Mono, Red Seven, and Noto Sans
 - Wallpaper: Made with [Julia](https://destructor-ben.github.io/julia)
 - SDDM Theme: [Catppuccin Rounded](https://github.com/Destructor-Ben/sddm-theme)
@@ -23,5 +23,5 @@ My personal NixOS config.
 - Notification Daemon: `swaync`
 - System Monitor: `btop`
 - File Manager: `nemo`
-- TODO: other random apps
+- TODO: other random apps like image viewer and media player and 
 - Code Editor: VSCodium, sometimes Helix
