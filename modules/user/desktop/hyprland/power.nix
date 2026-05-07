@@ -67,12 +67,12 @@
         action = "loginctl lock-session && systemctl suspend";
       }
       {
-        label = "shutdown";
-        action = "hyprshutdown-custom --post-cmd 'systemctl poweroff'";
-      }
-      {
         label = "reboot";
         action = "hyprshutdown-custom --post-cmd 'systemctl reboot'";
+      }
+      {
+        label = "shutdown";
+        action = "hyprshutdown-custom --post-cmd 'systemctl poweroff'";
       }
     ];
 
