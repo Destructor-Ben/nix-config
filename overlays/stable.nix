@@ -1,0 +1,4 @@
+[
+  (import ./plymouth)
+  (import ./wlogout)
+]

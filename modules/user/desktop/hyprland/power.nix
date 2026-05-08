@@ -4,7 +4,6 @@
     unstable.hyprshutdown
   ];
 
-  # TODO: configure hyprshutdown
   # TODO: logging in and out doesn't properly close processes started via exec-once in hyprland
   # - using systemd user services might be a good idea to fix this instead of exec-once
 
@@ -14,7 +13,6 @@
 
     settings = {
       general = {
-        # Kill wlogout to avoid the fading out anim that gets stuck
         lock_cmd = "pidof hyprlock || hyprlock";
         before_sleep_cmd = "playerctl pause && loginctl lock-session";
         after_sleep_cmd = "hyprctl dispatch dpms on";
@@ -23,21 +21,21 @@
       listener = [
         # Monitor backlight
         {
-          timeout = 150;
+          timeout = 180;
           on-timeout = "brightnessctl -s set 10";
           on-resume = "brightnessctl -r";
         }
 
         # Keyboard backlight
         { 
-          timeout = 150;
+          timeout = 180;
           on-timeout = "brightnessctl -sd rgb:kbd_backlight set 0";
           on-resume = "brightnessctl -rd rgb:kbd_backlight";
         }
 
         # Suspend
         {
-          timeout = 180;
+          timeout = 210;
           on-timeout = "loginctl lock-session && systemctl suspend";
         }
       ];
@@ -60,7 +58,7 @@
       }
       {
         label = "logout";
-        action = "hyprshutdown-custom";
+        action = "hyprshutdown -t 'Logging out...'";
       }
       {
         label = "suspend";
@@ -68,11 +66,11 @@
       }
       {
         label = "reboot";
-        action = "hyprshutdown-custom --post-cmd 'systemctl reboot'";
+        action = "hyprshutdown --post-cmd 'systemctl reboot' -t 'Rebooting...'";
       }
       {
         label = "shutdown";
-        action = "hyprshutdown-custom --post-cmd 'systemctl poweroff'";
+        action = "hyprshutdown --post-cmd 'systemctl poweroff' -t 'Shutting down...'";
       }
     ];
 

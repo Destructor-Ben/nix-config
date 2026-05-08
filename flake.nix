@@ -30,14 +30,19 @@
   let
     system = "x86_64-linux";
 
+    stable-overlays = import ./overlays/stable.nix;
+    unstable-overlays = import ./overlays/unstable.nix;
+
     pkgs-stable = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
+      overlays = stable-overlays;
     };
 
     pkgs-unstable = import nixpkgs-unstable {
       inherit system;
       config.allowUnfree = true;
+      overlays = unstable-overlays;
     };
 
     devShellArgs = {
@@ -59,10 +64,10 @@
         inherit system;
         specialArgs = moduleArgs;
         modules = [
-          ./modules/common.nix
           ./hosts/bens-laptop/configuration.nix
           home-manager.nixosModules.home-manager
           {
+            nixpkgs.pkgs = pkgs-stable;
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = moduleArgs;
