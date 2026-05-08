@@ -1,6 +1,7 @@
 {
   wallpaper = ./img/Wallpaper.png;
   pfp = ./img/Avatar.png;
+  icon-theme = "Papirus-Dark";
 
   font-size = 12;
   padding = 10;

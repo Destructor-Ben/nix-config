@@ -100,11 +100,7 @@ CMonitorState::CMonitorState(SP<Hyprtoolkit::IOutput> output) : m_monitorName(ou
 
     m_bg = Hyprtoolkit::CRectangleBuilder::begin()
                ->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, {1, 1}})
-               ->color([] {
-                   auto col = g_ui->backend()->getPalette()->m_colors.background;
-                   col.a *= 0.9F;
-                   return col;
-               })
+               ->color([] { return g_ui->backend()->getPalette()->m_colors.background; })
                ->commence();
 
     m_null = Hyprtoolkit::CNullBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, {0.5F, 0.8F}})->commence();
@@ -120,23 +116,17 @@ CMonitorState::CMonitorState(SP<Hyprtoolkit::IOutput> output) : m_monitorName(ou
                     ->fontSize(Hyprtoolkit::CFontSize{Hyprtoolkit::CFontSize::HT_FONT_H1})
                     ->commence();
 
-    m_subText = Hyprtoolkit::CTextBuilder::begin()
-                    ->text("Waiting for your apps to exitTESTESTSET.\n<i>You can force quit Hyprland, but that risks losing unsaved progress.</i>")
-                    ->color([] { return g_ui->backend()->getPalette()->m_colors.text; })
-                    ->fontSize(Hyprtoolkit::CFontSize{Hyprtoolkit::CFontSize::HT_FONT_TEXT})
-                    ->commence();
-
-    m_spacer  = Hyprtoolkit::CNullBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, {1.F, 20.F}})->commence();
-    m_spacer2 = Hyprtoolkit::CNullBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, {1.F, 20.F}})->commence();
+    m_spacer  = Hyprtoolkit::CNullBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, {1.F, 10.F}})->commence();
+    m_spacer2 = Hyprtoolkit::CNullBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, {1.F, 10.F}})->commence();
 
     m_appListNull = Hyprtoolkit::CNullBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, {1.F, 1.F}})->commence();
     m_appListNull->setGrow(true);
 
     m_appListRect = Hyprtoolkit::CRectangleBuilder::begin()
                         ->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, {1, 1}})
-                        ->color([] { return Hyprtoolkit::CHyprColor{0}; })
+                        ->color([] { return g_ui->backend()->getPalette()->m_colors.base; })
                         ->rounding(g_ui->backend()->getPalette()->m_vars.bigRounding)
-                        ->borderThickness(1)
+                        ->borderThickness(4)
                         ->borderColor([] { return g_ui->backend()->getPalette()->m_colors.accent; })
                         ->commence();
 
@@ -147,10 +137,10 @@ CMonitorState::CMonitorState(SP<Hyprtoolkit::IOutput> output) : m_monitorName(ou
                           ->commence();
 
     m_appListLayout =
-        Hyprtoolkit::CColumnLayoutBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_AUTO, {1, 1}})->gap(8)->commence();
+        Hyprtoolkit::CColumnLayoutBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_AUTO, {1, 1}})->gap(10)->commence();
 
     m_buttonLayout =
-        Hyprtoolkit::CRowLayoutBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_AUTO, {1, 1}})->gap(5)->commence();
+        Hyprtoolkit::CRowLayoutBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_AUTO, {1, 1}})->gap(10)->commence();
     auto spacer3 = Hyprtoolkit::CNullBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, {1.F, 1.F}})->commence();
     spacer3->setGrow(true, false);
 
@@ -162,9 +152,9 @@ CMonitorState::CMonitorState(SP<Hyprtoolkit::IOutput> output) : m_monitorName(ou
             State::state()->killAllApps();
             g_ui->exit(true);
         },
-        8.F);
+        10.F);
 
-    m_cancel = makeButton("Cancel", [](auto) { g_ui->exit(false); }, 8.F);
+    m_cancel = makeButton("Cancel", [](auto) { g_ui->exit(false); }, 10.F);
 
     m_buttonLayout->addChild(m_cancel);
     m_buttonLayout->addChild(m_forceQuit);
@@ -179,7 +169,6 @@ CMonitorState::CMonitorState(SP<Hyprtoolkit::IOutput> output) : m_monitorName(ou
     m_appListScroll->addChild(m_appListLayout);
 
     m_layout->addChild(m_topText);
-    m_layout->addChild(m_subText);
     m_layout->addChild(m_spacer);
     m_layout->addChild(m_appListNull);
     m_layout->addChild(m_spacer2);

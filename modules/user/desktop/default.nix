@@ -2,6 +2,7 @@
   imports = [
     ./hyprland/cursor.nix
     ./hyprland/hyprland.nix
+    ./hyprland/hyprtoolkit.nix
     ./hyprland/input.nix
     ./hyprland/power.nix
     ./hyprland/waybar.nix
