@@ -57,8 +57,8 @@
       "$mod, F, exec, nemo"
       "$mod, B, exec, zen"
 
-      "$mod, C, exec, pidof hyprpicker || hyprpicker" # TODO: configure + make it copy
-      "$mod, S, exec, pidof grimblast || grimblast --notify --freeze copysave area"
+      "$mod, C, exec, pidof hyprpicker || hyprpicker --format=hex -l -a"
+      "$mod, S, exec, pidof grimblast || grimblast --n-otify --freeze copysave area"
       "$mod SHIFT, S, exec, pidof kooha || kooha"
       ", code:248, exec, pidof grimblast || grimblast --notify --cursor copysave screen" # F12 key on laptop
 

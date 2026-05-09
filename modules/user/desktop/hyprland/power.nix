@@ -54,7 +54,7 @@
     layout = [
       {
         label = "lock";
-        action = "loginctl lock-session";
+        action = "sleep 0.75 && loginctl lock-session";
       }
       {
         label = "logout";
@@ -62,7 +62,7 @@
       }
       {
         label = "suspend";
-        action = "loginctl lock-session && systemctl suspend";
+        action = "sleep 0.75 && loginctl lock-session && systemctl suspend";
       }
       {
         label = "reboot";
