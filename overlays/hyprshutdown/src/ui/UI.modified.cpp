@@ -14,28 +14,32 @@ using namespace Hyprutils::OS;
 
 namespace {
     using ButtonPtr                        = Hyprutils::Memory::CSharedPointer<Hyprtoolkit::CButtonElement>;
-    constexpr float kButtonBaseHeight      = 25.F;
+    /*constexpr float kButtonBaseHeight      = 25.F;
     constexpr float kButtonFontScale       = 0.40F;
-    constexpr float kButtonCharWidthFactor = 0.6F;
+    constexpr float kButtonCharWidthFactor = 0.6F;*/
 
-    float           buttonWidthForLabel(std::string_view label, float padding, float fontSize) {
+    /*float           buttonWidthForLabel(std::string_view label, float padding, float fontSize) {
         const float textWidth = static_cast<float>(label.size()) * (fontSize * kButtonCharWidthFactor);
         return textWidth + (std::max(0.F, padding) * 2.F);
-    }
+    }*/
 
     template <typename OnClick, typename Configure = std::function<void(const ButtonPtr&)>>
     ButtonPtr makeButton(std::string_view label, OnClick&& onClick, float padding = 0.F, Configure configure = {}) {
         padding = std::max(0.F, padding);
 
-        const float buttonHeight = kButtonBaseHeight + (padding * 2.F);
-        const float fontSize     = std::max(10.F, buttonHeight * kButtonFontScale);
+        const float fontSize = 12.F;
+        const float buttonWidth = 100.F + (padding * 2.F); // buttonWidthForLabel(label, padding, fontSize)
+        const float buttonHeight = fontSize + (padding * 2.F);
 
         auto        btn =
             Hyprtoolkit::CButtonBuilder::begin()
                 ->label(std::string{label})
                 ->fontSize(Hyprtoolkit::CFontSize{Hyprtoolkit::CFontSize::HT_FONT_ABSOLUTE, fontSize})
-                ->size({Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, {buttonWidthForLabel(label, padding, fontSize), buttonHeight}})
+                ->size({Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, {buttonWidth, buttonHeight}})
                 ->onMainClick(std::forward<OnClick>(onClick))
+                // ->rounding(g_ui->backend()->getPalette()->m_vars.bigRounding)
+                // ->borderThickness(4)
+                // ->borderColor([] { return g_ui->backend()->getPalette()->m_colors.accent; })
                 ->commence();
 
         if (configure) {
@@ -53,10 +57,10 @@ CMonitorState::SAppListApp::SAppListApp(const std::string_view& clazz, const std
     m_null = Hyprtoolkit::CNullBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_AUTO, {1.F, 1.F}})->commence();
     m_null->setMargin(4);
     m_layout =
-        Hyprtoolkit::CColumnLayoutBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_AUTO, {1.F, 1.F}})->gap(2)->commence();
+        Hyprtoolkit::CColumnLayoutBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_AUTO, {1.F, 1.F}})->gap(10)->commence();
 
     m_title = Hyprtoolkit::CTextBuilder::begin()
-                  ->text(std::format("<i>{}</i>", title))
+                  ->text(std::string{title})
                   ->color([] { return g_ui->backend()->getPalette()->m_colors.text; })
                   ->fontSize(Hyprtoolkit::CFontSize{Hyprtoolkit::CFontSize::HT_FONT_TEXT})
                   ->commence();
@@ -108,7 +112,7 @@ CMonitorState::CMonitorState(SP<Hyprtoolkit::IOutput> output) : m_monitorName(ou
     m_null->setPositionFlag(Hyprtoolkit::IElement::HT_POSITION_FLAG_CENTER, true);
 
     m_layout =
-        Hyprtoolkit::CColumnLayoutBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, {1, 1}})->gap(5)->commence();
+        Hyprtoolkit::CColumnLayoutBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, {1, 1}})->gap(10)->commence();
 
     m_topText = Hyprtoolkit::CTextBuilder::begin()
                     ->text(std::string{g_ui->m_shutdownLabel})
@@ -116,8 +120,8 @@ CMonitorState::CMonitorState(SP<Hyprtoolkit::IOutput> output) : m_monitorName(ou
                     ->fontSize(Hyprtoolkit::CFontSize{Hyprtoolkit::CFontSize::HT_FONT_H1})
                     ->commence();
 
-    m_spacer  = Hyprtoolkit::CNullBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, {1.F, 10.F}})->commence();
-    m_spacer2 = Hyprtoolkit::CNullBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, {1.F, 10.F}})->commence();
+    // m_spacer  = Hyprtoolkit::CNullBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, {1.F, 10.F}})->commence();
+    // m_spacer2 = Hyprtoolkit::CNullBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, {1.F, 10.F}})->commence();
 
     m_appListNull = Hyprtoolkit::CNullBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, {1.F, 1.F}})->commence();
     m_appListNull->setGrow(true);
@@ -139,6 +143,8 @@ CMonitorState::CMonitorState(SP<Hyprtoolkit::IOutput> output) : m_monitorName(ou
     m_appListLayout =
         Hyprtoolkit::CColumnLayoutBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_AUTO, {1, 1}})->gap(10)->commence();
 
+    m_buttonLayoutParent =
+        Hyprtoolkit::CColumnLayoutBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_AUTO, Hyprtoolkit::CDynamicSize::HT_SIZE_AUTO, {1, 1}})->gap(10)->commence();
     m_buttonLayout =
         Hyprtoolkit::CRowLayoutBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_PERCENT, Hyprtoolkit::CDynamicSize::HT_SIZE_AUTO, {1, 1}})->gap(10)->commence();
     auto spacer3 = Hyprtoolkit::CNullBuilder::begin()->size({Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, Hyprtoolkit::CDynamicSize::HT_SIZE_ABSOLUTE, {1.F, 1.F}})->commence();
@@ -159,6 +165,8 @@ CMonitorState::CMonitorState(SP<Hyprtoolkit::IOutput> output) : m_monitorName(ou
     m_buttonLayout->addChild(m_cancel);
     m_buttonLayout->addChild(m_forceQuit);
 
+    m_buttonLayoutParent->addChild(m_buttonLayout);
+
     m_window->m_rootElement->addChild(m_bg);
     m_window->m_rootElement->addChild(m_null);
 
@@ -169,10 +177,10 @@ CMonitorState::CMonitorState(SP<Hyprtoolkit::IOutput> output) : m_monitorName(ou
     m_appListScroll->addChild(m_appListLayout);
 
     m_layout->addChild(m_topText);
-    m_layout->addChild(m_spacer);
+    // m_layout->addChild(m_spacer);
     m_layout->addChild(m_appListNull);
-    m_layout->addChild(m_spacer2);
-    m_layout->addChild(m_buttonLayout);
+    // m_layout->addChild(m_spacer2);
+    m_layout->addChild(m_buttonLayoutParent);
 
     update();
 

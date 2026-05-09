@@ -35,9 +35,10 @@ class CMonitorState {
 
     SP<Hyprtoolkit::CRectangleElement>    m_bg;
     SP<Hyprtoolkit::CNullElement>         m_null;
-    SP<Hyprtoolkit::CNullElement>         m_spacer, m_spacer2;
+    // SP<Hyprtoolkit::CNullElement>         m_spacer, m_spacer2;
     SP<Hyprtoolkit::CColumnLayoutElement> m_layout;
     SP<Hyprtoolkit::CTextElement>         m_topText;
+    SP<Hyprtoolkit::CColumnLayoutElement> m_buttonLayoutParent;
     SP<Hyprtoolkit::CRowLayoutElement>    m_buttonLayout;
     SP<Hyprtoolkit::CButtonElement>       m_forceQuit, m_cancel;
 
