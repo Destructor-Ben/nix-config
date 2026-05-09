@@ -1,10 +1,11 @@
 { lib, pkgs-stable, ... }:
 let
   browser = "zen.desktop";
-  editor = "code.desktop"; # TODO: change to vscodium
+  editor = "codium.desktop";
+  terminal = "kitty.desktop";
   file-manager = "dolphin.desktop"; # TODO: potentially update this?
-  image-viewer = "gwenview.desktop";
-  # TODO: add these + vscode to the context menu
+  image-viewer = "gwenview.desktop"; # TODO: update this
+  # TODO: add these + codium to the context menu
   bitmap-editor = "gimp.desktop";
   svg-editor = "inkscape.desktop";
 in {
@@ -20,6 +21,7 @@ in {
     defaultApplications = {
       # TODO: see if any file types are missing
       "inode/directory" = file-manager;
+      "x-scheme-handler/terminal" = terminal;
 
       "text/html" = browser;
       "x-scheme-handler/http" = browser;
@@ -33,12 +35,12 @@ in {
       "application/x-extension-xhtml" = browser;
       "application/x-extension-xht" = browser;
 
+      "image/png" = image-viewer;
+      "image/jpg" = image-viewer;
       "image/jpeg" = image-viewer;
+      "image/pjpeg" = image-viewer;
       "image/bmp" = image-viewer;
       "image/gif" = image-viewer;
-      "image/jpg" = image-viewer;
-      "image/pjpeg" = image-viewer;
-      "image/png" = image-viewer;
       "image/tiff" = image-viewer;
       "image/webp" = image-viewer;
       "image/x-bmp" = image-viewer;
