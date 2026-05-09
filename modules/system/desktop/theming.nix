@@ -1,4 +1,4 @@
-{ pkgs, custom-fonts, ... }:
+{ pkgs, custom-fonts, theme, ... }:
 {
   # TODO: finish themeing
 
@@ -20,9 +20,9 @@
 
     fontconfig = {
       defaultFonts = {
-        serif = [ "Noto Serif" ];
-        sansSerif = [ "Noto Sans" ];
-        monospace = [ "JetBrainsMono Nerd Font" ];
+        serif = [ theme.fonts.ui-serif ];
+        sansSerif = [ theme.fonts.ui-sans ];
+        monospace = [ theme.fonts.ui ];
       };
     };
   };

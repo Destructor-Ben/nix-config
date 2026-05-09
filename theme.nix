@@ -15,7 +15,10 @@
 
   fonts = {
     code = "JetBrainsMono Nerd Font";
+    impact = "Red Seven";
     ui = "JetBrainsMono Nerd Font Propo";
+    ui-sans = "Noto Sans";
+    ui-serif = "Noto Serif";
   };
 
   cursor = {

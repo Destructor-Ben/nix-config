@@ -45,7 +45,78 @@
   programs.hyprlock = {
     enable = true;
 
-    # TODO settings = {};
+    settings = {
+      general = {
+        hide_cursor = true;
+      };
+
+      animations = {
+        enabled = true;
+        bezier = "linear, 1, 1, 0, 0";
+        animation = [
+          "fadeIn, 1, 5, linear"
+          "fadeOut, 1, 5, linear"
+          "inputFieldDots, 1, 2, linear"
+        ];
+      };
+
+      background = {
+        path = "screenshot";
+        blur_passes = 3;
+      };
+
+      label = [
+        {
+          text = "cmd[update:60000] date +\"%A, %d %B\"";
+          font_size = 24;
+          font_family = theme.fonts.impact;
+          color = theme.colors.text;
+
+          position = "0, -70";
+          halign = "center";
+          valign = "top";
+          shadow_passes = 1;
+          shadow_boost = 1;
+        }
+        {
+          text = "cmd[update:1000] date +\"%-I:%M %p\"";
+          font_size = 72;
+          font_family = theme.fonts.impact;
+          color = theme.colors.text;
+
+          # No idea where the 3 comes from, it just looks like it matches
+          position = "0, -${toString (70 + 24 + 3)}";
+          halign = "center";
+          valign = "top";
+          shadow_passes = 1;
+          shadow_boost = 1;
+        }
+      ];
+
+      input-field = {
+        size = "400, ${toString (theme.font-size * 4)}";
+        position = "0, 0";
+        halign = "center";
+        valign = "center";
+
+        outline_thickness = theme.border-width;
+        inner_color = theme.colors.surface-0;
+        outer_color = "${theme.colors.contrast-primary} ${theme.colors.contrast-secondary} ${theme.gradient-angle}";
+        check_color = "${theme.colors.peach} ${theme.colors.yellow} ${theme.gradient-angle}";
+        fail_color = "${theme.colors.red} ${theme.colors.maroon} ${theme.gradient-angle}";
+
+        font_color = theme.colors.text;
+        rounding = theme.font-size * 2;
+        fade_on_empty = false;
+        shadow_passes = 1;
+        shadow_boost = 1;
+
+        font_family = theme.fonts.ui;
+        placeholder_text = "Enter password";
+        fail_text = "$PAMFAIL";
+        dots_spacing = "0.3";
+      };
+    };
   };
 
   programs.wlogout = {
