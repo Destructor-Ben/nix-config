@@ -5,19 +5,13 @@
     qt6.qtwayland
   ];
 
-  home.sessionVariables.NIXOS_OZONE_WL = "1";
+  home.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    QT_QPA_PLATFORM = "wayland;xcb";
+  };
 
-  # TODO: set a system + monospace font
-  # TODO: set a system light/dark mode
   # TODO: setup cava
-  # TODO: run browser when hyprland starts on workspace 1
-
-  /*
-  TODO: see if i want these packages:
-  Possible packages:
-    hyprsysteminfo                                        # Displays information about the running system
-    wofi-emoji                                            # Wofi emoji picker
-  */
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -30,9 +24,6 @@
 
     # TODO: use lxappearance to theme apps
     # TODO: setup file picker
-    # TODO: setup clipboard
-    # TODO:   QT_QPA_PLATFORM = "wayland;xcb";
-    # QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     # TODO: fix window decorations
     # TODO: get cava
 
@@ -95,4 +86,6 @@
   services.blueman-applet.enable = true;
   services.network-manager-applet.enable = true;
   services.hyprpolkitagent.enable = true;
+  services.cliphist.enable = true;
+  services.wl-clip-persist.enable = true;
 }

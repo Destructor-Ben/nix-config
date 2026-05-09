@@ -8,6 +8,7 @@ finish customizing:
 
 make the default.nix files autoscan dirs
 fix the git repo for nix-config not updating properly because of perms issues
+customize sudo
 
 make grimblast:
 - include window borders
@@ -15,9 +16,6 @@ make grimblast:
 - not include the outside of the windows
 - not have an annoying flicker when first starting up
 - redo the visuals
-
-customize sudo
-add wl-clipboard to pkgs list + fix clipboard
 
 patch hyprland to change the default gray to catppuccin color
 consider seeing if i can change the hyprland startup animation

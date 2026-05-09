@@ -34,8 +34,8 @@
     "$mod" = "Alt_L"; #"SUPER"; # TODO: temporary until i fix my windows key
     bind =
     [
-      "$mod, C, killactive,"
-      "$mod, Q, forcekillactive,"
+      "$mod, Q, killactive,"
+      "$mod SHIFT, Q, forcekillactive,"
       "$mod, J, workspace, -1"
       "$mod, K, workspace, +1"
       # TODO: fullscreen keybind
@@ -50,12 +50,14 @@
       ", switch:on:Lid Switch, exec, loginctl lock-session && systemctl suspend"
       ", switch:off:Lid Switch, exec, hyprctl dispatch dpms on"
 
-      "$mod, SPACE, exec, pidof wofi || wofi --show drun"
+      "$mod, Space, exec, pidof wofi || wofi -p \"Search apps and projects\" --show drun"
+      "$mod, Period, exec, pidof wofi || wofi-emoji"
+      "$mod, V, exec, pidof wofi || cliphist list | wofi -p \"Search clipboard\" --dmenu --pre-display-cmd \"echo '%s' | cut -f 2\" | cliphist decode | wl-copy"
       "$mod, Return, exec, kitty"
       "$mod, F, exec, nemo"
       "$mod, B, exec, zen"
 
-      "$mod, V, exec, pidof hyprpicker || hyprpicker" # TODO: configure + make it copy
+      "$mod, C, exec, pidof hyprpicker || hyprpicker" # TODO: configure + make it copy
       "$mod, S, exec, pidof grimblast || grimblast --notify --freeze copysave area"
       "$mod SHIFT, S, exec, pidof kooha || kooha"
       ", code:248, exec, pidof grimblast || grimblast --notify --cursor copysave screen" # F12 key on laptop

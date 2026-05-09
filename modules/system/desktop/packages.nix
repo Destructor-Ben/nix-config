@@ -4,11 +4,8 @@
     wev
     brightnessctl
     playerctl
+    wl-clipboard
 
-    catppuccin-cursors.mochaDark # SDDM will needs this too
-
-    # Both of these are for the laptop LEDs
-    alsa-tools
-    pulseaudio
+    catppuccin-cursors.mochaDark # SDDM will need this too
   ];
 }

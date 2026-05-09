@@ -2,6 +2,10 @@
 {
   # TODO: finish themeing
 
+  # TODO: set a system + monospace font
+  # TODO: set a system light/dark mode
+  # TODO: set the system theme
+
   environment.systemPackages = with pkgs; [
     papirus-icon-theme
   ];

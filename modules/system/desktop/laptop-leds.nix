@@ -2,6 +2,9 @@
 {
   # Based on https://bugzilla.kernel.org/show_bug.cgi?id=216197
   environment.systemPackages = with pkgs; [
+    alsa-tools
+    pulseaudio
+
     (writeShellScriptBin "update-speaker-led" ''
       if wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q "MUTED"; then
         hda-verb-bin /dev/snd/hwC1D0 0x20 0x500 0x0b && hda-verb-bin /dev/snd/hwC1D0 0x20 0x400 0x08
