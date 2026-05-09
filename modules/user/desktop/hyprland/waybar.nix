@@ -3,6 +3,7 @@
   # TODO: remove custom tooltup menu theme and just use the default gtk theme for the tooltips?
   programs.waybar = {
     enable = true;
+    systemd.enable = true;
 
     settings = {
       main = {

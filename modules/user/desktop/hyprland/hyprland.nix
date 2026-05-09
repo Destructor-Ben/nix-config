@@ -34,7 +34,6 @@
 
       exec-once =
       [
-        "waybar"
         "audio-listen"
       ];
 

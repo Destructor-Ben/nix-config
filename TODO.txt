@@ -9,6 +9,7 @@ finish customizing:
 make the default.nix files autoscan dirs
 fix the git repo for nix-config not updating properly because of perms issues
 customize sudo
+make wofi emoji say "Search emojis" instead of "emoji"
 
 make grimblast:
 - include window borders
