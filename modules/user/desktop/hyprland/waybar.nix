@@ -219,7 +219,8 @@
       transition: all ${theme.css-transition-duration} ${theme.css-transition-curve};
     }
 
-    #workspaces button.active {
+    #workspaces button.active,
+    #workspaces button.urgent {
       background: ${theme.colors.base};
       padding-left: ${toString (builtins.floor (theme.padding * 3 / 4))}px;
       padding-right: ${toString (builtins.floor (theme.padding * 3 / 4))}px;
@@ -230,10 +231,9 @@
       color: ${theme.colors.text};
     }
 
-    #workspaces button.urgent {
-      background: ${theme.colors.red};
-      padding-left: ${toString (builtins.floor (theme.padding * 3 / 4))}px;
-      padding-right: ${toString (builtins.floor (theme.padding * 3 / 4))}px;
+    #workspaces button.urgent,
+    #workspaces button.urgent * {
+      color: ${theme.colors.contrast-primary};
     }
 
     #tray {
