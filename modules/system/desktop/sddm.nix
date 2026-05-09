@@ -7,7 +7,13 @@
     wayland.enable = true;
     wayland.compositor = "weston";
     autoNumlock = false;
-    theme = "catppuccin-mocha-mauve"; # TODO: update theme name when i finally do
+    theme = "catppuccin-rounded";
+
+    extraPackages = with pkgs; [
+      kdePackages.qtbase
+      kdePackages.qtsvg
+      kdePackages.qt5compat
+    ];
 
     settings = {
       Theme = {

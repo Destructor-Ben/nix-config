@@ -29,8 +29,6 @@
     xwayland.enable = true;
 
     # TODO: use lxappearance to theme apps
-    # TODO: setup cursor theme
-    # TODO: set icon theme
     # TODO: setup file picker
     # TODO: setup clipboard
     # TODO:   QT_QPA_PLATFORM = "wayland;xcb";

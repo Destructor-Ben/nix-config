@@ -1,8 +1,9 @@
 { pkgs, custom-fonts, ... }:
 {
+  # TODO: customize
   boot.plymouth = {
     enable = true;
-    theme = "spinfinity";
+    # TODO: fix the theme: theme = "spinfinity";
     font = "${custom-fonts}/share/fonts/truetype/Red-Seven.otf";
     logo = ../../../img/Nix-Boot.png;
   };

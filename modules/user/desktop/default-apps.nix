@@ -1,18 +1,33 @@
 { lib, pkgs-stable, ... }:
 let
+  # Utils
   browser = "zen.desktop";
-  editor = "codium.desktop";
   terminal = "kitty.desktop";
-  file-manager = "dolphin.desktop"; # TODO: potentially update this?
+  file-manager = "nemo.desktop";
+
+  # Viewers
   image-viewer = "gwenview.desktop"; # TODO: update this
-  # TODO: add these + codium to the context menu
+  # TODO: video player
+  # TODO: music player
+
+  # Editors
+  # TODO: add these to the context menu
+  editor = "codium.desktop";
   bitmap-editor = "gimp.desktop";
   svg-editor = "inkscape.desktop";
-in {
+in
+{
   home.sessionVariables = {
     EDITOR = "hx";
     VISUAL = "codium";
     TERMINAL = "kitty";
+  };
+
+  xdg.terminal-exec = {
+    enable = true;
+    settings = {
+      default = [ terminal ];
+    };
   };
 
   # TODO: this doesn't work for dolphin

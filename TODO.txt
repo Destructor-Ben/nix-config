@@ -48,14 +48,11 @@ patch wlogout
   - [ ] might just be an issue with hyprlock
 
 themeing:
-    ensure noto sans is installed (in case I need it)
-    install icon theme: material design
-      - switch all icons used in waybar to material design (for consistency)
       - get apple emojis
     install catppuccin gtk and qt themes
     install catppuccin themes for all apps
     disable all window buttons in apps
-    add animations to weston in sddm
+- FIX APP SCALING
 
 cursor:
 - add shadow to the cursor by patching it

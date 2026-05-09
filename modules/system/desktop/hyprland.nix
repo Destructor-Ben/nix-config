@@ -8,7 +8,4 @@
 
   programs.hyprland.enable = true;
   services.gnome.gnome-keyring.enable = true;
-
-   # TODO: nuke plasma very soon
-  services.desktopManager.plasma6.enable = true;
 }

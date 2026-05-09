@@ -10,6 +10,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    stylix = {
+      url = "github:nix-community/stylix/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hytale-launcher = {
       url = "github:TNAZEP/HytaleLauncherFlake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,7 +31,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, stylix, ... }@inputs:
   let
     system = "x86_64-linux";
 
@@ -66,6 +71,7 @@
         modules = [
           ./hosts/bens-laptop/configuration.nix
           home-manager.nixosModules.home-manager
+          stylix.nixosModules.stylix
           {
             nixpkgs.pkgs = pkgs-stable;
             home-manager.useGlobalPkgs = true;

@@ -50,7 +50,7 @@
 
       "$mod, SPACE, exec, pidof wofi || wofi --show drun"
       "$mod, Return, exec, kitty"
-      "$mod, F, exec, dolphin"
+      "$mod, F, exec, nemo"
       "$mod, B, exec, zen"
 
       "$mod, V, exec, pidof hyprpicker || hyprpicker" # TODO: configure + make it copy
@@ -58,6 +58,7 @@
       "$mod SHIFT, S, exec, pidof kooha || kooha"
       ", code:248, exec, pidof grimblast || grimblast --notify --cursor copysave screen" # F12 key on laptop
 
+      # TODO: fix rounding errors
       ",XF86MonBrightnessUp,   exec, brightnessctl set 5%+"
       ",XF86MonBrightnessDown, exec, brightnessctl set 5%-"
 

@@ -5,14 +5,14 @@
     ./audio.nix
     ./bluetooth.nix
     ./boot.nix
-    ./fonts.nix
     ./hyprland.nix
     ./laptop-leds.nix
     ./networking.nix
     ./packages.nix
     ./pfp.nix
+    ./power.nix
     ./printing.nix
     ./sddm.nix
-    ./power.nix
+    ./theming.nix
   ];
 }
