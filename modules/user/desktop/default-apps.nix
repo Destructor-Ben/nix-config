@@ -8,6 +8,12 @@ let
   bitmap-editor = "gimp.desktop";
   svg-editor = "inkscape.desktop";
 in {
+  home.sessionVariables = {
+    EDITOR = "hx";
+    VISUAL = "codium";
+    TERMINAL = "kitty";
+  };
+
   # TODO: this doesn't work for dolphin
   xdg.mimeApps = {
     enable = true;

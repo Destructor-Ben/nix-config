@@ -6,6 +6,5 @@
     ./programs/helix.nix
     ./programs/zoxide.nix
     ./programs/zsh.nix
-    ./env.nix
   ];
 }
