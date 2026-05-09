@@ -7,7 +7,7 @@ finish customizing:
   - make the background the wallpaper or the catppuccin base color (avoid animations while stuff is closing)
 
 make the default.nix files autoscan dirs
-make overlays have their files that they change + the originals, then diff + patch at runtime to makes sure everything works
+fix the git repo for nix-config not updating properly because of perms issues
 
 make grimblast:
 - include window borders

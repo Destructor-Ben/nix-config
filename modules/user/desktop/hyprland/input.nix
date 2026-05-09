@@ -11,8 +11,10 @@
     gesture = "3, horizontal, workspace"; # TODO: make this have a smaller threshold to start
 
     input = {
-      sensitivity = 0.1;
+      kb_layout = "mao";
       numlock_by_default = false;
+
+      sensitivity = 0.1;
       # Piecewise mouse accel
       accel_profile = let
         cutoff-point = 2; # The point where linear acceleration is disabled
