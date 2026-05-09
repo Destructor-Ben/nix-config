@@ -1,6 +1,6 @@
 { pkgs, sddm-theme, theme, ... }:
 {
-  environment.systemPackages = [ sddm-theme.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+  environment.systemPackages = [ sddm-theme.packages.${pkgs.stdenv.hostPlatform.system}.personal ];
 
   services.displayManager.sddm = {
     enable = true;
