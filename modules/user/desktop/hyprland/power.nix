@@ -6,6 +6,7 @@
 
   # TODO: logging in and out doesn't properly close processes started via exec-once in hyprland
   # - using systemd user services might be a good idea to fix this instead of exec-once
+  # - do the above (helps for security), but it isn't the entire solution
 
   # TODO: make the screen brightness fade in and out when darkening, and also make it fade in and out when suspending + unsuspending
   services.hypridle = {
@@ -42,6 +43,7 @@
     };
   };
 
+  # TODO: adjust positions + shadows
   programs.hyprlock = {
     enable = true;
 
@@ -101,9 +103,9 @@
 
         outline_thickness = theme.border-width;
         inner_color = theme.colors.surface-0;
-        outer_color = "${theme.colors.contrast-primary} ${theme.colors.contrast-secondary} ${theme.gradient-angle}";
-        check_color = "${theme.colors.peach} ${theme.colors.yellow} ${theme.gradient-angle}";
-        fail_color = "${theme.colors.red} ${theme.colors.maroon} ${theme.gradient-angle}";
+        outer_color = "${theme.colors.contrast-primary} ${theme.colors.contrast-secondary} ${theme.hyprlock-gradient-angle}";
+        check_color = "${theme.colors.warn} ${theme.colors.warn-alt} ${theme.hyprlock-gradient-angle}";
+        fail_color = "${theme.colors.error} ${theme.colors.error-alt} ${theme.hyprlock-gradient-angle}";
 
         font_color = theme.colors.text;
         rounding = theme.font-size * 2;
@@ -119,6 +121,7 @@
     };
   };
 
+  # TODO: the power button + waybar use different versions (waybar has broken onclick events bceause it doesn't reference wlogout-custom properly, power button doesn't have icons)
   programs.wlogout = {
     enable = true;
 

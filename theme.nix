@@ -8,6 +8,7 @@
   border-width = 4;
   border-radius = 10;
   gradient-angle = "45deg";
+  hyprlock-gradient-angle = "${toString (360 - 45)}deg"; # Hyprlock is weird
 
   css-transition-duration = "0.3s";
   css-transition-curve = "cubic-bezier(0.5, -0.7, 0.5, 1.7)";
@@ -68,7 +69,10 @@
     contrast-secondary = pink;
 
     okay = green;
-    warn = yellow;
+    okay-alt = teal;
+    warn = peach;
+    warn-alt = yellow;
     error = red;
+    error-alt = peach;
   };
 }

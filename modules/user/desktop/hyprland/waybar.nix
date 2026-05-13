@@ -170,19 +170,17 @@
       box-shadow: ${theme.css-shadow};
     }
 
-    #battery.warning {
-      background-color: ${theme.colors.warn};
-      background-image: none;
+    #battery.warning,
+    #idle_inhibitor.activated {
+      background-image: linear-gradient(${theme.gradient-angle}, ${theme.colors.warn}, ${theme.colors.warn-alt});
     }
 
     #battery.critical {
-      background-color: ${theme.colors.error};
-      background-image: none;
+      background-image: linear-gradient(${theme.gradient-angle}, ${theme.colors.error}, ${theme.colors.error-alt});
     }
 
     #battery.charged {
-      background-color: ${theme.colors.okay};
-      background-image: none;
+      background-image: linear-gradient(${theme.gradient-angle}, ${theme.colors.okay}, ${theme.colors.okay-alt});
     }
 
     #keyboard-state .capslock {
@@ -191,7 +189,6 @@
 
     #custom-notifications {
       padding: 0 ${toString (builtins.floor (theme.padding * 1.25))}px;
-
     }
 
     #workspaces {

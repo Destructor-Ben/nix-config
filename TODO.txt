@@ -9,7 +9,9 @@ FIX HYPRSHUTDOWN with the WAYBAR systemd module
 make the default.nix files autoscan dirs
 fix the git repo for nix-config not updating properly because of perms issues
 customize sudo
+
 make wofi emoji say "Search emojis" instead of "emoji"
+TODO: fix wofi emoji drom typing text when selecting an emoji
 
 make grimblast:
 - include window borders
@@ -40,6 +42,10 @@ patch waybar to fix issues i have with it:
 patch wlogout
 - [ ] ensure shadow clipping isn't occuring
 - [ ] fix the hitboxed of rounded elements
+
+patch wofi
+- [ ] make clicking outside of wofi close it
+- [ ] make an "Exit" option selected by default instead of the top option
 
 themeing:
       - get apple emojis
