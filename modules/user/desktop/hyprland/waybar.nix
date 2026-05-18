@@ -95,6 +95,7 @@
         };
         battery = {
           states = {
+            normal = 99;
             warning = 25;
             critical = 10;
           };
@@ -170,6 +171,10 @@
       box-shadow: ${theme.css-shadow};
     }
 
+    #battery {
+      background-image: linear-gradient(${theme.gradient-angle}, ${theme.colors.okay}, ${theme.colors.okay-alt});
+    }
+
     #battery.warning,
     #idle_inhibitor.activated {
       background-image: linear-gradient(${theme.gradient-angle}, ${theme.colors.warn}, ${theme.colors.warn-alt});
@@ -179,8 +184,8 @@
       background-image: linear-gradient(${theme.gradient-angle}, ${theme.colors.error}, ${theme.colors.error-alt});
     }
 
-    #battery.charged {
-      background-image: linear-gradient(${theme.gradient-angle}, ${theme.colors.okay}, ${theme.colors.okay-alt});
+    #battery.normal {
+      background-image: linear-gradient(${theme.gradient-angle}, ${theme.colors.contrast-primary}, ${theme.colors.contrast-secondary});
     }
 
     #keyboard-state .capslock {
