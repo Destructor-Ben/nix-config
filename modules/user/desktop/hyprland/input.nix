@@ -4,6 +4,7 @@
     hyprpicker
     grimblast
     kooha
+    wofi-emoji
   ];
 
   # TODO: allow remapping scancodes -> keycodes for custom keyboard layout so I can swap ctrl and left alt
@@ -58,7 +59,7 @@
       "$mod, B, exec, zen"
 
       "$mod, C, exec, pidof hyprpicker || hyprpicker --format=hex -l -a"
-      "$mod, S, exec, pidof grimblast || grimblast --n-otify --freeze copysave area"
+      "$mod, S, exec, pidof grimblast || grimblast --notify --freeze copysave area"
       "$mod SHIFT, S, exec, pidof kooha || kooha"
       ", code:248, exec, pidof grimblast || grimblast --notify --cursor copysave screen" # F12 key on laptop
 

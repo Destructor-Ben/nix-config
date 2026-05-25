@@ -5,6 +5,7 @@ finish customizing:
 - hyprshutdown
 
 FIX HYPRSHUTDOWN with the WAYBAR systemd module
+TODO: change to 24 hour time
 
 make the default.nix files autoscan dirs
 fix the git repo for nix-config not updating properly because of perms issues

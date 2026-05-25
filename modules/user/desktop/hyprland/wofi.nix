@@ -1,9 +1,5 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [
-    wofi-emoji
-  ];
-
   programs.wofi = {
     enable = true;
 
@@ -18,15 +14,7 @@
       insensitive = true;
       matching = "fuzzy";
       no_custom_entry = true;
+      gtk_dark = true;
     };
-
-/* TODO: configure
-    settings = {
-
-    };
-
-    style =
-    ''
-    '';*/
   };
 }
