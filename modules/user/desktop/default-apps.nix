@@ -1,4 +1,4 @@
-{ lib, pkgs-stable, ... }:
+{ lib, pkgs, ... }:
 let
   # Utils
   browser = "zen.desktop";
@@ -6,15 +6,14 @@ let
   file-manager = "nemo.desktop";
 
   # Viewers
-  image-viewer = "gwenview.desktop"; # TODO: update this
-  # TODO: video player
-  # TODO: music player
+  image-viewer = "org.gnome.Loupe.desktop";
+  video-player = "vlc.desktop";
+  audio-player = "vlc.desktop";
 
   # Editors
-  # TODO: add these to the context menu
-  editor = "codium.desktop";
-  bitmap-editor = "gimp.desktop";
-  svg-editor = "inkscape.desktop";
+  code-editor = "codium.desktop"; # TODO: open in codium in context menu (under Open in Terminal), also allow opening artbitrary files in codium
+  model-editor = "blender.desktop";
+  notes-editor = "obsidian.desktop";
 in
 {
   home.sessionVariables = {
@@ -30,25 +29,39 @@ in
     };
   };
 
-  # TODO: this doesn't work for dolphin
+  # TODO: nemo doesn't respect the default terminal for open in terminal
+  dconf.settings = {
+    "org/cinnamon/desktop/default-applications/terminal" = {
+      exec = "kitty";
+    };
+  };
+
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      # TODO: see if any file types are missing
       "inode/directory" = file-manager;
+      "application/x-gnome-saved-search" = file-manager;
       "x-scheme-handler/terminal" = terminal;
+      "text/plain" = code-editor;
+      "model/obj" = model-editor;
+      "x-scheme-handler/obsidian" = notes-editor;
 
       "text/html" = browser;
       "x-scheme-handler/http" = browser;
       "x-scheme-handler/https" = browser;
       "x-scheme-handler/ftp" = browser;
       "x-scheme-handler/chrome" = browser;
+      "x-scheme-handler/about" = browser;
+      "x-scheme-handler/unknown" = browser;
       "application/xhtml+xml" = browser;
       "application/x-extension-htm" = browser;
       "application/x-extension-html" = browser;
       "application/x-extension-shtml" = browser;
       "application/x-extension-xhtml" = browser;
       "application/x-extension-xht" = browser;
+      "application/pdf" = browser;
+      "image/svg+xml" = browser;
+      "image/svg+xml-compressed" = browser;
 
       "image/png" = image-viewer;
       "image/jpg" = image-viewer;
@@ -58,6 +71,9 @@ in
       "image/gif" = image-viewer;
       "image/tiff" = image-viewer;
       "image/webp" = image-viewer;
+      "image/heic" = image-viewer;
+      "image/heif" = image-viewer;
+      "image/avif" = image-viewer;
       "image/x-bmp" = image-viewer;
       "image/x-gray" = image-viewer;
       "image/x-icb" = image-viewer;
@@ -70,44 +86,26 @@ in
       "image/x-xbitmap" = image-viewer;
       "image/x-xpixmap" = image-viewer;
       "image/x-pcx" = image-viewer;
-      "image/svg+xml" = image-viewer;
-      "image/svg+xml-compressed" = image-viewer;
       "image/vnd.wap.wbmp" = image-viewer;
       "image/x-icns" = image-viewer;
+
+      "video/mp4" = video-player;
+      "video/mpeg" = video-player;
+      "video/quicktime" = video-player;
+      "video/webm" = video-player;
+      "video/x-matroska" = video-player;
+      "video/x-ms-wmv" = video-player;
+      "video/x-flv" = video-player;
+      "video/x-msvideo" = video-player;
+
+      "audio/mp4" = audio-player;
+      "audio/mpeg" = audio-player;
+      "audio/ogg" = audio-player;
+      "audio/wav" = audio-player;
+      "audio/webm" = audio-player;
+      "audio/flac" = audio-player;
+      "audio/x-matroska" = audio-player;
+      "audio/aac" = audio-player;
     };
   };
 }
-
-/* TODO: ensure these are included
-[Added Associations]
-application/x-extension-htm=zen.desktop;
-application/x-extension-html=zen.desktop;
-application/x-extension-shtml=zen.desktop;
-application/x-extension-xht=zen.desktop;
-application/x-extension-xhtml=zen.desktop;
-application/xhtml+xml=zen.desktop;
-model/obj=blender.desktop;
-text/html=zen.desktop;
-text/plain=code.desktop;
-x-scheme-handler/chrome=zen.desktop;
-x-scheme-handler/http=zen.desktop;
-x-scheme-handler/https=zen.desktop;
-
-[Default Applications]
-application/x-extension-htm=zen.desktop
-application/x-extension-html=zen.desktop
-application/x-extension-shtml=zen.desktop
-application/x-extension-xht=zen.desktop
-application/x-extension-xhtml=zen.desktop
-application/xhtml+xml=zen.desktop
-model/obj=blender.desktop;
-text/html=zen.desktop
-text/plain=code.desktop;
-x-scheme-handler/chrome=zen.desktop
-x-scheme-handler/http=zen.desktop
-x-scheme-handler/https=zen.desktop
-x-scheme-handler/obsidian=obsidian.desktop
-x-scheme-handler/x-github-client=github-desktop.desktop
-x-scheme-handler/x-github-desktop-auth=github-desktop.desktop
-
-*/

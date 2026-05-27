@@ -148,7 +148,9 @@
       }
     ];
 
-    style = ''
+    style = let
+      wlogout-icons = ../../../../img/wlogout;
+    in ''
       * {
         background-image: none;
         box-shadow: none;
@@ -179,23 +181,23 @@
       }
 
       #lock {
-        background-image: image(url("${../../../../img/wlogout/system-lock-screen.svg}"));
+        background-image: image(url("${wlogout-icons}/system-lock-screen.svg"));
       }
 
       #logout {
-        background-image: image(url("${../../../../img/wlogout/system-log-out.svg}"));
+        background-image: image(url("${wlogout-icons}/system-log-out.svg"));
       }
 
       #suspend {
-        background-image: image(url("${../../../../img/wlogout/system-suspend.svg}"));
+        background-image: image(url("${wlogout-icons}/system-suspend.svg"));
       }
 
       #shutdown {
-        background-image: image(url("${../../../../img/wlogout/system-shutdown.svg}"));
+        background-image: image(url("${wlogout-icons}/system-shutdown.svg"));
       }
 
       #reboot {
-        background-image: image(url("${../../../../img/wlogout/system-reboot.svg}"));
+        background-image: image(url("${wlogout-icons}/system-reboot.svg"));
       }
     '';
   };

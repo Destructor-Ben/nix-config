@@ -2,15 +2,23 @@
 {
   home.packages = with pkgs; [
     # Programming
-    vscode # TODO: remove
-    vscodium-fhs
+    vscodium
     jetbrains.rider
     jetbrains.idea-ultimate
     godot-mono
     avalonia-ilspy
 
-    # Utility
-    nemo # TODO: add other non-plamsa alternatives, also im pretty sure i need to configure nemo
+    # Core utils1
+    (nemo-with-extensions.override {
+      extensions = with pkgs; [
+
+      ];
+    }) # TODO: fix the rubbish, also finish configuring and getting default apps to work
+    vlc # TODO: rename in the .desktop file to captialize "media player"
+    loupe
+    # TODO: something to handle zip files
+
+    # Misc utils
     spotify
     obsidian
     prismlauncher

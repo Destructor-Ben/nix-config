@@ -10,7 +10,7 @@
       init.defaultBranch = "main";
 
       core = {
-        editor = "code";
+        editor = "codium";
       };
     };
   };
@@ -18,7 +18,7 @@
   programs.gh = {
     enable = true;
     settings = {
-      editor = "code";
+      editor = "codium";
       browser = "zen";
     };
   };
