@@ -11,7 +11,7 @@ let
   audio-player = "vlc.desktop";
 
   # Editors
-  code-editor = "codium.desktop"; # TODO: open in codium in context menu (under Open in Terminal), also allow opening artbitrary files in codium
+  code-editor = "codium.desktop"; # TODO: allow opening artbitrary files in codium
   model-editor = "blender.desktop";
   notes-editor = "obsidian.desktop";
 in
@@ -34,6 +34,17 @@ in
       exec = "kitty";
     };
   };
+
+  home.file.".local/share/nemo/actions/open-in-vscodium.nemo_action".text = ''
+    [Nemo Action]
+    Name=Open in VSCodium
+    Comment=Open this directory in VSCodium
+    Exec=codium %F
+    Icon=vscodium
+    Selection=any
+    Extensions=dir;
+    Quote=double
+  '';
 
   xdg.mimeApps = {
     enable = true;
