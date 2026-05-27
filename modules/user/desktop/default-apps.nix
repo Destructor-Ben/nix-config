@@ -11,7 +11,7 @@ let
   audio-player = "vlc.desktop";
 
   # Editors
-  code-editor = "codium.desktop"; # TODO: allow opening artbitrary files in codium
+  code-editor = "codium.desktop";
   model-editor = "blender.desktop";
   notes-editor = "obsidian.desktop";
 in
@@ -38,16 +38,17 @@ in
   home.file.".local/share/nemo/actions/open-in-vscodium.nemo_action".text = ''
     [Nemo Action]
     Name=Open in VSCodium
-    Comment=Open this directory in VSCodium
+    Comment=Open selected items in VSCodium
     Exec=codium %F
     Icon=vscodium
     Selection=any
-    Extensions=dir;
+    Extensions=any;
     Quote=double
   '';
 
   xdg.mimeApps = {
     enable = true;
+
     defaultApplications = {
       "inode/directory" = file-manager;
       "application/x-gnome-saved-search" = file-manager;
