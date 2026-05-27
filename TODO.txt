@@ -53,22 +53,11 @@ themeing:
     install catppuccin gtk and qt themes
     install catppuccin themes for all apps
     disable all window buttons in apps
-- FIX APP SCALING
 
 cursor:
 - add shadow to the cursor by patching it
 - change the catppuccin loading + waiting cursor to an infinity symbol
 - change the border color of the cursor to mauve
-
-ALTERNATIVE APPS:
-- codium
-- nemo
-- calculator -> integrate into app launcher
-- Ark replacement (archive manager)
-- Okular -> Zen
-- Gwenview -> TODO
-- TODO: music player
-- TODO: video player
 
 List of sounds to make:
 - notification
