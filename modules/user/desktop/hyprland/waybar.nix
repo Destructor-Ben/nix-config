@@ -158,7 +158,7 @@
       border-radius: 1000rem;
       background-color: ${theme.colors.base};
       border: ${toString theme.border-width}px solid ${theme.colors.contrast-primary};
-      box-shadow: ${theme.css-shadow};
+      box-shadow: ${theme.shadows.sm};
     }
 
     #cpu, #load, #memory, #temperature,
@@ -168,7 +168,7 @@
       margin-bottom: ${toString (theme.padding / 2)}px;
       border-radius: 1000rem;
       background-image: linear-gradient(${theme.gradient-angle}, ${theme.colors.contrast-primary}, ${theme.colors.contrast-secondary});
-      box-shadow: ${theme.css-shadow};
+      box-shadow: ${theme.shadows.sm};
     }
 
     #battery {
@@ -202,7 +202,7 @@
       margin-bottom: ${toString (theme.padding / 2)}px;
       border-radius: 1000rem;
       background-image: linear-gradient(${theme.gradient-angle}, ${theme.colors.contrast-primary}, ${theme.colors.contrast-secondary});
-      box-shadow: ${theme.css-shadow};
+      box-shadow: ${theme.shadows.sm};
     }
 
     #workspaces button {

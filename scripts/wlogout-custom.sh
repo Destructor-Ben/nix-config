@@ -1,4 +1,4 @@
-button_size=100
+button_size=@BUTTON_SIZE@
 padding=@PADDING@
 padding_h=$(( (@SCREEN_WIDTH@ - $button_size * 5 - $padding * 4) / 2 ))
 padding_v=$(( (@SCREEN_HEIGHT@ - $button_size) / 2 ))

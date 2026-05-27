@@ -121,7 +121,7 @@
     };
   };
 
-  # TODO: the power button + waybar use different versions (waybar has broken onclick events bceause it doesn't reference wlogout-custom properly, power button doesn't have icons)
+  # TODO: the power button + waybar are broken (waybar has broken onclick events bceause it doesn't reference wlogout-custom properly, power button doesn't have icons)
   programs.wlogout = {
     enable = true;
 
@@ -153,7 +153,6 @@
     in ''
       * {
         background-image: none;
-        box-shadow: none;
       }
 
       window {
@@ -167,12 +166,12 @@
         color: ${theme.colors.text};
         background-color: ${theme.colors.surface-0};
         border-style: solid;
-        border-width: ${toString theme.border-width}px;
+        border-width: ${toString (theme.border-width * 3 / 2)}px;
         border-radius: 100%;
         background-repeat: no-repeat;
         background-position: center;
         background-size: 75%;
-        box-shadow: ${theme.css-shadow};
+        box-shadow: ${theme.shadows.md};
       }
 
       button:focus, button:active, button:hover {

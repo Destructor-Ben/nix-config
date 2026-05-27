@@ -22,6 +22,7 @@ make grimblast:
 - redo the visuals
 
 patch hyprland to change the default gray to catppuccin color
+also make the swipe gesture for the trackpad a bit slower and have a smaller movement thershold
 consider seeing if i can change the hyprland startup animation
 fix borders in fullscreen windows appearing (such as games)
 fix certain apps not being shown as floating
@@ -40,16 +41,12 @@ patch waybar to fix issues i have with it:
 - better ways to handle settings icons
 - waybar itself should have better tooltip support and in general, better control for the contents of elements
 
-patch wlogout
-- [ ] ensure shadow clipping isn't occuring
-- [ ] fix the hitboxed of rounded elements
-
 patch wofi
 - [ ] make clicking outside of wofi close it
 - [ ] make an "Exit" option selected by default instead of the top option
 
 themeing:
-      - get apple emojis
+    - get apple emojis
     install catppuccin gtk and qt themes
     install catppuccin themes for all apps
     disable all window buttons in apps
