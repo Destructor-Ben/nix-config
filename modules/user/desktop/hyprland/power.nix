@@ -1,6 +1,6 @@
-{ pkgs, unstable, theme, ...}:
+{ unstable, theme, ...}:
 {
-  home.packages = with pkgs; [
+  home.packages = [
     unstable.hyprshutdown
   ];
 
@@ -43,7 +43,6 @@
     };
   };
 
-  # TODO: adjust positions + shadows
   programs.hyprlock = {
     enable = true;
 
@@ -67,14 +66,16 @@
         blur_passes = 3;
       };
 
-      label = [
+      label = let
+        margin-top = 150;
+      in [
         {
           text = "cmd[update:60000] date +\"%A, %d %B\"";
           font_size = 24;
           font_family = theme.fonts.impact;
           color = theme.colors.text;
 
-          position = "0, -70";
+          position = "0, -${toString margin-top}";
           halign = "center";
           valign = "top";
           shadow_passes = 1;
@@ -86,18 +87,17 @@
           font_family = theme.fonts.impact;
           color = theme.colors.text;
 
-          # No idea where the 3 comes from, it just looks like it matches
-          position = "0, -${toString (70 + 24 + 3)}";
+          position = "0, -${toString (margin-top + 24)}";
           halign = "center";
           valign = "top";
-          shadow_passes = 1;
+          shadow_passes = 2;
           shadow_boost = 1;
         }
       ];
 
       input-field = {
         size = "400, ${toString (theme.font-size * 4)}";
-        position = "0, 0";
+        position = "0, -150";
         halign = "center";
         valign = "center";
 

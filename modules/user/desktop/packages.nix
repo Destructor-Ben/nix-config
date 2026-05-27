@@ -7,13 +7,10 @@
     jetbrains.idea-ultimate
     godot-mono
     avalonia-ilspy
+    nixd
 
     # Core utils1
-    (nemo-with-extensions.override {
-      extensions = with pkgs; [
-
-      ];
-    }) # TODO: fix the rubbish, also finish configuring
+    nemo-with-extensions # TODO: fix the rubbish, also finish configuring
     vlc # TODO: rename in the .desktop file to captialize "media player"
     loupe
     # TODO: something to handle zip files
