@@ -29,9 +29,8 @@ in
     };
   };
 
-  # TODO: nemo doesn't respect the default terminal for open in terminal
   dconf.settings = {
-    "org/cinnamon/desktop/default-applications/terminal" = {
+    "org/cinnamon/desktop/applications/terminal" = {
       exec = "kitty";
     };
   };
