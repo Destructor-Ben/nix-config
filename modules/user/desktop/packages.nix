@@ -13,7 +13,7 @@
       extensions = with pkgs; [
 
       ];
-    }) # TODO: fix the rubbish, also finish configuring and getting default apps to work
+    }) # TODO: fix the rubbish, also finish configuring
     vlc # TODO: rename in the .desktop file to captialize "media player"
     loupe
     # TODO: something to handle zip files
