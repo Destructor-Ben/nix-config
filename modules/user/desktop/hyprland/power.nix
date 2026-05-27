@@ -121,7 +121,7 @@
     };
   };
 
-  # TODO: the power button + waybar are broken (waybar has broken onclick events bceause it doesn't reference wlogout-custom properly, power button doesn't have icons)
+  # TODO: the power button + waybar are broken (waybar has broken onclick events, power button doesn't have icons)
   programs.wlogout = {
     enable = true;
 
