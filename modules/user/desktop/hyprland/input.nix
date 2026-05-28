@@ -9,7 +9,7 @@
 
   # TODO: allow remapping scancodes -> keycodes for custom keyboard layout so I can swap ctrl and left alt
   wayland.windowManager.hyprland.settings = {
-    gesture = "3, horizontal, workspace"; # TODO: make this have a smaller threshold to start
+    gesture = "3, horizontal, workspace"; # TODO: make the threshold and speed of this lesser
 
     input = {
       kb_layout = "mao";
@@ -82,7 +82,7 @@
       ",XF86AudioPrev, exec, playerctl previous"
       ",XF86AudioStop, exec, playerctl stop"
     ] ++ (
-      # Workspaces - binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
+      # Workspaces
       builtins.concatLists (builtins.genList (i:
           let ws = i + 1;
           in [
