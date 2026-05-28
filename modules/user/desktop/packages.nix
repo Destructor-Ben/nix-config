@@ -8,6 +8,7 @@
     godot-mono
     avalonia-ilspy
     nixd
+    nixfmt
 
     # Core utils1
     nemo-with-extensions # TODO: fix the rubbish, also finish configuring
