@@ -85,12 +85,22 @@
 
     # Devshells are intended to be used for personal projects or for messing around with programming languages
     # I don't care how bad of an idea this is supposed to be
-    devShells.${system} = {
-      dotnet = import ./dev-shells/dotnet.nix devShellArgs;
-      java = import ./dev-shells/java.nix devShellArgs;
-      js = import ./dev-shells/js.nix devShellArgs;
-      rust = import ./dev-shells/rust.nix devShellArgs;
-      zig = import ./dev-shells/zig.nix devShellArgs;
-    };
+    devShells.${system} = let
+      lib = nixpkgs.lib;
+      dir-contents = builtins.readDir ./dev-shells;
+
+      nix-files = lib.filterAttrs 
+        (name: type: type == "regular" && lib.hasSuffix ".nix" name) 
+        dir-contents;
+
+      imported-shells = lib.mapAttrs 
+        (name: type: import (./dev-shells + "/${name}") devShellArgs) 
+        nix-files;
+
+      clean-shells = lib.mapAttrs' 
+        (name: value: lib.nameValuePair (lib.removeSuffix ".nix" name) value) 
+        imported-shells;
+    in
+      clean-shells;
   };
 }
