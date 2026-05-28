@@ -1,3 +1,8 @@
+# NEXT:
+- get formatter set up for flake
+- get the dir autoreading working for default.nix
+
+
 finish customizing:
 - plymouth
 - sddm
