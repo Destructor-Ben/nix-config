@@ -39,7 +39,7 @@
       # dotnet run fails because it tries to launch a dynamic executable on NixOS
       # Running dotnet directly with the path to the dll avoids this
       dotnet build setup/CLI/Setup.CLI.csproj -c Release -p:WarningLevel=0 -v q
-      dotnet setup/CLI/bin/Release/net8.0/setup-cli.dll -- "$@"
+      dotnet setup/CLI/bin/Release/net8.0/setup-cli.dll $@
     '')
 
     # Rider and IntelliJ need their respective SDKs installed, and IntelliJ needs help to load OpenGL when running Minecraft
