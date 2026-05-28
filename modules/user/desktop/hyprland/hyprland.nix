@@ -21,11 +21,14 @@
     portalPackage = null;
 
     xwayland.enable = true;
+    # TODO: should i include? systemd.enable = false; # Conflicts with the system module
+    # TODO: if i do, then also enable UWSM because it replaces the systemd stuff
 
-    # TODO: use lxappearance to theme apps
+    # TODO: use lxappearance/stylix to theme apps
     # TODO: setup file picker
     # TODO: fix window decorations
     # TODO: get cava
+    # TODO: make a audio player visualizer that is only visible on empty workspaces
 
     settings = {
       monitor = [
