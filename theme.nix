@@ -4,6 +4,7 @@
   icon-theme = "Papirus-Dark";
 
   font-size = 12;
+  font-size-md = 14;
   padding = 10;
   border-width = 4;
   border-radius = 10;

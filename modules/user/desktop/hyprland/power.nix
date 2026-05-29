@@ -121,7 +121,6 @@
     };
   };
 
-  # TODO: the power button + waybar are broken (waybar has broken onclick events, power button doesn't have icons)
   programs.wlogout = {
     enable = true;
 
@@ -151,16 +150,11 @@
     style = let
       wlogout-icons = ../../../../img/wlogout;
     in ''
-      * {
-        background-image: none;
-      }
-
       window {
         background-color: ${theme.colors.base-transparent};
       }
 
       button {
-        border-radius: 0;
         border-color: ${theme.colors.contrast-primary};
         text-decoration-color: ${theme.colors.text};
         color: ${theme.colors.text};

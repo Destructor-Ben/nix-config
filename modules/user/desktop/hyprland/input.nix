@@ -53,6 +53,7 @@
 
       "$mod, Space, exec, pidof wofi || wofi -p \"Search apps and projects\" --show drun"
       "$mod, Period, exec, pidof wofi || wofi-emoji"
+      # TODO: fix the trailing newline
       "$mod, V, exec, pidof wofi || cliphist list | wofi -p \"Search clipboard\" --dmenu --pre-display-cmd \"echo '%s' | cut -f 2\" | cliphist decode | wl-copy"
       "$mod, Return, exec, kitty"
       "$mod, F, exec, nemo"

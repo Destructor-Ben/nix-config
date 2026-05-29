@@ -2,6 +2,7 @@
 - get formatter set up for flake
 - get the dir autoreading working for default.nix
 
+TODO: move codium settings.json + extensions to nixos settings
 
 finish customizing:
 - plymouth
@@ -12,12 +13,11 @@ finish customizing:
 FIX HYPRSHUTDOWN with the WAYBAR systemd module
 TODO: change to 24 hour time
 
-make the default.nix files autoscan dirs
 fix the git repo for nix-config not updating properly because of perms issues
 customize sudo
 
 make wofi emoji say "Search emojis" instead of "emoji"
-TODO: fix wofi emoji drom typing text when selecting an emoji
+TODO: fix wofi emoji from typing text when selecting an emoji
 
 make grimblast:
 - include window borders

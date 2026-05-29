@@ -426,7 +426,7 @@ static gboolean get_buttons(FILE *json)
             {
                 if (length != 1)
                 {
-                    fprintf(stderr, "Invalid keybind\n");
+                    fprintf(stderr, "Keybind not specified, skipping\n");
                 }
                 else
                 {
