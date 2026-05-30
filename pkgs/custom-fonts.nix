@@ -5,7 +5,11 @@ stdenvNoCC.mkDerivation {
   src = ../fonts;
   dontBuild = true;
   installPhase = ''
+    runHook preInstall
+
     mkdir -p $out/share/fonts/truetype/
-    cp -r $src/*.{ttf,otf} $out/share/fonts/truetype/
+    find . -type f \( -name "*.ttf" -o -name "*.otf" \) -exec cp {} $out/share/fonts/truetype/ \;
+
+    runHook postInstall
   '';
 }
