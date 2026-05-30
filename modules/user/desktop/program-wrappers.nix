@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    # TODO: use nix-ld instead of exporting LD_LIBRARY_PATH?
     # Prism launcher sometimes fails to find glx when loading minecraft, this fixes it
     (writeShellScriptBin "prismlauncher-wrapped" ''
       export LD_LIBRARY_PATH="${lib.makeLibraryPath [ libGL ]}:$LD_LIBRARY_PATH"
@@ -42,14 +43,18 @@
       dotnet setup/CLI/bin/Release/net8.0/setup-cli.dll $@
     '')
 
+    # TODO: remove these
+
     # Rider and IntelliJ need their respective SDKs installed, and IntelliJ needs help to load OpenGL when running Minecraft
     (writeShellScriptBin "rider-wrapped" ''
       steam-run nix develop ~/nix-config#dotnet --command rider $@
     '')
 
+    # TODO: use nix-ld instead of exporting LD_LIBRARY_PATH?
+    # TODO: change back to java in the future
     (writeShellScriptBin "idea-ultimate-wrapped" ''
       export LD_LIBRARY_PATH="${lib.makeLibraryPath [ libGL ]}:$LD_LIBRARY_PATH"
-      steam-run nix develop ~/nix-config#java --command idea-ultimate $@
+      steam-run nix develop ~/nix-config#minecraft --command idea-ultimate $@
     '')
   ];
 }
