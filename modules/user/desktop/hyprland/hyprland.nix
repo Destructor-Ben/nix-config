@@ -33,6 +33,7 @@
     settings = {
       monitor = [
         "eDP-1,1920x1080@60,0x0,1"
+        "HDMI-A-1,1920x1080@143.85Hz,0x-1080,1"
       ];
 
       exec-once =
@@ -81,6 +82,7 @@
 
       wallpaper = [
         "eDP-1,${toString theme.wallpaper}"
+        "HDMI-A-1,${toString theme.wallpaper}"
       ];
     };
   };
