@@ -5,8 +5,6 @@
     brightnessctl
     playerctl
     wl-clipboard
-    bat
-    killall
 
     catppuccin-cursors.mochaDark # SDDM will need this too
   ];

@@ -6,6 +6,8 @@
     zip unzip p7zip
     btop iotop
     tree file which jq
+    bat
+    killall
     wineWowPackages.stable
     helix
     gnumake
