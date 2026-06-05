@@ -294,11 +294,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778329166,
-        "narHash": "sha256-CyZ4mhzF2Uh8IxmbB3JnbZOCTA7R0bWimPywyWkKBBI=",
+        "lastModified": 1780646979,
+        "narHash": "sha256-SqsdZ6ur51NbOFIg0IPtGRXA3vl/LgT4TR8JlqoBD0M=",
         "owner": "Destructor-Ben",
         "repo": "sddm-theme",
-        "rev": "e66ee7cd3a280d0812bfa7ca3017afda30b497b8",
+        "rev": "a2507e6f491b6758757d28c609fbd59a113bec5e",
         "type": "github"
       },
       "original": {
