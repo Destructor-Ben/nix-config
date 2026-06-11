@@ -1,6 +1,7 @@
 # NEXT:
 - get formatter set up for flake
 - get the dir autoreading working for default.nix
+- SET MIN SIZE FOR THE WORKSPACES THINGY IN CASE ONLY 1 WORKSPACE ON A SINGLE MONITOR
 
 TODO: move codium settings.json + extensions to nixos settings
 

@@ -39,6 +39,8 @@
       "$mod SHIFT, Q, forcekillactive,"
       "$mod, J, workspace, -1"
       "$mod, K, workspace, +1"
+      "$mod SHIFT, J, movetoworkspace, -1"
+      "$mod SHIFT, K, movetoworkspace, +1"
       # TODO: fullscreen keybind
       # TODO: toggle floating
       # TODO: pin floating windows

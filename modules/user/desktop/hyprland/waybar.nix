@@ -1,4 +1,4 @@
-{ pkgs, theme, ... }:
+{ theme, ... }:
 {
   # TODO: remove custom tooltup menu theme and just use the default gtk theme for the tooltips?
   programs.waybar = {
@@ -193,7 +193,7 @@
     }
 
     #custom-notifications {
-      padding: 0 ${toString (builtins.floor (theme.padding * 1.25))}px;
+      padding: 0 13px; /* Ew hardcode */
     }
 
     #workspaces {
