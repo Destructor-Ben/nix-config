@@ -2,7 +2,6 @@
 {
   home.packages = with pkgs; [
     # Programming
-    vscodium
     jetbrains.rider
     jetbrains.idea-ultimate
     godot-mono

@@ -47,9 +47,6 @@
         gaps_out = theme.padding;
         "col.inactive_border" = theme.colors.surface-0;
         "col.active_border" = "${theme.colors.contrast-primary} ${theme.colors.contrast-secondary} ${theme.gradient-angle}";
-
-        # TODO: temp
-        resize_on_border = true;
       };
 
       decoration = {
@@ -85,4 +82,5 @@
   services.hyprpolkitagent.enable = true;
   services.cliphist.enable = true;
   services.wl-clip-persist.enable = true;
+  services.poweralertd.enable = true; # TODO: configure + make sure this works
 }

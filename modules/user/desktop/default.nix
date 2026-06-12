@@ -12,6 +12,7 @@
     ./programs/hytale.nix
     ./programs/kitty.nix
     ./programs/obs.nix
+    ./programs/vscodium.nix
     ./programs/zen.nix
     ./default-apps.nix
     ./env.nix

@@ -3,8 +3,13 @@
 - get the dir autoreading working for default.nix
 
 TODO: move codium settings.json + extensions to nixos settings
+TODO: move zen settings/user chrome css to nixos settings
+
+customize zen and codium themes because both kinda suck
 
 TODO: critical battery notification
+
+TODO: finish configuring hyprland settings + animations
 
 finish customizing:
 - plymouth
@@ -18,7 +23,6 @@ TODO: change to 24 hour time
 fix the git repo for nix-config not updating properly because of perms issues
 customize sudo
 
-make wofi emoji say "Search emojis" instead of "emoji"
 TODO: fix wofi emoji from typing text when selecting an emoji
 
 make grimblast:
@@ -31,10 +35,8 @@ make grimblast:
 patch hyprland to change the default gray to catppuccin color
 also make the swipe gesture for the trackpad a bit slower and have a smaller movement thershold
 consider seeing if i can change the hyprland startup animation
-fix borders in fullscreen windows appearing (such as games)
 fix window decorations appearing:
 - codium
-- zen
 
 patch waybar to fix issues i have with it:
 - no animations
@@ -61,6 +63,7 @@ themeing:
     install catppuccin themes for all apps
     disable all window buttons in apps
     theme spotify
+    theme obsidian
 
 cursor:
 - add shadow to the cursor by patching it
