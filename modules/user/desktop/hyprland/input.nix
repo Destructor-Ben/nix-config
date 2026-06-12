@@ -33,20 +33,22 @@
 
     # TODO: make sure bindl (lock screen) and binde (can be held) work properly
     "$mod" = "Alt_L"; #"SUPER"; # TODO: temporary until i fix my windows key
-    bind =
-    [
+
+    bindm = [
+      "$mod, mouse:272, movewindow"
+      "$mod, mouse:273, resizewindow"
+    ];
+
+    bind = [
       "$mod, Q, killactive,"
       "$mod SHIFT, Q, forcekillactive,"
       "$mod, J, workspace, -1"
       "$mod, K, workspace, +1"
       "$mod SHIFT, J, movetoworkspace, -1"
       "$mod SHIFT, K, movetoworkspace, +1"
-      # TODO: fullscreen keybind
-      # TODO: toggle floating
-      # TODO: pin floating windows
-      # TODO: resizing + moving floating windows:
-      #bindm = $mainMod, mouse:272, movewindow
-      #bindm = $mainMod, mouse:273, resizewindow
+      "$mod SHIFT, F, fullscreen, 1, toggle"
+      "$mod, F, togglefloating"
+      "$mod, P, pin"
 
       "$mod, L, exec, loginctl lock-session"
       ", XF86PowerOff, exec, wlogout-custom"
@@ -58,7 +60,7 @@
       # TODO: fix the trailing newline
       "$mod, V, exec, pidof wofi || cliphist list | wofi -p \"Search clipboard\" --dmenu --pre-display-cmd \"echo '%s' | cut -f 2\" | cliphist decode | wl-copy"
       "$mod, Return, exec, kitty"
-      "$mod, F, exec, nemo"
+      "$mod, N, exec, nemo"
       "$mod, B, exec, zen"
 
       "$mod, C, exec, pidof hyprpicker || hyprpicker --format=hex -l -a"

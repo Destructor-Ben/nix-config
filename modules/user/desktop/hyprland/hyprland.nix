@@ -63,13 +63,6 @@
     };
   };
 
-  # TODO: configure
-  # TODO: send notifications on critical + warning battery + charging notif
-  # TODO: unblock all notifications
-  services.swaync = {
-    enable = true;
-  };
-
   services.hyprpaper = {
     enable = true;
 

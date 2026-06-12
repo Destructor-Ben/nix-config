@@ -1,9 +1,10 @@
 # NEXT:
 - get formatter set up for flake
 - get the dir autoreading working for default.nix
-- SET MIN SIZE FOR THE WORKSPACES THINGY IN CASE ONLY 1 WORKSPACE ON A SINGLE MONITOR
 
 TODO: move codium settings.json + extensions to nixos settings
+
+TODO: critical battery notification
 
 finish customizing:
 - plymouth
@@ -31,8 +32,9 @@ patch hyprland to change the default gray to catppuccin color
 also make the swipe gesture for the trackpad a bit slower and have a smaller movement thershold
 consider seeing if i can change the hyprland startup animation
 fix borders in fullscreen windows appearing (such as games)
-fix certain apps not being shown as floating
-fix window decorations appearing
+fix window decorations appearing:
+- codium
+- zen
 
 patch waybar to fix issues i have with it:
 - no animations
@@ -46,6 +48,8 @@ patch waybar to fix issues i have with it:
 - custom icons for tray elements
 - better ways to handle settings icons
 - waybar itself should have better tooltip support and in general, better control for the contents of elements
+- workspaces
+  - make each monitor store the current workspace even if it isn't active (maybe this is already done), so it can at least have a shadow bg col
 
 patch wofi
 - [ ] make clicking outside of wofi close it
@@ -56,6 +60,7 @@ themeing:
     install catppuccin gtk and qt themes
     install catppuccin themes for all apps
     disable all window buttons in apps
+    theme spotify
 
 cursor:
 - add shadow to the cursor by patching it
