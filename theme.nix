@@ -8,6 +8,8 @@
   padding = 10;
   border-width = 4;
   border-radius = 10;
+
+  gradient-angle-number = 45;
   gradient-angle = "45deg";
   hyprlock-gradient-angle = "${toString (360 - 45)}deg"; # Hyprlock is weird
 

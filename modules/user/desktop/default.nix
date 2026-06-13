@@ -3,11 +3,9 @@
     ./hyprland/cursor.nix
     ./hyprland/hyprland.nix
     ./hyprland/hyprtoolkit.nix
-    ./hyprland/input.nix
     ./hyprland/power.nix
     ./hyprland/swaync.nix
     ./hyprland/waybar.nix
-    ./hyprland/window-rules.nix
     ./hyprland/wofi.nix
     ./programs/hytale.nix
     ./programs/kitty.nix

@@ -1,6 +1,12 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    # Hyprland utils
+    hyprpicker
+    grimblast
+    kooha
+    wofi-emoji
+
     # Programming
     jetbrains.rider
     jetbrains.idea

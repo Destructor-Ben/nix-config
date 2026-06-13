@@ -1,6 +1,23 @@
-{ pkgs, theme, ... }:
+{ pkgs, lib, theme, ... }:
 let
-  template-theme-values = path: path;
+  # Template theme values into the lua files
+  template-theme-values = path:
+    let
+      contents = builtins.readFile path;
+      tokens = builtins.split "#theme\\.([a-zA-Z0-9_\\.-]+)#" contents;
+      getAttrPath = pathStr: let
+        parts = builtins.filter builtins.isString (builtins.split "\\." pathStr);
+      in
+        lib.attrsets.getAttrFromPath parts theme;
+
+      processedTokens = map (token:
+        if builtins.isList token then
+          toString (getAttrPath (builtins.head token))
+        else
+          token
+      ) tokens;
+    in
+      builtins.concatStringsSep "" processedTokens;
 in 
 {
   home.packages = with pkgs; [
@@ -14,37 +31,23 @@ in
     QT_QPA_PLATFORM = "wayland;xcb";
   };
 
-  home.file.".config/hypr/hyprland.lua".source = template-theme-values ../../../../dotfiles/hyprland/hyprland.lua;
-  home.file.".config/hypr/config/input.lua".source = template-theme-values ../../../../dotfiles/hyprland/config/input.lua;
-  home.file.".config/hypr/config/monitors.lua".source = template-theme-values ../../../../dotfiles/hyprland/config/monitors.lua;
+  home.file.".config/hypr/hyprland.lua".text = template-theme-values ../../../../dotfiles/hyprland/hyprland.lua;
+  home.file.".config/hypr/config/input.lua".text = template-theme-values ../../../../dotfiles/hyprland/config/input.lua;
+  home.file.".config/hypr/config/monitors.lua".text = template-theme-values ../../../../dotfiles/hyprland/config/monitors.lua;
+  home.file.".config/hypr/config/window-rules.lua".text = template-theme-values ../../../../dotfiles/hyprland/config/window-rules.lua;
 
-  wayland.windowManager.hyprland = {
-    #enable = true;
+  # TODO: run audio-listen again
+  # TODO: initting stuff -> perhaps use UWSM?
+  # - audio-listen
+  # - waybar
+  # - hyprpaper
+  # - swaync
+  # - other serivces
 
-    # Use hyprland and XDG portal from the NixOS module
-    #package = null;
-    #portalPackage = null;
-
-    #xwayland.enable = true;
-    # TODO: should i include? systemd.enable = false; # Conflicts with the system module
-    # TODO: if i do, then also enable UWSM because it replaces the systemd stuff
-
-    # TODO: use lxappearance/stylix to theme apps
-    # TODO: setup file picker
-    # TODO: fix window decorations
-    # TODO: get cava
-    # TODO: make a audio player visualizer that is only visible on empty workspaces
-
-
-    # settings = {
-
-    #   exec-once =
-    #   [
-    #     "audio-listen"
-    #   ];
-
-    # };
-  };
+  # TODO: use lxappearance/stylix to theme apps
+  # TODO: style file picker
+  # TODO: get cava
+  # TODO: make a audio player visualizer that is only visible on empty workspaces
 
   services.hyprpaper = {
     enable = true;
