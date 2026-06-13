@@ -4,11 +4,6 @@
     hyprshutdown
   ];
 
-  # TODO: logging in and out doesn't properly close processes started via exec-once in hyprland
-  # - using systemd user services might be a good idea to fix this instead of exec-once
-  # - do the above (helps for security), but it isn't the entire solution
-  # - TRY USING UWSM instead of systemd for home-manager module (it's reccomended by nixos)
-
   # TODO: make the screen brightness fade in and out when darkening, and also make it fade in and out when suspending + unsuspending
   services.hypridle = {
     enable = true;

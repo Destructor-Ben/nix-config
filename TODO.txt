@@ -1,4 +1,8 @@
 # NEXT:
+- fix hyprshutdown not working when run from waybar
+- make audio-listen a systemd user module
+
+# NEXT:
 - get formatter set up for flake
 - get the dir autoreading working for default.nix
 

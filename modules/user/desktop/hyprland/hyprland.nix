@@ -36,14 +36,6 @@ in
   home.file.".config/hypr/config/monitors.lua".text = template-theme-values ../../../../dotfiles/hyprland/config/monitors.lua;
   home.file.".config/hypr/config/window-rules.lua".text = template-theme-values ../../../../dotfiles/hyprland/config/window-rules.lua;
 
-  # TODO: run audio-listen again
-  # TODO: initting stuff -> perhaps use UWSM?
-  # - audio-listen
-  # - waybar
-  # - hyprpaper
-  # - swaync
-  # - other serivces
-
   # TODO: use lxappearance/stylix to theme apps
   # TODO: style file picker
   # TODO: get cava
