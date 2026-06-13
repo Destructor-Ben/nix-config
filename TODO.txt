@@ -3,6 +3,7 @@
 - fix plymouth
 - disable second screen in sddm
 - install hyprsunset
+- get critical batter notifiactions working
 
 # NEXT:
 - get formatter set up for flake
@@ -10,11 +11,8 @@
 
 TODO: move codium settings.json + extensions to nixos settings
 TODO: move zen settings/user chrome css to nixos settings
-TODO: remove window decorations in steam
 
 customize zen and codium themes because both kinda suck
-
-TODO: critical battery notification
 
 TODO: finish configuring hyprland settings + animations
 
@@ -23,7 +21,6 @@ finish customizing:
 - sddm
 - hyprshutdown
 
-FIX HYPRSHUTDOWN with the WAYBAR systemd module
 TODO: change to 24 hour time
 
 fix the git repo for nix-config not updating properly because of perms issues
@@ -61,7 +58,6 @@ themeing:
     - get apple emojis
     install catppuccin gtk and qt themes
     install catppuccin themes for all apps
-    disable all window buttons in apps
     theme spotify
     theme obsidian
 

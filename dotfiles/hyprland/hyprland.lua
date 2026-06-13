@@ -1,5 +1,6 @@
 require("config.input")
 require("config.monitors")
+require("config.window-rules")
 
 hl.on("hyprland.start", function () 
   hl.exec_cmd("audio-listen")

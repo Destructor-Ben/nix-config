@@ -1,5 +1,4 @@
--- TODO: fix
 hl.window_rule({
-  match = { class = ".blueman-manager-wrapped" },
+  match = { class = ".*blueman-manager.*" },
   float = true,
 })
