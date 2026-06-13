@@ -64,10 +64,27 @@ in
     };
   };
 
+  services.hyprsunset = {
+    enable = true;
+
+    settings = {
+      profile = [
+        {
+          time = "6:00";
+          identity = true;
+        }
+        {
+          time = "19:00";
+          temperature = 5000;
+          gamma = 0.8;
+        }
+      ];
+    };
+  };
+
   services.blueman-applet.enable = true;
   services.network-manager-applet.enable = true;
   services.hyprpolkitagent.enable = true;
   services.cliphist.enable = true;
   services.wl-clip-persist.enable = true;
-  services.poweralertd.enable = true; # TODO: configure + make sure this works
 }

@@ -2,7 +2,6 @@
 - fix hyprshutdown not working when run from waybar
 - fix plymouth
 - disable second screen in sddm
-- install hyprsunset
 - get critical batter notifiactions working
 
 # NEXT:
