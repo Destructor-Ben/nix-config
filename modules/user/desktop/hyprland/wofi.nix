@@ -1,7 +1,7 @@
 { theme, ... }:
 {
   # TODO: fix this
-  wayland.windowManager.hyprland.settings.layerrule = "animation fade, match:namespace wofi";
+  # wayland.windowManager.hyprland.settings.layerrule = "animation fade, match:namespace wofi";
 
   programs.wofi = {
     enable = true;

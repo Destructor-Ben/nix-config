@@ -4,6 +4,7 @@
 
 TODO: move codium settings.json + extensions to nixos settings
 TODO: move zen settings/user chrome css to nixos settings
+TODO: remove window decorations in steam
 
 customize zen and codium themes because both kinda suck
 

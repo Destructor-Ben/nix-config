@@ -8,7 +8,7 @@
     tree file which jq
     bat
     killall
-    wineWowPackages.stable
+    wineWow64Packages.stable
     helix
     gnumake
   ];

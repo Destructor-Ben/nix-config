@@ -1,7 +1,7 @@
-{ unstable, theme, ...}:
+{ pkgs, theme, ...}:
 {
-  home.packages = [
-    unstable.hyprshutdown
+  home.packages = with pkgs; [
+    hyprshutdown
   ];
 
   # TODO: logging in and out doesn't properly close processes started via exec-once in hyprland

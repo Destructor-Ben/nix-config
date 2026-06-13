@@ -3,7 +3,7 @@
   home.packages = with pkgs; [
     # Programming
     jetbrains.rider
-    jetbrains.idea-ultimate
+    jetbrains.idea
     godot-mono
     avalonia-ilspy
     nixd
@@ -23,9 +23,10 @@
     libreoffice-qt
 
     # Creative
+    pinta
+    aseprite
     gimp
     inkscape
-    aseprite
     blender
     lmms
     audacity

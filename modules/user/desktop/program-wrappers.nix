@@ -52,9 +52,9 @@
 
     # TODO: use nix-ld instead of exporting LD_LIBRARY_PATH?
     # TODO: change back to java in the future
-    (writeShellScriptBin "idea-ultimate-wrapped" ''
+    (writeShellScriptBin "idea-wrapped" ''
       export LD_LIBRARY_PATH="${lib.makeLibraryPath [ libGL ]}:$LD_LIBRARY_PATH"
-      steam-run nix develop ~/nix-config#minecraft --command idea-ultimate $@
+      steam-run nix develop ~/nix-config#minecraft --command idea $@
     '')
   ];
 }

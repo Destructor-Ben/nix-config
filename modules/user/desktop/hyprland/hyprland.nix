@@ -1,4 +1,7 @@
 { pkgs, theme, ... }:
+let
+  template-theme-values = path: path;
+in 
 {
   home.packages = with pkgs; [
     qt5.qtwayland
@@ -11,16 +14,18 @@
     QT_QPA_PLATFORM = "wayland;xcb";
   };
 
-  # TODO: setup cava
+  home.file.".config/hypr/hyprland.lua".source = template-theme-values ../../../../dotfiles/hyprland/hyprland.lua;
+  home.file.".config/hypr/config/input.lua".source = template-theme-values ../../../../dotfiles/hyprland/config/input.lua;
+  home.file.".config/hypr/config/monitors.lua".source = template-theme-values ../../../../dotfiles/hyprland/config/monitors.lua;
 
   wayland.windowManager.hyprland = {
-    enable = true;
+    #enable = true;
 
     # Use hyprland and XDG portal from the NixOS module
-    package = null;
-    portalPackage = null;
+    #package = null;
+    #portalPackage = null;
 
-    xwayland.enable = true;
+    #xwayland.enable = true;
     # TODO: should i include? systemd.enable = false; # Conflicts with the system module
     # TODO: if i do, then also enable UWSM because it replaces the systemd stuff
 
@@ -30,34 +35,15 @@
     # TODO: get cava
     # TODO: make a audio player visualizer that is only visible on empty workspaces
 
-    settings = {
-      monitor = [
-        "eDP-1,1920x1080@60,0x0,1"
-        "HDMI-A-1,1920x1080@143.85Hz,0x-1080,1"
-      ];
 
-      exec-once =
-      [
-        "audio-listen"
-      ];
+    # settings = {
 
-      general = {
-        border_size = theme.border-width;
-        gaps_in = theme.padding / 2;
-        gaps_out = theme.padding;
-        "col.inactive_border" = theme.colors.surface-0;
-        "col.active_border" = "${theme.colors.contrast-primary} ${theme.colors.contrast-secondary} ${theme.gradient-angle}";
-      };
+    #   exec-once =
+    #   [
+    #     "audio-listen"
+    #   ];
 
-      decoration = {
-        rounding = theme.border-radius;
-        # TODO: implement my own cool effects: screen_shader = "path/to/shader.frag";
-      };
-
-      misc = {
-        disable_hyprland_logo = true;
-      };
-    };
+    # };
   };
 
   services.hyprpaper = {
@@ -71,8 +57,14 @@
       ];
 
       wallpaper = [
-        "eDP-1,${toString theme.wallpaper}"
-        "HDMI-A-1,${toString theme.wallpaper}"
+        {
+          monitor = "eDP-1";
+          path = toString theme.wallpaper;
+        }
+        {
+          monitor = "HDMI-A-1";
+          path = toString theme.wallpaper;
+        }
       ];
     };
   };
