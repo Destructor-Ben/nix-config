@@ -78,7 +78,7 @@
           shadow_boost = 1;
         }
         {
-          text = "cmd[update:1000] date +\"%-I:%M %p\"";
+          text = "cmd[update:1000] date +\"%H:%M\"";
           font_size = 72;
           font_family = theme.fonts.impact;
           color = theme.colors.text;

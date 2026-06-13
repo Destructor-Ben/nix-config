@@ -1,8 +1,11 @@
 # NEXT:
 - fix hyprshutdown not working when run from waybar
+  - consider running a background daemon that will launch wlogout using IPC, and waybar just informs wlogout to launch
 - fix plymouth
 - disable second screen in sddm
-- get critical batter notifiactions working
+- disable time compat for windows (i never boot into windows anyway)
+- get critical battery notifiactions working
+- see if there is a way to make each monitor have their "selected" but not "focused" workspace have a css class
 
 # NEXT:
 - get formatter set up for flake

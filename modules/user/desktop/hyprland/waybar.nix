@@ -105,9 +105,10 @@
           tooltip = false;
         };
         clock = {
-          format = "{:%a %d %b %I:%M %p}";
+          format = "{:%a %d %b %H:%M}";
           tooltip = false;
         };
+        # TODO: actually correct notifications impl: https://github.com/ErikReider/SwayNotificationCenter#waybar-example
         "custom/notifications" = {
           exec = "count=$(swaync-client -c); [ \"$count\" -eq 0 ] && echo \"󰂜\" || echo \"󰂚\"";
           interval = 1;
