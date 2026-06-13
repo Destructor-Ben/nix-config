@@ -23,8 +23,6 @@ finish customizing:
 - sddm
 - hyprshutdown
 
-TODO: change to 24 hour time
-
 fix the git repo for nix-config not updating properly because of perms issues
 customize sudo
 
