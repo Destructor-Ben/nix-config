@@ -1,6 +1,10 @@
 require("config.input")
 require("config.monitors")
 
+hl.on("hyprland.start", function () 
+  hl.exec_cmd("audio-listen")
+end)
+
 hl.config({
   general = {
     border_size = #theme.border-width#,

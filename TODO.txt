@@ -1,6 +1,8 @@
 # NEXT:
 - fix hyprshutdown not working when run from waybar
-- make audio-listen a systemd user module
+- fix plymouth
+- disable second screen in sddm
+- install hyprsunset
 
 # NEXT:
 - get formatter set up for flake
@@ -19,7 +21,6 @@ TODO: finish configuring hyprland settings + animations
 finish customizing:
 - plymouth
 - sddm
-  - add animations
 - hyprshutdown
 
 FIX HYPRSHUTDOWN with the WAYBAR systemd module
@@ -37,16 +38,10 @@ make grimblast:
 - not have an annoying flicker when first starting up
 - redo the visuals
 
-patch hyprland to change the default gray to catppuccin color
-also make the swipe gesture for the trackpad a bit slower and have a smaller movement thershold
-consider seeing if i can change the hyprland startup animation
-fix window decorations appearing:
-- codium
-
 patch waybar to fix issues i have with it:
 - no animations
 - dodgy animations
-- curosr not being a pointer with the hyprland indicator
+- curosr not being a pointer with the hyprland workspace indicator or the system tray
 - shadows being clipped
 - notifications being handled in such a dodgy way (checking every second)
 - ensure that the nixos icon and notification icon are perfect circles
